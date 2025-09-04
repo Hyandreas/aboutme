@@ -62,8 +62,7 @@ export default function ContactPage() {
                   <h2 className="text-2xl font-semibold text-white-accent mb-6">Get In Touch</h2>
                   <div className="space-y-4 text-pale-blue">
                     <p>
-                      I'm always interested in discussing new opportunities, collaborations, 
-                      or just having a conversation about science, technology, and creative pursuits.
+                      Open to connecting to discuss projects/opportunities, or just to chat.
                     </p>
                     <div className="pt-6 space-y-3">
                       <div className="flex items-center space-x-3">
