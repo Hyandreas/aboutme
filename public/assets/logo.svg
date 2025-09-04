@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+    <defs>
+        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#9d8df1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#6a4c93;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="shadowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#000000;stop-opacity:0.8" />
+            <stop offset="100%" style="stop-color:#16213e;stop-opacity:0.6" />
+        </linearGradient>
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge> 
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <filter id="darkGlow">
+            <feGaussianBlur stdDeviation="1" result="darkBlur"/>
+            <feMerge> 
+                <feMergeNode in="darkBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    
+    <!-- Outer decorative ring with midnight blue -->
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#16213e" stroke-width="3" opacity="0.8"/>
+    
+    <!-- Inner shadow ring -->
+    <circle cx="50" cy="50" r="38" fill="none" stroke="url(#shadowGradient)" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Marionette-inspired face structure -->
+    <!-- Main face outline (elongated oval like Marionette) -->
+    <ellipse cx="50" cy="48" rx="22" ry="28" fill="none" stroke="url(#logoGradient)" stroke-width="2" filter="url(#glow)"/>
+    
+    <!-- Marionette's characteristic tear marks -->
+    <line x1="42" y1="38" x2="40" y2="52" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+    <line x1="58" y1="38" x2="60" y2="52" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Eyes (hollow and haunting like Marionette) -->
+    <circle cx="44" cy="42" r="3" fill="#000000" stroke="#ffffff" stroke-width="1"/>
+    <circle cx="56" cy="42" r="3" fill="#000000" stroke="#ffffff" stroke-width="1"/>
+    <!-- Eye glow/highlights -->
+    <circle cx="45" cy="41" r="1" fill="#ffffff" opacity="0.8"/>
+    <circle cx="57" cy="41" r="1" fill="#ffffff" opacity="0.8"/>
+    
+    <!-- Marionette's signature cheek marks -->
+    <circle cx="38" cy="48" r="2" fill="#9d8df1" opacity="0.7"/>
+    <circle cx="62" cy="48" r="2" fill="#9d8df1" opacity="0.7"/>
+    
+    <!-- Mouth line (thin and eerie) -->
+    <line x1="46" y1="54" x2="54" y2="54" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+    
+    <!-- Gothic ornamental corners with sharp angles -->
+    <polygon points="15,15 25,15 25,20 20,20 20,25 15,25" fill="url(#logoGradient)" opacity="0.6"/>
+    <polygon points="85,15 75,15 75,20 80,20 80,25 85,25" fill="url(#logoGradient)" opacity="0.6"/>
+    <polygon points="15,85 25,85 25,80 20,80 20,75 15,75" fill="url(#logoGradient)" opacity="0.6"/>
+    <polygon points="85,85 75,85 75,80 80,80 80,75 85,75" fill="url(#logoGradient)" opacity="0.6"/>
+    
+    <!-- Puppet strings (representing control/manipulation theme) -->
+    <line x1="50" y1="10" x2="50" y2="20" stroke="#9d8df1" stroke-width="1" opacity="0.6"/>
+    <line x1="45" y1="12" x2="42" y2="22" stroke="#9d8df1" stroke-width="1" opacity="0.4"/>
+    <line x1="55" y1="12" x2="58" y2="22" stroke="#9d8df1" stroke-width="1" opacity="0.4"/>
+    
+    <!-- Central letter 'A' integrated into design -->
+    <path d="M 35 75 L 42 60 L 58 60 L 65 75 M 40 68 L 60 68" 
+          stroke="url(#logoGradient)" 
+          stroke-width="2.5" 
+          fill="none" 
+          filter="url(#glow)"/>
+    
+    <!-- Letter 'T' positioned to the right -->
+    <path d="M 70 60 L 85 60 M 77.5 60 L 77.5 75" 
+          stroke="url(#logoGradient)" 
+          stroke-width="2.5" 
+          fill="none" 
+          filter="url(#glow)"/>
+    
+    <!-- Dark accent dots for gothic feel -->
+    <circle cx="30" cy="30" r="1" fill="#000000" opacity="0.7"/>
+    <circle cx="70" cy="30" r="1" fill="#000000" opacity="0.7"/>
+    <circle cx="30" cy="70" r="1" fill="#000000" opacity="0.7"/>
+    
+    <!-- Subtle geometric pattern around the border -->
+    <path d="M 50 5 L 52 8 L 50 11 L 48 8 Z" fill="#6a4c93" opacity="0.5"/>
+    <path d="M 5 50 L 8 52 L 5 54 L 3 52 Z" fill="#6a4c93" opacity="0.5"/>
+    <path d="M 95 50 L 97 52 L 95 54 L 92 52 Z" fill="#6a4c93" opacity="0.5"/>
+</svg>

@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Special+Elite&display=swap');
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-serif bg-gradient-to-br from-primary-dark via-secondary-dark to-primary-dark;
+    background-attachment: fixed;
+    @apply text-off-white overflow-x-hidden;
+    position: relative;
+  }
+
+  /* Enhanced atmospheric fog effect with more necromancy */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(74, 111, 165, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(45, 27, 78, 0.45) 0%, transparent 45%),
+                radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.35) 0%, transparent 40%),
+                radial-gradient(circle at 60% 70%, rgba(139, 0, 139, 0.25) 0%, transparent 35%);
+    pointer-events: none;
+    z-index: -1;
+    animation: winter-mist 20s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+  }
+  
+  /* Additional necromantic overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+      transparent 0%, 
+      rgba(139, 0, 139, 0.1) 25%, 
+      transparent 50%, 
+      rgba(25, 25, 112, 0.15) 75%, 
+      transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+    animation: necro-sweep 30s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-24 md:py-32;
+  }
+  
+  .container-custom {
+    @apply max-w-6xl mx-auto px-5 md:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium;
+    @apply bg-gradient-to-r from-necro-purple to-ice-blue text-white;
+    @apply border border-necro-purple rounded-lg;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:scale-105 hover:shadow-necro;
+    will-change: transform;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium;
+    @apply bg-transparent text-white border border-white-accent rounded-lg;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:bg-white hover:text-primary-dark hover:scale-105;
+    will-change: transform;
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold;
+    @apply text-white-accent text-center mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-muted-white text-center text-lg mb-16;
+  }
+
+  .card-gothic {
+    @apply bg-gradient-to-br from-tertiary-dark via-primary-dark to-shadow-gray;
+    @apply border-2 border-necro-purple/60 rounded-lg p-6;
+    @apply shadow-2xl transition-all duration-700;
+    @apply hover:shadow-frost hover:scale-105 hover:border-necro-purple hover:bg-gradient-to-br hover:from-deep-purple hover:to-accent-purple;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 
+                0 0 30px rgba(99, 102, 241, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    will-change: transform;
+  }
+  
+  .card-gothic:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 
+                0 0 50px rgba(99, 102, 241, 0.6),
+                0 0 80px rgba(139, 0, 139, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Add missing gradient utilities */
+  .bg-gradient-radial {
+    background: radial-gradient(var(--tw-gradient-stops));
+  }
+  
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animate-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animate-delay-900 {
+    animation-delay: 900ms;
+  }
+}
