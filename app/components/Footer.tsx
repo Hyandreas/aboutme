@@ -86,10 +86,10 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <p className="mb-2">
-              © {new Date().getFullYear()} Andreas Tsang. All rights reserved.
+              © {new Date().getFullYear()} Andreas Tsang.
             </p>
             <p className="text-sm opacity-70">
-              "Then we shall fight in the shade" - Leonidas
+              "Everything hinges on what you do today"
             </p>
           </motion.div>
           
