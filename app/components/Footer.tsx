@@ -30,14 +30,14 @@ const Footer = () => {
       href: "mailto:andreastsang28@gmail.com",
       label: "Email"
     }
-  ]
+  ];
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
-  }
+  };
 
   return (
     <footer className="relative bg-gradient-to-t from-primary-dark to-secondary-dark border-t-2 border-necro-purple py-12">
@@ -86,14 +86,10 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <p className="mb-2">
-              © {new Date().getFullYear()} Andreas Tsang.
+              © {new Date().getFullYear()} Andreas Tsang. All rights reserved.
             </p>
             <p className="text-sm opacity-70">
-<<<<<<< HEAD
-              "Everything hinges on what you do today"
-=======
               "Proof is the only victory"
->>>>>>> 5520d46 (update footer)
             </p>
           </motion.div>
           
