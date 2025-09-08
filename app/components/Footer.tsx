@@ -89,7 +89,11 @@ const Footer = () => {
               © {new Date().getFullYear()} Andreas Tsang.
             </p>
             <p className="text-sm opacity-70">
+<<<<<<< HEAD
               "Everything hinges on what you do today"
+=======
+              "Proof is the only victory"
+>>>>>>> 5520d46 (update footer)
             </p>
           </motion.div>
           
