@@ -89,7 +89,7 @@ const Footer = () => {
               © {new Date().getFullYear()} Andreas Tsang. All rights reserved.
             </p>
             <p className="text-sm opacity-70">
-              "Proof is the only victory"
+              i'll be perfect, just for you
             </p>
           </motion.div>
           
