@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import React from 'react'
 import './globals.css'
+import VoidEffects from './components/VoidEffects'
+import LockdownOverlay from './components/LockdownOverlay'
+import { getConfig } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Andreas Tsang - Portfolio',
@@ -19,6 +22,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { lockdown, lockdown_message } = getConfig()
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
@@ -27,7 +32,9 @@ export default function RootLayout({
         <link rel="preload" href="/assets/marion.png" as="image" />
       </head>
       <body className="antialiased">
+        <VoidEffects />
         {children}
+        {lockdown && <LockdownOverlay message={lockdown_message} />}
         <div id="scroll-top" />
       </body>
     </html>

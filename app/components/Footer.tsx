@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 
 const Footer = () => {
   const socialLinks = [
@@ -60,6 +60,7 @@ const Footer = () => {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={link.label}
                 className="p-3 bg-shadow-gray border border-necro-purple/30 rounded-full text-off-white hover:text-primary-dark hover:bg-necro-purple hover:border-necro-purple transition-all duration-300 group"
                 whileHover={{ 
                   scale: 1.1,
@@ -89,13 +90,14 @@ const Footer = () => {
               © {new Date().getFullYear()} Andreas Tsang. All rights reserved.
             </p>
             <p className="text-sm opacity-70">
-              i'll be perfect, just for you
+              i&apos;ll be perfect, just for you
             </p>
           </motion.div>
           
           {/* Scroll to top button */}
           <motion.button
             onClick={scrollToTop}
+            aria-label="Scroll to top"
             className="p-2 text-necro-purple hover:text-white transition-colors duration-200"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}

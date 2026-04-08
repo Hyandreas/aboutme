@@ -6,34 +6,45 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { Download } from 'lucide-react';
 
+const CV_URL = '/assets/cv.pdf';
+
 export default function CVPage() {
-  const [pdfLoaded, setPdfLoaded] = useState(false);
-  const [showComingSoon, setShowComingSoon] = useState(true);
+  const [hasCv, setHasCv] = useState(false);
+  const [isCheckingCv, setIsCheckingCv] = useState(true);
 
   const handleDownload = () => {
+    if (!hasCv) {
+      return;
+    }
+
     const link = document.createElement('a');
-    link.href = '/assets/cv.pdf';
+    link.href = CV_URL;
     link.download = 'Andreas_Tsang_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  const handlePdfLoad = () => {
-    setPdfLoaded(true);
-    setShowComingSoon(false);
-  };
-
   useEffect(() => {
-    fetch('/assets/cv.pdf')
+    let isMounted = true;
+
+    fetch(CV_URL, { method: 'HEAD' })
       .then(response => {
-        if (response.ok) {
-          setShowComingSoon(false);
+        if (isMounted) {
+          setHasCv(response.ok);
+          setIsCheckingCv(false);
         }
       })
       .catch(() => {
-        setShowComingSoon(true);
+        if (isMounted) {
+          setHasCv(false);
+          setIsCheckingCv(false);
+        }
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -65,7 +76,7 @@ export default function CVPage() {
               className="relative max-w-4xl mx-auto"
             >
               <div className="bg-deep-black/80 backdrop-blur-sm rounded-lg p-2 md:p-4 border border-necro-purple/30 shadow-necro transition-all duration-300 hover:shadow-necro-glow hover:border-necro-purple/50">
-                {showComingSoon ? (
+                {isCheckingCv || !hasCv ? (
                   /* Coming Soon Message */
                   <div className="w-full h-[500px] md:h-[700px] lg:h-[800px] flex items-center justify-center">
                     <motion.div
@@ -93,7 +104,7 @@ export default function CVPage() {
                         transition={{ delay: 0.3, duration: 0.6 }}
                         className="text-pale-blue text-lg md:text-xl mb-8"
                       >
-                        ;)
+                        {isCheckingCv ? 'Checking for the latest PDF...' : 'The PDF has not been uploaded yet.'}
                       </motion.div>
                       <motion.div
                         animate={{ 
@@ -112,10 +123,10 @@ export default function CVPage() {
                     {/* PDF Embed */}
                     <div className="w-full h-[500px] md:h-[700px] lg:h-[800px] bg-white rounded cursor-pointer" onClick={handleDownload}>
                       <iframe
-                        src="/assets/cv.pdf"
+                        src={CV_URL}
                         className="w-full h-full rounded"
                         title="Andreas Tsang CV"
-                        onLoad={handlePdfLoad}
+                        loading="lazy"
                       />
                     </div>
                     
@@ -143,13 +154,19 @@ export default function CVPage() {
               transition={{ delay: 1, duration: 0.5 }}
               className="mt-8 text-center"
             >
-              <button
-                onClick={handleDownload}
-                className="inline-flex items-center space-x-2 bg-gradient-to-r from-necro-purple to-ice-blue text-white px-6 py-3 rounded-lg font-semibold hover:shadow-necro-glow transition-all duration-300"
-              >
-                <Download size={20} />
-                <span>Download CV (PDF)</span>
-              </button>
+              {hasCv ? (
+                <button
+                  onClick={handleDownload}
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-necro-purple to-ice-blue text-white px-6 py-3 rounded-lg font-semibold hover:shadow-necro-glow transition-all duration-300"
+                >
+                  <Download size={20} />
+                  <span>Download CV (PDF)</span>
+                </button>
+              ) : (
+                <p className="text-pale-blue">
+                  Add `/public/assets/cv.pdf` to enable the embedded viewer and download button.
+                </p>
+              )}
             </motion.div>
           </div>
         </section>

@@ -3,10 +3,14 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-const Hero = () => {
+interface HeroProps {
+  name: string;
+  tagline: string;
+}
+
+const Hero = ({ name, tagline }: HeroProps) => {
   const router = useRouter()
 
   return (
@@ -129,7 +133,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1 }}
             >
-              Hi, I'm
+              Hi, I&apos;m
             </motion.span>
             <motion.span 
               className="block text-white-accent text-shadow-glow"
@@ -137,7 +141,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1 }}
             >
-              Andreas Tsang.
+              {name}
             </motion.span>
           </motion.h1>
           
@@ -148,7 +152,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 1 }}
           >
-            CS | Drones | Physics | Geochemistry | Violin
+            {tagline}
           </motion.p>
           
           <motion.div 

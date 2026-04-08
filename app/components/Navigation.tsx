@@ -98,6 +98,9 @@ const Navigation = () => {
           <motion.button
             className="md:hidden text-white-accent p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             whileTap={{ scale: 0.95 }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -109,6 +112,7 @@ const Navigation = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-navigation"
             className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-necro-purple"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
