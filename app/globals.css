@@ -2,141 +2,294 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Special+Elite&display=swap');
+
+/* ============================================================
+   RELIQUARY — base
+   ============================================================ */
+
+:root {
+  --void: #050309;
+  --obsidian: #0C0A18;
+  --indigo-votive: #4F46E5;
+  --amethyst-ember: #7C3AED;
+  --bone: #E8E4D8;
+  --ash: #8B8FA8;
+  --bone-dust: rgba(232, 228, 216, 0.08);
+  --ease-reliquary: cubic-bezier(0.16, 1, 0.3, 1);
+}
 
 @layer base {
   html {
     scroll-behavior: smooth;
-  }
-  
-  body {
-    @apply font-serif bg-gradient-to-br from-primary-dark via-secondary-dark to-primary-dark;
-    background-attachment: fixed;
-    @apply text-off-white overflow-x-hidden;
-    position: relative;
+    background-color: var(--void);
   }
 
-  /* Enhanced atmospheric fog effect with more necromancy */
+  body {
+    font-family: 'Crimson Text', serif;
+    color: var(--bone);
+    background-color: var(--void);
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Directional indigo votive — top-left only. No omnidirectional wash. */
   body::before {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 80%, rgba(74, 111, 165, 0.4) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(45, 27, 78, 0.45) 0%, transparent 45%),
-                radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.35) 0%, transparent 40%),
-                radial-gradient(circle at 60% 70%, rgba(139, 0, 139, 0.25) 0%, transparent 35%);
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 12% 8%,
+        rgba(79, 70, 229, 0.18) 0%,
+        rgba(79, 70, 229, 0.08) 25%,
+        transparent 60%),
+      radial-gradient(ellipse 60% 40% at 88% 92%,
+        rgba(12, 10, 24, 0.8) 0%,
+        transparent 55%);
     pointer-events: none;
-    z-index: -1;
-    animation: winter-mist 20s ease-in-out infinite alternate;
-    will-change: transform, opacity;
+    z-index: 0;
+    will-change: opacity;
   }
-  
-  /* Additional necromantic overlay */
+
+  /* Vignette — pulls focus center */
   body::after {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-      transparent 0%, 
-      rgba(139, 0, 139, 0.1) 25%, 
-      transparent 50%, 
-      rgba(25, 25, 112, 0.15) 75%, 
-      transparent 100%);
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(5, 3, 9, 0.55) 100%);
     pointer-events: none;
-    z-index: -1;
-    animation: necro-sweep 30s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-}
-
-@layer components {
-  .section-padding {
-    @apply py-24 md:py-32;
-  }
-  
-  .container-custom {
-    @apply max-w-6xl mx-auto px-5 md:px-8;
-  }
-
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium;
-    @apply bg-gradient-to-r from-necro-purple to-ice-blue text-white;
-    @apply border border-necro-purple rounded-lg;
-    @apply transition-all duration-300 ease-in-out;
-    @apply hover:scale-105 hover:shadow-necro;
-    will-change: transform;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium;
-    @apply bg-transparent text-white border border-white-accent rounded-lg;
-    @apply transition-all duration-300 ease-in-out;
-    @apply hover:bg-white hover:text-primary-dark hover:scale-105;
-    will-change: transform;
-  }
-
-  .section-title {
-    @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold;
-    @apply text-white-accent text-center mb-6;
-  }
-
-  .section-subtitle {
-    @apply text-muted-white text-center text-lg mb-16;
-  }
-
-  .card-gothic {
-    @apply bg-gradient-to-br from-tertiary-dark via-primary-dark to-shadow-gray;
-    @apply border-2 border-necro-purple/60 rounded-lg p-6;
-    @apply shadow-2xl transition-all duration-700;
-    @apply hover:shadow-frost hover:scale-105 hover:border-necro-purple hover:bg-gradient-to-br hover:from-deep-purple hover:to-accent-purple;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 
-                0 0 30px rgba(99, 102, 241, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    will-change: transform;
-  }
-  
-  .card-gothic:hover {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 
-                0 0 50px rgba(99, 102, 241, 0.6),
-                0 0 80px rgba(139, 0, 139, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-}
-
-@layer utilities {
-  .text-shadow-glow {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  }
-  
-  /* Add missing gradient utilities */
-  .bg-gradient-radial {
-    background: radial-gradient(var(--tw-gradient-stops));
-  }
-  
-  .animate-delay-300 {
-    animation-delay: 300ms;
-  }
-  
-  .animate-delay-600 {
-    animation-delay: 600ms;
-  }
-  
-  .animate-delay-900 {
-    animation-delay: 900ms;
+    z-index: 1;
   }
 }
 
 /* ============================================================
-   Void ambient effects — occasional atmospheric animations
+   Grain — the single biggest material upgrade per line of code.
+   SVG fractalNoise inline, ~2% opacity, overlay blend.
    ============================================================ */
 
-/* A tear in the fabric of the void */
+.reliquary-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.88  0 0 0 0 0.85  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Hide system cursor when the MagneticCursor is active. Keep it on inputs
+   so the caret behaves normally. */
+html.magnetic-cursor-active,
+html.magnetic-cursor-active * {
+  cursor: none !important;
+}
+html.magnetic-cursor-active input,
+html.magnetic-cursor-active textarea {
+  cursor: text !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   RELIQUARY — components
+   ============================================================ */
+
+@layer components {
+  .section-padding {
+    @apply py-28 md:py-40;
+  }
+
+  .container-custom {
+    @apply max-w-6xl mx-auto px-5 md:px-8;
+  }
+
+  .container-narrow {
+    max-width: 62ch;
+    @apply mx-auto px-5 md:px-8;
+  }
+
+  /* Editorial small-caps kicker — replaces the gradient divider bar */
+  .kicker {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: rgba(139, 143, 168, 0.7);
+  }
+
+  /* Chapter numeral — roman numerals in hairline Cinzel */
+  .chapter-numeral {
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    font-size: clamp(4rem, 8vw, 7rem);
+    letter-spacing: 0.05em;
+    color: rgba(232, 228, 216, 0.12);
+    line-height: 1;
+  }
+
+  /* Carved-into-stone display type */
+  .carved {
+    font-family: 'Cinzel', serif;
+    color: var(--bone);
+    text-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.9),
+      0 -1px 0 rgba(255, 255, 255, 0.04);
+    letter-spacing: 0.08em;
+  }
+
+  /* Chromatic aberration — one detail, huge signal */
+  .aberrate {
+    position: relative;
+  }
+  .aberrate::before,
+  .aberrate::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    letter-spacing: inherit;
+  }
+  .aberrate::before {
+    color: rgba(124, 58, 237, 0.22);
+    transform: translate(-1px, 0);
+    mix-blend-mode: screen;
+  }
+  .aberrate::after {
+    color: rgba(79, 200, 229, 0.18);
+    transform: translate(1px, 0);
+    mix-blend-mode: screen;
+  }
+
+  /* Reliquary link — the signature hover. Bone-dust underline draws in from left. */
+  .link-reliquary {
+    position: relative;
+    color: var(--bone);
+    transition: color 600ms var(--ease-reliquary);
+    padding-bottom: 2px;
+  }
+  .link-reliquary::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+      to right,
+      var(--bone-dust) 0%,
+      rgba(232, 228, 216, 0.5) 50%,
+      var(--bone-dust) 100%
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms var(--ease-reliquary);
+  }
+  .link-reliquary:hover::after,
+  .link-reliquary:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  /* A single CTA line — "↳ Enter the vault" style */
+  .cta-reliquary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: var(--bone);
+    padding: 0.25rem 0;
+    position: relative;
+    transition: color 400ms var(--ease-reliquary);
+    cursor: pointer;
+  }
+  .cta-reliquary::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(232, 228, 216, 0.6) 50%,
+      transparent 100%
+    );
+    transform: scaleX(0.25);
+    transform-origin: center;
+    transition: transform 600ms var(--ease-reliquary);
+  }
+  .cta-reliquary:hover::after,
+  .cta-reliquary:focus-visible::after {
+    transform: scaleX(1);
+  }
+  .cta-reliquary .cta-arrow {
+    transition: transform 500ms var(--ease-reliquary);
+    display: inline-block;
+  }
+  .cta-reliquary:hover .cta-arrow {
+    transform: translateX(6px);
+  }
+
+  /* Vitrine — glass over a relic. Single diagonal highlight sweep on hover. */
+  .vitrine {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--bone-dust);
+    background: linear-gradient(
+      135deg,
+      rgba(12, 10, 24, 0.6) 0%,
+      rgba(5, 3, 9, 0.8) 100%
+    );
+  }
+  .vitrine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      rgba(232, 228, 216, 0.07) 50%,
+      transparent 100%
+    );
+    transition: left 900ms var(--ease-reliquary);
+    pointer-events: none;
+  }
+  .vitrine:hover::before {
+    left: 120%;
+  }
+
+  /* Bone-dust hairline — use anywhere a border of "craft" is wanted */
+  .rim-bone {
+    border: 1px solid var(--bone-dust);
+  }
+
+  /* Top rim-light — subtle chiseled edge */
+  .rim-top {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* ============================================================
+   Void ambient effects — kept from the original site. Raised craft.
+   ============================================================ */
+
 .void-effect-rift {
   position: absolute;
   width: 1px;
@@ -145,18 +298,17 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(99, 102, 241, 0.65) 20%,
-    rgba(118, 0, 168, 0.98) 50%,
-    rgba(99, 102, 241, 0.65) 80%,
+    rgba(79, 70, 229, 0.65) 20%,
+    rgba(124, 58, 237, 0.95) 50%,
+    rgba(79, 70, 229, 0.65) 80%,
     transparent 100%
   );
   box-shadow:
-    0 0 4px 1px rgba(99, 102, 241, 0.9),
-    0 0 16px 3px rgba(118, 0, 168, 0.55);
-  animation: voidRift 4.5s ease-out forwards;
+    0 0 4px 1px rgba(79, 70, 229, 0.9),
+    0 0 16px 3px rgba(124, 58, 237, 0.55);
+  animation: voidRift 4.5s var(--ease-reliquary) forwards;
 }
 
-/* A bloom of primal darkness — something immense exhaling */
 .void-effect-breath {
   position: absolute;
   width: 500px;
@@ -165,91 +317,105 @@
   transform: translate(-50%, -50%) scale(0.05);
   background: radial-gradient(
     circle,
-    rgba(2, 0, 12, 0.9)  0%,
+    rgba(2, 0, 12, 0.9) 0%,
     rgba(38, 18, 68, 0.58) 36%,
-    rgba(99, 102, 241, 0.07) 64%,
+    rgba(79, 70, 229, 0.07) 64%,
     transparent 80%
   );
-  animation: abyssalBreath 7s ease-out forwards;
+  animation: abyssalBreath 7s var(--ease-reliquary) forwards;
 }
 
-/* A splinter of cold void-light */
 .void-effect-shard {
   position: absolute;
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: rgba(215, 230, 255, 1);
+  background: rgba(232, 228, 216, 1);
   transform: translate(-50%, -50%) scale(0);
-  animation: voidShard 3.5s ease-out forwards;
+  animation: voidShard 3.5s var(--ease-reliquary) forwards;
 }
 
 @keyframes voidRift {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scaleY(0) scaleX(1);
-    filter: blur(1px);
-  }
-  6% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scaleY(1) scaleX(1);
-    filter: blur(0px);
-  }
-  62% {
-    opacity: 0.85;
-    transform: translate(-50%, -50%) scaleY(1.05) scaleX(1);
-    filter: blur(0px);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scaleY(1.1) scaleX(16);
-    filter: blur(6px);
-  }
+  0% { opacity: 0; transform: translate(-50%, -50%) scaleY(0) scaleX(1); filter: blur(1px); }
+  6% { opacity: 1; transform: translate(-50%, -50%) scaleY(1) scaleX(1); filter: blur(0); }
+  62% { opacity: 0.85; transform: translate(-50%, -50%) scaleY(1.05) scaleX(1); filter: blur(0); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scaleY(1.1) scaleX(16); filter: blur(6px); }
 }
 
 @keyframes abyssalBreath {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.05);
-  }
-  12% {
-    opacity: 0.88;
-  }
-  68% {
-    opacity: 0.38;
-    transform: translate(-50%, -50%) scale(1.7);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(2.4);
-  }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.05); }
+  12% { opacity: 0.88; }
+  68% { opacity: 0.38; transform: translate(-50%, -50%) scale(1.7); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
 }
 
 @keyframes voidShard {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-    box-shadow: none;
-  }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); box-shadow: none; }
   8% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
     box-shadow:
-      0 0 5px 2px rgba(205, 225, 255, 0.95),
-      0 0 18px 8px rgba(74, 111, 165, 0.7),
-      0 0 52px 18px rgba(99, 102, 241, 0.35);
+      0 0 5px 2px rgba(232, 228, 216, 0.95),
+      0 0 18px 8px rgba(79, 70, 229, 0.7),
+      0 0 52px 18px rgba(124, 58, 237, 0.35);
   }
   45% {
     opacity: 0.9;
     transform: translate(-50%, -50%) scale(1);
     box-shadow:
-      0 0 5px 2px rgba(205, 225, 255, 0.95),
-      0 0 18px 8px rgba(74, 111, 165, 0.7),
-      0 0 52px 18px rgba(99, 102, 241, 0.35);
+      0 0 5px 2px rgba(232, 228, 216, 0.95),
+      0 0 18px 8px rgba(79, 70, 229, 0.7),
+      0 0 52px 18px rgba(124, 58, 237, 0.35);
   }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3);
-    box-shadow: none;
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); box-shadow: none; }
+}
+
+/* ============================================================
+   Legacy utilities — kept as aliases so old pages don't explode
+   before they're rewritten.
+   ============================================================ */
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium;
+    @apply bg-indigo-votive text-bone border border-bone/10 rounded-sm;
+    @apply transition-all duration-500;
+    will-change: transform;
+  }
+  .btn-primary:hover {
+    border-color: rgba(232, 228, 216, 0.3);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium;
+    @apply bg-transparent text-bone border border-bone/15 rounded-sm;
+    @apply transition-all duration-500;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(232, 228, 216, 0.4);
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-medium;
+    @apply text-bone text-center mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-ash text-center text-lg mb-16;
+  }
+
+  .card-gothic {
+    @apply rim-bone rim-top;
+    background: linear-gradient(135deg, rgba(12,10,24,0.8) 0%, rgba(5,3,9,0.9) 100%);
+    padding: 1.5rem;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 1px 0 rgba(0,0,0,0.9), 0 -1px 0 rgba(255,255,255,0.04);
+  }
+  .bg-gradient-radial {
+    background: radial-gradient(var(--tw-gradient-stops));
   }
 }

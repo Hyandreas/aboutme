@@ -1,0 +1,86 @@
+/* ============================================================
+   Overture — the entrance loading curtain, matched to the
+   homepage scene's overture: a void veil with a growing seed
+   line + a 00→100 counter, which then lifts to reveal the page.
+   Self-contained class names (ld-*) so nothing clashes with the
+   homepage's scoped .hy overture.
+   ============================================================ */
+.ld-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--void, #050309);
+  display: grid;
+  place-items: center;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ld-veil.lift {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.ld-veil.gone {
+  display: none;
+}
+
+.ld-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.ld-seed {
+  width: 1px;
+  height: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(124, 58, 237, 0.9) 60%,
+    rgba(232, 228, 216, 0.85)
+  );
+  animation: ldSeed 1.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+@keyframes ldSeed {
+  to {
+    height: 132px;
+  }
+}
+
+.ld-spec {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 216, 0.42);
+  opacity: 0;
+  animation: ldFade 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+}
+.ld-count {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.3em;
+  color: rgba(232, 228, 216, 0.7);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  animation: ldFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+@keyframes ldFade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ld-seed {
+    animation: none;
+    height: 132px;
+  }
+  .ld-spec,
+  .ld-count {
+    animation: none;
+    opacity: 1;
+  }
+}

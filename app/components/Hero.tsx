@@ -1,206 +1,209 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import CarvedHeading from './reliquary/CarvedHeading';
+import MarionetteStrings from './reliquary/MarionetteStrings';
 
 interface HeroProps {
   name: string;
   tagline: string;
 }
 
+const MARION_W = 640;
+const MARION_H = 820;
+
 const Hero = ({ name, tagline }: HeroProps) => {
-  const router = useRouter()
+  const router = useRouter();
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [viewport, setViewport] = useState({ w: 0, h: 0 });
+
+  // Cursor-reactive marionette body — heavy damping
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const marionX = useSpring(cursorX, { stiffness: 40, damping: 25, mass: 1.2 });
+  const marionY = useSpring(cursorY, { stiffness: 40, damping: 25, mass: 1.2 });
+
+  // Parallax
+  const { scrollY } = useScroll();
+  const marionScrollY = useTransform(scrollY, [0, 800], [0, -120]);
+
+  useEffect(() => {
+    const update = () =>
+      setViewport({ w: window.innerWidth, h: window.innerHeight });
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const handler = (e: MouseEvent) => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const dx = (e.clientX - centerX) / rect.width;
+      const dy = (e.clientY - centerY) / rect.height;
+      cursorX.set(dx * 8);
+      cursorY.set(dy * 6);
+    };
+    window.addEventListener('mousemove', handler, { passive: true });
+    return () => window.removeEventListener('mousemove', handler);
+  }, [cursorX, cursorY, reduceMotion]);
+
+  // Compute marionette center in viewport fractions so strings can attach
+  // Marionette is right: 8%, width 640, vertically centered
+  const marionCenterXFrac =
+    viewport.w > 0 ? 1 - 0.08 - MARION_W / 2 / viewport.w : 0.72;
+  const marionCenterYFrac = 0.5;
 
   return (
     <section
+      ref={sectionRef}
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
-      style={{
-        background: `linear-gradient(110deg, 
-          #0f0f23 0%,
-          #1a1a3a 15%,
-          #252550 30%,
-          #2e3561 45%,
-          #364270 60%,
-          #3d4a7c 75%,
-          #445589 100%)`
-      }}
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: 'transparent' }}
     >
-      {/* Intense purple/blue glow on left side - matching reference */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(ellipse at 25% 50%, 
-            rgba(139, 92, 246, 0.8) 0%, 
-            rgba(124, 58, 237, 0.6) 15%,
-            rgba(99, 102, 241, 0.4) 30%,
-            rgba(79, 70, 229, 0.2) 50%,
-            transparent 70%)`,
-        }}
-      />
-      
-      {/* Brighter purple highlight */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(circle at 20% 45%,
-            rgba(167, 139, 250, 0.5) 0%,
-            rgba(139, 92, 246, 0.3) 20%,
-            transparent 50%)`,
-        }}
-      />
-      
-      {/* Subtle vignette for depth */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: `radial-gradient(circle at center, 
-            transparent 40%,
-            rgba(0, 0, 0, 0.4) 100%)`,
-        }}
-      />
-      
-      {/* Marionette - matching angel reference */}
-      <div 
+      {/* Directional votive */}
+      <div
         className="absolute pointer-events-none"
         style={{
-          top: '50%',
-          right: '20%',
-          width: '765px',
-          height: '935px',
-          backgroundImage: 'url("/assets/marion.png")',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          transform: 'translateY(-50%) rotate(10deg)',
-          opacity: 0.4,
-          filter: 'brightness(1.1) contrast(1.2)',
-          zIndex: 2
+          top: '-20%',
+          left: '-10%',
+          width: '70%',
+          height: '90%',
+          background:
+            'radial-gradient(ellipse 55% 60% at 30% 40%, rgba(79,70,229,0.28) 0%, rgba(79,70,229,0.1) 30%, transparent 65%)',
+          filter: 'blur(40px)',
+          zIndex: 1,
         }}
       />
-      
-      {/* Soft glow around marionette */}
-      <div 
-        className="absolute"
+
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: '-10%',
+          right: '-10%',
+          width: '60%',
+          height: '70%',
+          background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.8) 0%, transparent 70%)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Verlet-physics strings — descend from offscreen top to marionette anchors */}
+      {viewport.w > 0 && (
+        <MarionetteStrings
+          marionCenterXFrac={marionCenterXFrac}
+          marionCenterYFrac={marionCenterYFrac}
+          marionWidth={MARION_W}
+          marionHeight={MARION_H}
+        />
+      )}
+
+      {/* Marionette silhouette */}
+      <motion.div
+        className="absolute pointer-events-none hidden md:block"
         style={{
           top: '50%',
-          right: '25%',
-          width: '600px',
-          height: '800px',
-          transform: 'translate(50%, -50%)',
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.08) 30%, transparent 60%)',
-          filter: 'blur(80px)',
-          zIndex: 1
+          right: '8%',
+          width: `${MARION_W}px`,
+          height: `${MARION_H}px`,
+          translateY: reduceMotion ? 0 : marionScrollY,
+          x: reduceMotion ? 0 : marionX,
+          y: reduceMotion ? 0 : marionY,
+          zIndex: 3,
         }}
-      />
-      
-      {/* Frozen particles */}
-      <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-blue-200/20 rounded-full blur-sm animate-pulse" style={{ animationDuration: '4s' }} />
-      <div className="absolute top-[60%] left-[30%] w-1 h-1 bg-slate-300/30 rounded-full animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
-      <div className="absolute top-[40%] right-[40%] w-2 h-2 bg-indigo-200/15 rounded-full blur-sm animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
-      <div className="absolute bottom-[30%] right-[20%] w-1 h-1 bg-blue-100/25 rounded-full animate-pulse" style={{ animationDuration: '4.5s', animationDelay: '0.5s' }} />
-      <div className="absolute top-[80%] left-[60%] w-3 h-3 bg-slate-200/10 rounded-full blur-md animate-pulse" style={{ animationDuration: '7s', animationDelay: '3s' }} />
-      
-      {/* Subtle horror fog at bottom */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-48"
-        style={{
-          background: `linear-gradient(to top, 
-            rgba(15, 23, 42, 0.6) 0%,
-            rgba(15, 23, 42, 0.3) 50%,
-            transparent 100%)`,
-        }}
-      />
-      
-      {/* Content - Higher z-index to appear above marionette */}
-      <div className="relative z-20 text-center max-w-4xl px-5">
+      >
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <motion.h1 
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold mb-6 leading-tight"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 1 }}
-          >
-            <motion.span 
-              className="block text-off-white"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1 }}
+          className="relative h-full w-full"
+          style={{
+            backgroundImage: 'url("/assets/marion.png")',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            transform: 'translateY(-50%)',
+            filter:
+              'brightness(0.78) contrast(1.15) saturate(0.85) drop-shadow(-6px 0 24px rgba(79,70,229,0.35))',
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.88 }}
+          transition={{ delay: 0.7, duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        />
+      </motion.div>
+
+      {/* Content */}
+      <div className="relative z-20 w-full">
+        <div className="container-custom">
+          <div className="max-w-3xl">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-8"
             >
-              Hi, I&apos;m
-            </motion.span>
-            <motion.span 
-              className="block text-white-accent text-shadow-glow"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 1 }}
+              <span className="kicker">
+                <span className="text-bone/50">MMXXVI</span>
+                <span className="mx-3 inline-block h-px w-6 bg-bone/20 align-middle" />
+                <span>Curator&apos;s Portfolio</span>
+              </span>
+            </motion.div>
+
+            {/* Letter-drop carved name */}
+            <CarvedHeading
+              as="h1"
+              delay={0.9}
+              mode="drop"
+              className="text-[14vw] md:text-[10vw] lg:text-[9vw] font-normal tracking-[0.04em]"
+              aberrate
             >
               {name}
-            </motion.span>
-          </motion.h1>
-          
-          <motion.p 
-            className="text-lg md:text-xl mb-8 opacity-90"
-            style={{ color: '#e9ecef' }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 1 }}
-          >
-            {tagline}
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 1 }}
-          >
-            <motion.button
-              onClick={() => router.push('/projects')}
-              className="btn-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            </CarvedHeading>
+
+            <motion.p
+              className="mt-8 text-lg md:text-xl italic text-ash max-w-xl"
+              style={{ fontFamily: 'Crimson Text, serif' }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
-              View My Work
-            </motion.button>
-            <motion.button
-              onClick={() => router.push('/contact')}
-              className="btn-secondary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              {tagline}
+            </motion.p>
+
+            <motion.div
+              className="mt-16"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.8, duration: 0.8 }}
             >
-              Get In Touch
-            </motion.button>
-          </motion.div>
-        </motion.div>
+              <button
+                onClick={() => router.push('/projects')}
+                className="cta-reliquary"
+                aria-label="Enter the vault"
+              >
+                <span className="cta-arrow" aria-hidden="true">↳</span>
+                <span>Enter the vault</span>
+              </button>
+            </motion.div>
+          </div>
+        </div>
       </div>
-      
-      {/* Scroll indicator - Higher z-index to appear above marionette */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white-accent cursor-pointer z-30"
-        onClick={() => router.push('/about')}
+
+      <motion.div
+        className="absolute bottom-10 left-0 right-0 flex justify-between container-custom text-[0.65rem] kicker text-bone/30"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        whileHover={{ scale: 1.1 }}
+        transition={{ delay: 3.2, duration: 1 }}
       >
-        <div className="flex flex-col items-center space-y-2">
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown size={24} />
-          </motion.div>
-        </div>
+        <span>N 41°·W 73°</span>
+        <span className="hidden md:inline">Consecrated in silence</span>
+        <span>Chapter I</span>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

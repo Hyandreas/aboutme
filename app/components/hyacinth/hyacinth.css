@@ -1,0 +1,1120 @@
+/* ======================= reliquary.css ======================= */
+/* ============================================================
+   RELIQUARY — shared stylesheet (cinematic refit)
+   void · obsidian · indigo-votive · amethyst · bone · ash
+   ============================================================ */
+
+:root {
+  --void: #050309;
+  --obsidian: #0C0A18;
+  --indigo-votive: #4F46E5;
+  --amethyst-ember: #7C3AED;
+  --bone: #E8E4D8;
+  --ash: #8B8FA8;
+  --bone-dust: rgba(232, 228, 216, 0.08);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hy * { box-sizing: border-box; }
+
+/* The persistent WebGL canvas sits behind everything */
+.hy #reliquary-gl {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* CSS fallback votive — shows instantly before WebGL paints, and for
+   reduced-motion / no-webgl. One cheap layered radial gradient. */
+.hy .votive-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at 18% 12%,
+      rgba(79, 70, 229, 0.20) 0%, rgba(79, 70, 229, 0.07) 28%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 84% 90%,
+      rgba(124, 58, 237, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at center, transparent 45%, rgba(5, 3, 9, 0.6) 100%);
+  transition: opacity 1.2s ease;
+}
+body.gl-ready .hy .votive-fallback { opacity: 0.5; }
+
+/* Grain — single static SVG, ~5% overlay. Cheap, huge material payoff. */
+.hy .grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.88  0 0 0 0 0.85  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Vignette — pulls the eye to center, deepens the cinema */
+.hy .vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(5, 3, 9, 0.55) 100%);
+}
+
+/* All real content rides above the canvas */
+.hy .page {
+  position: relative;
+  z-index: 5;
+}
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
+.hy .container { max-width: 1152px; margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 768px) { .hy .container { padding: 0 2rem; } }
+.hy .container-narrow { max-width: 62ch; margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 768px) { .hy .container-narrow { padding: 0 2rem; } }
+
+.hy main { position: relative; min-height: 100vh; }
+
+/* ============================================================
+   Type system
+   ============================================================ */
+.hy .kicker {
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(139, 143, 168, 0.7);
+  margin: 0;
+}
+.hy .kicker .rule {
+  display: inline-block;
+  height: 1px;
+  width: 1.5rem;
+  background: rgba(232, 228, 216, 0.2);
+  vertical-align: middle;
+  margin: 0 0.75rem;
+}
+.hy .kicker .dim { color: rgba(232, 228, 216, 0.5); }
+
+.hy .chapter-numeral {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: clamp(4rem, 8vw, 7rem);
+  letter-spacing: 0.05em;
+  color: rgba(232, 228, 216, 0.10);
+  line-height: 1;
+  margin: 0;
+}
+
+.hy .carved {
+  font-family: 'Cinzel', serif;
+  color: var(--bone);
+  font-weight: 400;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(255, 255, 255, 0.04);
+  letter-spacing: 0.06em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.hy .serif { font-family: 'Crimson Text', serif; }
+.hy .italic { font-style: italic; }
+.hy .mono { font-family: 'Special Elite', monospace; }
+.hy .text-ash { color: var(--ash); }
+.hy .text-bone { color: var(--bone); }
+
+/* Chromatic aberration — split RGB ghosts on display type */
+.hy .aberrate { position: relative; }
+.hy .aberrate::before,
+.hy .aberrate::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  letter-spacing: inherit;
+}
+.hy .aberrate::before { color: rgba(124, 58, 237, 0.22); transform: translate(-1px, 0); mix-blend-mode: screen; }
+.hy .aberrate::after  { color: rgba(79, 200, 229, 0.18); transform: translate(1px, 0); mix-blend-mode: screen; }
+
+/* ============================================================
+   Cheaper carved letter-drop — pure CSS, GPU transforms only.
+   Each <span class="drop"> gets --i via inline style for stagger.
+   ============================================================ */
+.hy .drop-line { display: inline-block; }
+.hy .drop {
+  display: inline-block;
+  transform-origin: center bottom;
+  animation: carvedDrop 0.85s var(--ease) both;
+  animation-delay: calc(var(--d, 0s) + var(--i, 0) * 0.05s);
+  will-change: transform, opacity;
+}
+@keyframes carvedDrop {
+  0%   { opacity: 0; transform: translateY(-90%) scaleY(1.06); }
+  60%  { opacity: 1; transform: translateY(0) scaleY(0.9); }
+  80%  { transform: translateY(-7%) scaleY(1.03); }
+  100% { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+/* Generic rise-in for paragraphs / blocks */
+.hy .rise { animation: riseIn 0.95s var(--ease) both; animation-delay: var(--d, 0s); }
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hy .fade { animation: fadeIn 1s ease both; animation-delay: var(--d, 0s); }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Scroll-reveal: elements start hidden, .in-view flips them on */
+.hy .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.hy .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   Links & CTAs
+   ============================================================ */
+.hy .link {
+  position: relative;
+  color: var(--bone);
+  text-decoration: none;
+  transition: color 600ms var(--ease);
+  padding-bottom: 2px;
+}
+.hy .link::after {
+  content: '';
+  position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+  background: linear-gradient(to right, var(--bone-dust) 0%, rgba(232,228,216,0.5) 50%, var(--bone-dust) 100%);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 500ms var(--ease);
+}
+.hy .link:hover::after,
+.hy .link:focus-visible::after { transform: scaleX(1); }
+
+.hy .cta {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-family: 'Cinzel', serif; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase; font-size: 0.78rem;
+  color: var(--bone); padding: 0.25rem 0; position: relative;
+  transition: color 400ms var(--ease); cursor: pointer;
+  background: none; border: 0; text-decoration: none;
+}
+.hy .cta::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px;
+  background: linear-gradient(to right, transparent 0%, rgba(232,228,216,0.6) 50%, transparent 100%);
+  transform: scaleX(0.25); transform-origin: center;
+  transition: transform 600ms var(--ease);
+}
+.hy .cta:hover::after,
+.hy .cta:focus-visible::after { transform: scaleX(1); }
+.hy .cta .arrow { display: inline-block; transition: transform 500ms var(--ease); }
+.hy .cta:hover .arrow { transform: translateX(6px); }
+.hy .cta:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ============================================================
+   Vitrine — glass over a relic
+   ============================================================ */
+.hy .vitrine {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--bone-dust);
+  background: linear-gradient(135deg, rgba(12,10,24,0.6) 0%, rgba(5,3,9,0.8) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  backdrop-filter: blur(2px);
+}
+.hy .vitrine::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(232,228,216,0.07) 50%, transparent 100%);
+  transition: left 900ms var(--ease); pointer-events: none;
+}
+.hy .vitrine:hover::before { left: 120%; }
+
+.hy .rule-h {
+  height: 1px; width: 6rem;
+  background: linear-gradient(to right, transparent, rgba(232,228,216,0.4), transparent);
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.hy .nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 50;
+  transition: background 700ms var(--ease), border-color 700ms var(--ease), backdrop-filter 700ms var(--ease);
+  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(2px);
+}
+.hy .nav.scrolled {
+  background: rgba(5,3,9,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(232,228,216,0.08);
+}
+.hy .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+.hy .nav-sigil {
+  width: 32px; height: 32px; border-radius: 50%; overflow: hidden;
+  opacity: 0.6; transition: opacity 500ms var(--ease); position: relative; flex-shrink: 0;
+  border: 1px solid rgba(232,228,216,0.1);
+}
+.hy .nav-sigil:hover { opacity: 1; }
+.hy .nav-sigil img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hy .nav-links { display: none; align-items: center; gap: 2.5rem; }
+@media (min-width: 768px) { .hy .nav-links { display: flex; } }
+.hy .nav-link {
+  position: relative; font-family: 'Cinzel', serif; font-size: 0.72rem;
+  letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none;
+  color: rgba(232,228,216,0.55); transition: color 500ms var(--ease); padding-bottom: 0.4rem;
+}
+.hy .nav-link:hover { color: var(--bone); }
+.hy .nav-link::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(232,228,216,0.7), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 500ms var(--ease);
+}
+.hy .nav-link:hover::after,
+.hy .nav-link.active::after { transform: scaleX(1); }
+.hy .nav-link.active { color: var(--bone); }
+
+.hy .nav-toggle {
+  display: inline-flex; background: none; border: 0; color: var(--bone);
+  padding: 0.5rem; cursor: pointer;
+}
+@media (min-width: 768px) { .hy .nav-toggle { display: none; } }
+.hy .nav-mobile {
+  display: none; position: absolute; top: 100%; left: 0; width: 100%;
+  background: rgba(5,3,9,0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(232,228,216,0.08);
+}
+.hy .nav-mobile.open { display: block; }
+.hy .nav-mobile a {
+  display: block; padding: 0.85rem 0; font-family: 'Cinzel', serif;
+  font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;
+  text-decoration: none; color: rgba(232,228,216,0.6);
+}
+.hy .nav-mobile a.active { color: var(--bone); }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.hy .footer { position: relative; padding: 6rem 0 4rem; border-top: 1px solid rgba(232,228,216,0.08); }
+.hy .footer::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; pointer-events: none;
+  background: linear-gradient(to right, transparent, rgba(124,58,237,0.35) 50%, transparent);
+}
+.hy .footer-col { display: flex; flex-direction: column; align-items: center; gap: 3rem; text-align: center; }
+.hy .footer-quote {
+  font-family: 'Crimson Text', serif; font-style: italic; color: rgba(232,228,216,0.8);
+  font-size: clamp(1.1rem, 2.4vw, 1.4rem); max-width: 32rem; line-height: 1.7; margin: 0;
+}
+.hy .socials { display: flex; align-items: center; gap: 2rem; }
+.hy .social {
+  color: rgba(232,228,216,0.5); transition: color 500ms var(--ease), transform 500ms var(--ease);
+  display: inline-flex;
+}
+.hy .social:hover { color: var(--bone); transform: translateY(-2px); }
+
+/* ============================================================
+   Hero / chapter scaffolding
+   ============================================================ */
+.hy .section { position: relative; padding: 7rem 0; }
+@media (min-width: 768px) { .hy .section { padding: 10rem 0; } }
+.hy .chapter-open { position: relative; padding-top: 10rem; padding-bottom: 3rem; }
+@media (min-width: 768px) { .hy .chapter-open { padding-top: 13rem; } }
+
+.hy .display-xl { font-size: 14vw; }
+@media (min-width: 768px) { .hy .display-xl { font-size: 10vw; } }
+@media (min-width: 1024px) { .hy .display-xl { font-size: 9vw; } }
+.hy .display-lg { font-size: 14vw; }
+@media (min-width: 768px) { .hy .display-lg { font-size: 8vw; } }
+@media (min-width: 1024px) { .hy .display-lg { font-size: 7vw; } }
+
+.hy .lead {
+  font-family: 'Crimson Text', serif; font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.35rem); color: var(--ash); line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.hy .tech-line { font-family: 'Special Elite', monospace; font-size: 0.78rem; letter-spacing: 0.14em; color: var(--ash); }
+.hy .tech-line .dot { margin: 0 0.5rem; color: rgba(232,228,216,0.2); }
+
+/* Projects — relic grid */
+.hy .relic-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+@media (min-width: 900px) {
+  .hy .relic-grid { grid-template-columns: 1.6fr 1fr; gap: 4rem; }
+  .hy .relic-grid.mirror .relic-essay { order: 2; }
+  .hy .relic-grid.mirror .relic-vitrine { order: 1; }
+}
+.hy .relic-vitrine { position: sticky; top: 6rem; }
+@media (max-width: 899px) { .hy .relic-vitrine { position: static; max-width: 22rem; } }
+
+/* About — ledger plaque */
+.hy .ledger-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 46rem; }
+@media (min-width: 720px) { .hy .ledger-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+.hy .ledger { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.25rem; }
+.hy .ledger li { display: flex; align-items: baseline; gap: 1rem; }
+.hy .ledger .num { font-family: 'Special Elite', monospace; font-size: 0.8rem; color: rgba(232,228,216,0.3); flex-shrink: 0; }
+.hy .ledger .tick { height: 1px; width: 1.5rem; background: rgba(232,228,216,0.12); flex-shrink: 0; transform: translateY(-0.35rem); }
+.hy .ledger .item { font-family: 'Crimson Text', serif; font-size: 1.2rem; color: rgba(232,228,216,0.9); }
+
+/* Contact — two-column */
+.hy .contact-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+@media (min-width: 860px) { .hy .contact-grid { grid-template-columns: 5fr 7fr; gap: 5rem; } }
+
+/* Form fields */
+.hy .field {
+  width: 100%; padding: 0.75rem 0; background: transparent; border: 0;
+  border-bottom: 1px solid rgba(232,228,216,0.15); color: var(--bone);
+  font-family: 'Crimson Text', serif; font-size: 1.05rem;
+  transition: border-color 500ms var(--ease); outline: none;
+}
+.hy .field::placeholder { color: rgba(139,143,168,0.4); }
+.hy .field:focus { border-color: rgba(232,228,216,0.6); }
+.hy .field-label { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.38em; text-transform: uppercase; color: rgba(232,228,216,0.6); display: block; margin-bottom: 0.75rem; }
+
+/* Hide system cursor — replaced by GL/DOM bone cursor on desktop pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  html.cursor-hidden,
+html.cursor-hidden * { cursor: none !important; }
+  html.cursor-hidden input,
+html.cursor-hidden textarea { cursor: text !important; }
+}
+
+/* Bone ring cursor */
+.hy .bone-cursor {
+  position: fixed; top: 0; left: 0; z-index: 99; pointer-events: none;
+  width: 26px; height: 26px; border: 1px solid rgba(232,228,216,0.5); border-radius: 50%;
+  mix-blend-mode: difference; will-change: transform;
+  transition: width 380ms var(--ease), height 380ms var(--ease), border-color 380ms var(--ease), background 380ms var(--ease);
+}
+.hy .bone-cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 100; pointer-events: none;
+  width: 4px; height: 4px; border-radius: 50%; background: rgba(232,228,216,0.9); will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hy *,
+.hy *::before,
+.hy *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .hy .reveal { opacity: 1; transform: none; }
+}
+
+
+/* ======================= spatial.css ======================= */
+/* ============================================================
+   HYACINTH — scroll-driven scene layout.
+   A tall .scroll-driver gives native scroll; a fixed .stage
+   holds crossfading .beat panels pinned over the WebGL world.
+   The footer is real document flow AFTER the driver — you reach
+   it at the end like any page footer. Tokens from reliquary.css.
+   ============================================================ */
+
+/* The WebGL canvas — fixed behind everything */
+.hy #vault-gl {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 0; display: block; pointer-events: none;
+}
+
+/* Tall element that produces the real scrollbar for the scene */
+.hy .scroll-driver { position: relative; width: 100%; z-index: 1; }
+
+/* Fixed stage that beats pin to */
+.hy .stage { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+
+/* Click-catcher: anywhere on the scene triggers the bloom */
+.hy .bloom-hit { position: fixed; inset: 0; z-index: 4; cursor: pointer; pointer-events: auto; background: transparent; }
+
+/* ---------- Beats ---------- */
+.hy .beat {
+  position: absolute; inset: 0;
+  display: flex; align-items: center;
+  opacity: 0; visibility: hidden;
+  pointer-events: none;
+  will-change: opacity;
+}
+.hy .beat.is-active { visibility: visible; }
+.hy .beat[data-pos="bottom"] { align-items: flex-end; }
+.hy .beat[data-pos="bottom"] .beat-inner { padding-bottom: 13vh; }
+.hy .beat-inner {
+  width: 100%; max-width: 1152px; margin: 0 auto;
+  padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 3rem;
+}
+.hy .beat[data-side="left"]  .panel { grid-column: 1; }
+.hy .beat[data-side="right"] .panel { grid-column: 2; }
+.hy .beat[data-side="center"] .beat-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+
+.hy .panel {
+  max-width: 34rem;
+  transform: translateY(20px);
+  transition: transform 0.8s var(--ease);
+}
+.hy .beat.is-active .panel { transform: translateY(0); pointer-events: auto; }
+
+@media (max-width: 900px) {
+  .hy .beat-inner { grid-template-columns: 1fr; padding: 0 1.5rem; }
+  .hy .beat[data-side] .panel { grid-column: 1; }
+  .hy .beat { align-items: flex-end; }
+  .hy .panel { margin-bottom: 16vh; max-width: 100%; }
+  .hy .beat[data-side="center"] .panel { margin-bottom: 0; }
+}
+
+/* ---------- Typographic atoms ---------- */
+.hy .eyebrow {
+  font-family: 'Cinzel', serif; font-weight: 500;
+  font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: rgba(139,143,168,0.85); display: flex; align-items: center; gap: 0.85rem;
+}
+.hy .eyebrow .ix { color: rgba(232,228,216,0.55); }
+.hy .eyebrow .bar { height: 1px; width: 2rem; background: rgba(232,228,216,0.25); }
+
+.hy .beat-title {
+  font-family: 'Cinzel', serif; font-weight: 400; color: var(--bone);
+  letter-spacing: 0.04em; line-height: 1.0;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.9);
+  margin: 1.4rem 0 0;
+}
+.hy .beat-name { font-size: clamp(2.6rem, 6.5vw, 5.2rem); }
+.hy .beat-h    { font-size: clamp(1.7rem, 3.2vw, 2.5rem); line-height: 1.1; }
+
+.hy .beat-sub {
+  font-family: 'Crimson Text', serif; color: var(--ash);
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem); line-height: 1.7; margin-top: 1.5rem;
+  text-wrap: pretty;
+}
+.hy .beat-sub.italic { font-style: italic; }
+
+.hy .tags {
+  font-family: 'Special Elite', monospace; font-size: 0.74rem; letter-spacing: 0.12em;
+  color: var(--ash); margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem;
+}
+.hy .tags span.dot { color: rgba(232,228,216,0.22); }
+
+/* Ledger (About) */
+.hy .ledger-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2.25rem; }
+@media (max-width: 540px) { .hy .ledger-cols { grid-template-columns: 1fr; gap: 1.75rem; } }
+.hy .ledger { list-style: none; margin: 0.9rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+.hy .ledger li { display: flex; align-items: baseline; gap: 0.85rem; }
+.hy .ledger .num { font-family: 'Special Elite', monospace; font-size: 0.72rem; color: rgba(232,228,216,0.3); }
+.hy .ledger .tick { height: 1px; width: 1.2rem; background: rgba(232,228,216,0.14); transform: translateY(-0.3rem); }
+.hy .ledger .item { font-family: 'Crimson Text', serif; font-size: 1.1rem; color: rgba(232,228,216,0.9); }
+
+.hy a.cta { display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 1.75rem; }
+
+/* ---------- Fixed chrome ---------- */
+.hy .topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 2rem; pointer-events: none;
+}
+.hy .topbar > * { pointer-events: auto; }
+.hy .wordmark { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(232,228,216,0.7); text-decoration: none; transition: color 0.5s var(--ease); }
+.hy .wordmark:hover { color: var(--bone); }
+.hy .topnav { display: flex; align-items: center; gap: 1.8rem; }
+
+/* scroll hint */
+.hy .scroll-hint {
+  position: fixed; bottom: 1.8rem; left: 50%; transform: translateX(-50%);
+  z-index: 30; font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: rgba(232,228,216,0.45);
+  display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  transition: opacity 0.6s var(--ease); pointer-events: none;
+}
+.hy .scroll-hint .chev { width: 1px; height: 26px; background: linear-gradient(to bottom, transparent, rgba(232,228,216,0.6)); animation: drip 2.4s var(--ease) infinite; }
+@keyframes drip { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* click hint */
+.hy .bloom-hint {
+  position: fixed; left: 2rem; bottom: 1.9rem;
+  z-index: 25; font-family: 'Special Elite', monospace; font-size: 0.66rem;
+  letter-spacing: 0.18em; color: rgba(232,228,216,0.4);
+  transition: opacity 0.8s var(--ease); pointer-events: none;
+}
+
+/* soft radial glow when the bloom pulse fires — calm, no flash-bang */
+.hy .bloom-glow {
+  position: fixed; inset: 0; z-index: 38; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(124,58,237,0.18), rgba(79,70,229,0.08) 45%, transparent 72%);
+  opacity: 0;
+}
+.hy .bloom-glow.fire { animation: bloomGlow 2s var(--ease); }
+@keyframes bloomGlow { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ---------- World-pinned facet labels ---------- */
+.hy .labels { position: fixed; inset: 0; z-index: 6; pointer-events: none; }
+.hy .leaders { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hy .facet {
+  position: absolute; top: 0; left: 0;
+  width: 14rem; opacity: 0;
+  will-change: transform, opacity;
+}
+.hy .facet[data-side="left"] { text-align: right; }
+.hy .facet-k {
+  display: block; font-family: 'Cinzel', serif; font-weight: 500;
+  font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bone); text-shadow: 0 1px 6px rgba(5,3,9,0.9);
+}
+.hy .facet-s {
+  display: block; font-family: 'Crimson Text', serif; font-style: italic;
+  font-size: 0.94rem; line-height: 1.35; color: rgba(232,228,216,0.72);
+  margin-top: 3px; text-shadow: 0 1px 6px rgba(5,3,9,0.9);
+}
+.hy .facet-i {
+  display: block; font-family: 'Special Elite', monospace; font-size: 0.6rem;
+  letter-spacing: 0.2em; color: rgba(124,58,237,0.85); margin-bottom: 4px;
+}
+@media (max-width: 640px) { .hy .facet { width: 9.5rem; } .hy .facet-s { display: none; } }
+
+/* progress hairline */
+.hy .progress { position: fixed; top: 0; left: 0; height: 2px; z-index: 35; width: 0%;
+  background: linear-gradient(to right, rgba(79,70,229,0.9), rgba(124,58,237,0.9)); }
+
+/* ============================================================
+   FOOTER — real flow content after the scroll-driver.
+   ============================================================ */
+.hy .site-footer {
+  position: relative; z-index: 10;
+  background: linear-gradient(to bottom, rgba(5,3,9,0), rgba(5,3,9,0.88) 18%, rgba(12,10,24,0.96));
+  border-top: 1px solid rgba(232,228,216,0.07);
+  padding: 6rem 2rem 3.5rem;
+}
+.hy .site-footer .foot-inner { max-width: 1152px; margin: 0 auto; }
+.hy .foot-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; align-items: start; }
+@media (max-width: 760px) { .hy .foot-grid { grid-template-columns: 1fr; gap: 2.25rem; } }
+.hy .foot-title { font-family: 'Cinzel', serif; font-weight: 400; font-size: 1.6rem; color: var(--bone); margin: 0.9rem 0 0; letter-spacing: 0.04em; }
+.hy .foot-sub { font-family: 'Crimson Text', serif; color: var(--ash); font-size: 1.05rem; line-height: 1.65; margin-top: 0.9rem; max-width: 26rem; text-wrap: pretty; }
+.hy .line-label { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(232,228,216,0.5); display: block; margin-bottom: 0.45rem; }
+.hy .line-val { font-family: 'Crimson Text', serif; font-size: 1.12rem; color: rgba(232,228,216,0.92); }
+.hy .foot-col { display: flex; flex-direction: column; gap: 1.6rem; }
+.hy .socials { display: flex; align-items: center; gap: 1.5rem; }
+.hy .social { color: rgba(232,228,216,0.5); transition: color 0.5s var(--ease), transform 0.5s var(--ease); display: inline-flex; }
+.hy .social:hover { color: var(--bone); transform: translateY(-2px); }
+.hy .foot-base {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  margin-top: 4rem; padding-top: 1.6rem; border-top: 1px solid rgba(232,228,216,0.06);
+  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(232,228,216,0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hy .panel { transition: none; transform: none; }
+  .hy .scroll-hint .chev { animation: none; }
+  .hy .bloom-glow.fire { animation: none; }
+}
+
+
+/* ======================= award.css ======================= */
+/* ============================================================
+   AWARD — the elevation layer over the hyacinth scene.
+   Cinematic overture, off-centre editorial hero, vertical
+   rails, the six-thread index, custom cursor & micro-polish.
+   Rides on top of reliquary.css + spatial.css tokens.
+   ============================================================ */
+
+/* ---------------------------------------------------------- *
+   1 · OVERTURE — the entrance curtain
+ * ---------------------------------------------------------- */
+.hy .overture {
+  position: fixed; inset: 0; z-index: 90;
+  background: var(--void);
+  display: grid; place-items: center;
+  transition: opacity 1.2s var(--ease), visibility 1.2s var(--ease);
+}
+.hy .overture.lift { opacity: 0; visibility: hidden; pointer-events: none; }
+.hy .overture.gone { display: none; }
+.hy .ov-stack { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+.hy .ov-seed {
+  width: 1px; height: 0;
+  background: linear-gradient(to bottom, transparent, rgba(124,58,237,0.9) 60%, rgba(232,228,216,0.85));
+  animation: ovSeed 1.7s var(--ease) 0.15s forwards;
+}
+@keyframes ovSeed { to { height: 132px; } }
+.hy .ov-spec {
+  font-family: 'Special Elite', monospace; font-size: 0.62rem;
+  letter-spacing: 0.34em; text-transform: uppercase;
+  color: rgba(232,228,216,0.42);
+  opacity: 0; animation: ovFade 1s var(--ease) 0.7s forwards;
+}
+.hy .ov-count {
+  font-family: 'Cinzel', serif; font-weight: 400; font-size: 0.9rem;
+  letter-spacing: 0.3em; color: rgba(232,228,216,0.7);
+  font-variant-numeric: tabular-nums;
+  opacity: 0; animation: ovFade 0.8s var(--ease) 0.5s forwards;
+}
+@keyframes ovFade { to { opacity: 1; } }
+
+/* ---------------------------------------------------------- *
+   2 · MASTHEAD + RAILS — the editorial frame
+ * ---------------------------------------------------------- */
+.hy .topbar { padding: 1.6rem 2.4rem; }
+.hy .wordmark.lead-mark { font-size: 0.74rem; letter-spacing: 0.36em; }
+.hy .topnav { gap: 2.2rem; }
+.hy .topnav .nav-x {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.32em;
+  text-transform: uppercase; color: rgba(232,228,216,0.62); text-decoration: none;
+  position: relative; padding-bottom: 0.35rem; transition: color 0.5s var(--ease);
+}
+.hy .topnav .nav-x::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(232,228,216,0.7), transparent);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.5s var(--ease);
+}
+.hy .topnav .nav-x:hover { color: var(--bone); }
+.hy .topnav .nav-x:hover::after { transform: scaleX(1); }
+
+/* far-edge vertical rails — quiet, rotated meta */
+.hy .rail {
+  position: fixed; z-index: 28; bottom: 2.2rem;
+  font-family: 'Special Elite', monospace; font-size: 0.6rem;
+  letter-spacing: 0.34em; text-transform: uppercase;
+  color: rgba(232,228,216,0.34); pointer-events: none;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  transition: opacity 0.8s var(--ease);
+}
+.hy .rail.left  { left: 1.5rem; }
+.hy .rail.right { right: 1.5rem; transform: none; }
+@media (max-width: 900px) { .hy .rail { display: none; } }
+
+/* ---------------------------------------------------------- *
+   3 · HERO — off-centre editorial block (left column)
+ * ---------------------------------------------------------- */
+.hy .beat.hero .beat-inner { grid-template-columns: 1.05fr 0.95fr; align-items: center; }
+.hy .beat.hero { align-items: center; }
+.hy .beat.hero[data-pos] .beat-inner { padding-bottom: 0; }
+.hy .hero-panel { max-width: 38rem; }
+.hy .hero-name {
+  font-family: 'Cinzel', serif; font-weight: 400; color: var(--bone);
+  font-size: clamp(2.9rem, 8.2vw, 6.6rem); line-height: 0.92;
+  letter-spacing: 0.01em; margin: 1.5rem 0 0;
+  text-shadow: 0 2px 14px rgba(5,3,9,0.8);
+}
+.hy .hero-name .ln { display: block; }
+.hy .hero-lead {
+  font-family: 'Crimson Text', serif; font-style: italic;
+  color: rgba(232,228,216,0.82); font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  line-height: 1.62; margin-top: 1.9rem; max-width: 30rem; text-wrap: pretty;
+}
+.hy .hero-meta {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.85rem;
+  margin-top: 2.1rem;
+  font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.26em;
+  text-transform: uppercase; color: rgba(232,228,216,0.6);
+}
+.hy .hero-meta i { display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(124,58,237,0.8); }
+.hy .hero-meta span { white-space: nowrap; }
+
+/* finale + interludes — centred type gets a soft scrim to lift off the flower */
+.hy .beat.finale .panel,
+.hy .beat.interlude .lede-panel { position: relative; }
+.hy .beat.finale .panel::before,
+.hy .beat.interlude .lede-panel::before {
+  content: ''; position: absolute; inset: -3.5rem -6rem;
+  background: radial-gradient(ellipse at center, rgba(5,3,9,0.86) 0%, rgba(5,3,9,0.58) 52%, transparent 80%);
+  z-index: -1; pointer-events: none;
+}
+
+/* letter carve-in (reuses .drop keyframes from reliquary.css) */
+.hy .hero-name .drop { animation-duration: 1s; }
+
+/* ---------------------------------------------------------- *
+   4 · THE SIX-THREAD INDEX (about beat)
+ * ---------------------------------------------------------- */
+.hy .threads { list-style: none; margin: 1.9rem 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 0; max-width: 30rem; }
+.hy .thread {
+  display: grid; grid-template-columns: 2.2rem 1fr; align-items: baseline;
+  gap: 0 1rem; padding: 0.72rem 0;
+  border-top: 1px solid rgba(232,228,216,0.09);
+  transition: border-color 0.5s var(--ease);
+}
+.hy .thread:last-child { border-bottom: 1px solid rgba(232,228,216,0.09); }
+.hy .thread .t-n {
+  font-family: 'Special Elite', monospace; font-size: 0.66rem;
+  letter-spacing: 0.16em; color: rgba(124,58,237,0.85);
+}
+.hy .thread .t-k {
+  font-family: 'Cinzel', serif; font-size: 0.96rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(232,228,216,0.92);
+}
+.hy .thread .t-d {
+  grid-column: 2; font-family: 'Crimson Text', serif; font-style: italic;
+  font-size: 0.98rem; color: rgba(232,228,216,0.5); margin-top: 2px;
+}
+.hy .thread:hover { border-color: rgba(124,58,237,0.5); }
+
+/* ---------------------------------------------------------- *
+   4b · INTERLUDES — kinetic typographic moments
+ * ---------------------------------------------------------- */
+.hy .beat.interlude { align-items: center; }
+.hy .beat.interlude .beat-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+.hy .lede-panel { max-width: 44rem; display: flex; flex-direction: column; align-items: center; }
+.hy .lede-k { justify-content: center; }
+.hy .lede {
+  font-family: 'Cinzel', serif; font-weight: 400; color: var(--bone);
+  font-size: clamp(2.6rem, 7.5vw, 5.6rem); line-height: 0.98; letter-spacing: 0.02em;
+  margin: 1.6rem 0 0; text-shadow: 0 2px 18px rgba(5,3,9,0.85);
+}
+.hy .lede em {
+  font-family: 'Crimson Text', serif; font-style: italic; font-weight: 400;
+  color: transparent; background: linear-gradient(180deg, #d9c8ff, #9a72f0);
+  -webkit-background-clip: text; background-clip: text;
+}
+.hy .lede-rule {
+  display: block; width: 0; height: 1px; margin: 2rem auto 0;
+  background: linear-gradient(to right, transparent, rgba(124,58,237,0.7), transparent);
+  transition: width 1.2s var(--ease) 0.2s;
+}
+.hy .beat.is-active .lede-rule { width: 7rem; }
+.hy .lede-sub {
+  font-family: 'Crimson Text', serif; font-style: italic;
+  color: rgba(232,228,216,0.66); font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  line-height: 1.65; margin-top: 1.6rem; max-width: 32rem; text-wrap: pretty;
+}
+.hy .bloom-pulse {
+  display: block; width: 9px; height: 9px; border-radius: 50%; margin: 2.1rem auto 0;
+  background: rgba(236,230,255,0.95); box-shadow: 0 0 0 0 rgba(124,58,237,0.55);
+  animation: bloomPulse 2.4s var(--ease) infinite;
+}
+@keyframes bloomPulse {
+  0% { box-shadow: 0 0 0 0 rgba(124,58,237,0.5); }
+  70% { box-shadow: 0 0 0 22px rgba(124,58,237,0); }
+  100% { box-shadow: 0 0 0 0 rgba(124,58,237,0); }
+}
+
+/* ---------------------------------------------------------- *
+   4c · BIO — the maker, with a portrait slot
+ * ---------------------------------------------------------- */
+.hy .bio-panel { max-width: 41rem; }
+.hy .bio-grid { display: flex; gap: 2.2rem; align-items: flex-start; margin-top: 1.9rem; }
+.hy .bio-frame {
+  flex: 0 0 auto; padding: 6px; background: linear-gradient(135deg, rgba(12,10,24,0.6), rgba(5,3,9,0.7));
+  border: 1px solid rgba(232,228,216,0.14); box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.hy image-slot.portrait { display: block; width: 132px; height: 168px; }
+.hy .bio-cap {
+  display: block; margin-top: 0.5rem; text-align: center;
+  font-family: 'Special Elite', monospace; font-size: 0.54rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: rgba(232,228,216,0.4);
+}
+.hy .bio-prose p {
+  font-family: 'Crimson Text', serif; font-size: clamp(1.02rem, 1.4vw, 1.16rem);
+  line-height: 1.74; color: rgba(232,228,216,0.82); margin: 0 0 1rem; text-wrap: pretty;
+}
+.hy .bio-prose p:last-child { margin-bottom: 0; }
+.hy .bio-prose em { font-style: italic; color: var(--bone); }
+@media (max-width: 560px) { .hy .bio-grid { flex-direction: column; gap: 1.4rem; } }
+
+/* ---------------------------------------------------------- *
+   4d · SELECTED WORK
+ * ---------------------------------------------------------- */
+.hy .work-panel { max-width: 41rem; }
+.hy .work-list { margin-top: 1.9rem; display: flex; flex-direction: column; }
+.hy .work-item {
+  display: grid; grid-template-columns: 3.6rem 1fr; gap: 0 1.3rem; align-items: baseline;
+  padding: 1.15rem 0; border-top: 1px solid rgba(232,228,216,0.1);
+  text-decoration: none; transition: border-color 0.5s var(--ease);
+}
+.hy .work-item:last-child { border-bottom: 1px solid rgba(232,228,216,0.1); }
+.hy .work-yr { font-family: 'Special Elite', monospace; font-size: 0.74rem; letter-spacing: 0.1em; color: rgba(124,58,237,0.9); }
+.hy .work-body { display: flex; flex-direction: column; gap: 0.3rem; }
+.hy .work-t {
+  font-family: 'Cinzel', serif; font-size: clamp(0.98rem, 1.4vw, 1.16rem); letter-spacing: 0.04em;
+  color: rgba(232,228,216,0.92); line-height: 1.3; transition: color 0.4s var(--ease);
+}
+.hy .work-arrow { font-family: 'Crimson Text', serif; color: rgba(232,228,216,0.4); margin-left: 0.2rem;
+  display: inline-block; transition: transform 0.4s var(--ease), color 0.4s var(--ease); }
+.hy .work-meta { font-family: 'Special Elite', monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,228,216,0.5); }
+.hy .work-d { font-family: 'Crimson Text', serif; font-style: italic; font-size: 1.02rem; line-height: 1.5; color: rgba(232,228,216,0.6); margin-top: 0.15rem; text-wrap: pretty; }
+.hy .work-item:hover { border-color: rgba(124,58,237,0.5); }
+.hy .work-item:hover .work-t { color: var(--bone); }
+.hy .work-item:hover .work-arrow { transform: translate(3px, -3px); color: rgba(218,200,255,0.9); }
+
+/* ---------------------------------------------------------- *
+   5 · SCROLL CUE + PROGRESS REFINEMENT
+ * ---------------------------------------------------------- */
+.hy .scroll-hint { left: 2.4rem; bottom: 2.1rem; transform: none; align-items: flex-start; }
+.hy .scroll-hint span:first-child { letter-spacing: 0.34em; }
+.hy .progress { height: 1.5px; }
+
+/* count of the descent, right side */
+.hy .descent-meter {
+  position: fixed; right: 2.4rem; bottom: 2.1rem; z-index: 30;
+  font-family: 'Special Elite', monospace; font-size: 0.62rem;
+  letter-spacing: 0.2em; color: rgba(232,228,216,0.42);
+  font-variant-numeric: tabular-nums; pointer-events: none;
+  transition: opacity 0.6s var(--ease);
+}
+@media (max-width: 640px) { .hy .descent-meter { display: none; } }
+
+/* ---------------------------------------------------------- *
+   6 · SOUND TOGGLE
+ * ---------------------------------------------------------- */
+.hy .sound-toggle {
+  position: fixed; right: 2.4rem; top: 1.6rem; z-index: 31;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: none; border: 0; cursor: pointer;
+  font-family: 'Special Elite', monospace; font-size: 0.58rem;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: rgba(232,228,216,0.5); transition: color 0.5s var(--ease);
+}
+.hy .sound-toggle:hover { color: var(--bone); }
+.hy .sound-eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 11px; }
+.hy .sound-eq i { width: 2px; height: 4px; background: currentColor; }
+.hy .sound-toggle.on .sound-eq i { animation: eq 1s ease-in-out infinite; }
+.hy .sound-eq i:nth-child(2) { animation-delay: 0.18s; }
+.hy .sound-eq i:nth-child(3) { animation-delay: 0.36s; }
+@keyframes eq { 0%,100% { height: 3px; } 50% { height: 11px; } }
+
+/* ---------------------------------------------------------- *
+   7 · CURSOR — bigger ring, magnetic on targets
+ * ---------------------------------------------------------- */
+.hy .bone-cursor { width: 30px; height: 30px; }
+.hy .bone-cursor.is-active { width: 56px; height: 56px; background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.6); }
+
+@media (max-width: 900px) {
+  .hy .beat.hero .beat-inner { grid-template-columns: 1fr; }
+  .hy .hero-panel { margin-bottom: 0; }
+  .hy .beat.hero { align-items: flex-end; }
+  .hy .beat.hero .hero-panel { margin-bottom: 14vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hy .ov-seed { animation: none; height: 132px; }
+  .hy .ov-spec,
+.hy .ov-count { animation: none; opacity: 1; }
+  .hy .sound-toggle.on .sound-eq i { animation: none; height: 7px; }
+}
+
+
+/* ======================= revamp.css ======================= */
+/* ============================================================
+   REVAMP — overrides over reliquary/spatial/award.
+   The 3D camera journey is restored; this layer keeps text
+   panels narrow + left so the hyacinth and fluid sky stay
+   visible the whole way down, and adds honest-copy polish.
+   ============================================================ */
+
+/* the CSS votive fallback is fully covered by the fluid skybox */
+body.gl-ready .hy .votive-fallback { opacity: 0; }
+
+/* ============================================================
+   PANELS — keep them in a tidy left column, never centred over
+   the flower. Slightly narrower than default, with a soft
+   left-to-right scrim for legibility over the bright render.
+   ============================================================ */
+.hy .beat-inner {
+  grid-template-columns: minmax(0, 36rem) 1fr;
+  max-width: 1280px;
+}
+.hy .beat[data-side] .panel { grid-column: 1; max-width: 33rem; }
+.hy .beat[data-side="center"] .beat-inner { grid-template-columns: minmax(0, 36rem) 1fr; justify-items: start; text-align: left; }
+.hy .beat[data-side="center"] .panel { grid-column: 1; }
+
+/* a whisper of darkening behind the left column so type stays
+   readable against the glowing petals — feathered, not a box */
+.hy .stage::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    rgba(5, 3, 9, 0.62) 0%,
+    rgba(5, 3, 9, 0.42) 26%,
+    rgba(5, 3, 9, 0.12) 46%,
+    transparent 62%
+  );
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .hy .beat-inner { grid-template-columns: 1fr; }
+  .hy .beat[data-side] .panel { grid-column: 1; max-width: 100%; }
+  .hy .stage::before {
+    background: linear-gradient(to top, rgba(5,3,9,0.78) 0%, rgba(5,3,9,0.32) 42%, transparent 72%);
+  }
+}
+
+/* ============================================================
+   BOTTOM CHROME — fix the cramped corner pile-up
+   ============================================================ */
+.hy .scroll-hint {
+  left: 50%; right: auto;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  align-items: center;
+}
+.hy .scroll-hint span:first-child { letter-spacing: 0.34em; }
+
+.hy .bloom-hint { left: 3.5rem; bottom: 2.05rem; white-space: nowrap; }
+@media (max-width: 900px) { .hy .bloom-hint { left: 2rem; } }
+@media (max-width: 640px) { .hy .bloom-hint { display: none; } }
+
+.hy .rail.left { left: 1.35rem; }
+
+/* ============================================================
+   IMAGE DROP ZONE
+   ============================================================ */
+.hy .img-drop-zone {
+  position: fixed;
+  bottom: 4.8rem;
+  right: 1.8rem;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+body.gl-ready .hy .img-drop-zone { opacity: 0.4; pointer-events: auto; }
+body.gl-ready .hy .img-drop-zone:hover { opacity: 0.78; }
+.hy .img-drop-zone[data-loaded] { opacity: 0.16; }
+.hy .img-drop-zone[data-loaded]:hover { opacity: 0.6; transition-duration: 0.25s; }
+.hy .idz-label {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(124, 58, 237, 0.65);
+  white-space: nowrap;
+}
+.hy #hyacinth-drop {
+  outline: 1px solid rgba(124, 58, 237, 0.35);
+  outline-offset: 2px;
+}
+@media (max-width: 640px) { .hy .img-drop-zone { right: 1rem; bottom: 5.5rem; } }
+
+/* ============================================================
+   BIO placeholder — honest, not fake
+   ============================================================ */
+.hy .bio-prose { max-width: 30rem; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.hy .bio-prose p { font-family: 'Crimson Text', serif; font-size: 1.05rem; line-height: 1.6; margin: 0; }
+.hy .bio-todo {
+  font-family: 'Special Elite', monospace !important;
+  font-size: 0.64rem !important;
+  letter-spacing: 0.14em !important;
+  color: rgba(124, 58, 237, 0.72) !important;
+  line-height: 1.4 !important;
+}
+.hy .bio-prose p:not(.bio-todo) { color: rgba(232, 228, 216, 0.5); }
+
+/* ============================================================
+   SMALL MOTION POLISH
+   ============================================================ */
+.hy .cta { transition: color 400ms cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 400ms cubic-bezier(0.16, 1, 0.3, 1); }
+.hy .cta:hover { letter-spacing: 0.3em; }
+
+/* thread hover tick */
+.hy .thread { position: relative; padding-left: 0.9rem; transition: padding-left 0.42s cubic-bezier(0.16, 1, 0.3, 1); }
+.hy .thread::before {
+  content: '';
+  position: absolute; left: 0; top: 50%;
+  width: 0; height: 1px;
+  background: rgba(124, 58, 237, 0.85);
+  transform: translateY(-50%);
+  transition: width 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hy .thread:hover { padding-left: 1.3rem; }
+.hy .thread:hover::before { width: 0.6rem; }
+
+/* the system cursor stays — no custom cursor anymore */
+html.cursor-hidden,
+html.cursor-hidden * { cursor: auto; }
+
+/* ============================================================
+   EDITORIAL UPGRADE — giant ghosted chapter figures, kinetic
+   staggered reveals, and architectural section labels. Lifts the
+   content beats out of plain crossfading-text territory.
+   ============================================================ */
+
+.hy .panel { position: relative; }
+
+/* oversized outlined numeral ghosted behind each chapter */
+.hy .beat-figure {
+  position: absolute;
+  left: -0.5rem; top: -3.6rem;
+  font-family: 'Cinzel', serif; font-weight: 400;
+  font-size: clamp(7rem, 14vw, 13.5rem); line-height: 0.78;
+  letter-spacing: 0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(154, 116, 255, 0.22);
+  background: linear-gradient(180deg, rgba(154, 116, 255, 0.16), rgba(154, 116, 255, 0));
+  -webkit-background-clip: text; background-clip: text;
+  z-index: -1; pointer-events: none; user-select: none;
+  transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+.hy .beat:not(.is-active) .beat-figure { opacity: 0; transform: translateY(16px); }
+
+/* architectural section label — brighter index, gradient tick */
+.hy .eyebrow { letter-spacing: 0.42em; gap: 1rem; }
+.hy .eyebrow .ix { color: rgba(214, 196, 255, 0.92); }
+.hy .eyebrow .bar {
+  width: 2.6rem; height: 1px;
+  background: linear-gradient(to right, rgba(124, 58, 237, 0.9), rgba(124, 58, 237, 0));
+}
+
+/* kinetic staggered reveal of beat content (hero keeps its letter-carve).
+   Content is hidden only while the beat is INACTIVE — active state falls back
+   to the natural opacity:1, so no specificity battle. */
+.hy .beat:not(.hero) .panel { transform: none; }
+.hy .beat:not(.hero) .panel > *:not(.beat-figure):not(.lede-rule):not(.bloom-pulse) {
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.hy .beat:not(.hero):not(.is-active) .panel > *:not(.beat-figure):not(.lede-rule):not(.bloom-pulse) {
+  opacity: 0; transform: translateY(18px);
+}
+.hy .beat.is-active .panel > *:nth-child(2) { transition-delay: 0.05s; }
+.hy .beat.is-active .panel > *:nth-child(3) { transition-delay: 0.12s; }
+.hy .beat.is-active .panel > *:nth-child(4) { transition-delay: 0.19s; }
+.hy .beat.is-active .panel > *:nth-child(5) { transition-delay: 0.26s; }
+.hy .beat.is-active .panel > *:nth-child(6) { transition-delay: 0.33s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hy .beat-figure,
+.hy .beat:not(.hero) .panel > *:not(.beat-figure) { opacity: 1 !important; transform: none !important; transition: none; }
+}
+
+/* ============================================================
+   SOUND TOGGLE — move out of the top-right (it collided with
+   the Projects nav link). Now bottom-left, above the hint.
+   ============================================================ */
+.hy .sound-toggle {
+  top: auto !important;
+  right: auto !important;
+  left: 3.5rem !important;
+  bottom: 3.5rem !important;
+}
+@media (max-width: 900px) { .hy .sound-toggle { left: 2rem !important; } }
+@media (max-width: 640px) { .hy .sound-toggle { left: 1.5rem !important; bottom: 2rem !important; } }
+
+
+
+/* ===================== route integration ===================== */
+/* The global body::before / body::after votive+vignette (globals.css) are
+   replaced by the scene's own atmosphere while the Hyacinth route is mounted. */
+body.hy-active::before,
+body.hy-active::after { display: none !important; }
+body.hy-active { background: var(--void); }
+
+/* ===================== orbit tuning overrides ===================== */
+/* The two interludes (About, Try-it) were centred, which dropped their text
+   straight over the now right-positioned, more-prominent bloom. Pull them into
+   the same left column every other beat uses, so nothing covers the flower. */
+.hy .beat.interlude .beat-inner {
+  grid-template-columns: minmax(0, 36rem) 1fr;
+  justify-items: start;
+  text-align: left;
+}
+.hy .beat.interlude .lede-panel { align-items: flex-start; max-width: 33rem; }
+.hy .beat.interlude .lede-k { justify-content: flex-start; }
+.hy .beat.interlude .lede { text-align: left; }
+.hy .beat.interlude .lede-rule { margin: 2rem 0 0; }
+.hy .beat.interlude .bloom-pulse { margin: 2.1rem 0 0; }

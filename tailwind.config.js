@@ -8,7 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Winter Palace Necromancy Color Palette
+        // RELIQUARY — narrowed 6-color system
+        'void': '#050309',
+        'obsidian': '#0C0A18',
+        'indigo-votive': '#4F46E5',
+        'amethyst-ember': '#7C3AED',
+        'bone': '#E8E4D8',
+        'ash': '#8B8FA8',
+
+        // Legacy Winter Palace palette (kept so existing classes don't break)
         'primary-dark': '#0a0a0f',
         'secondary-dark': '#0f0f18',
         'tertiary-dark': '#1a1a2e',

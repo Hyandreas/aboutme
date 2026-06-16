@@ -1,23 +1,16 @@
+import type { Metadata } from 'next'
 import React from 'react'
-import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import Footer from './components/Footer'
+import HyacinthClient, { type HomeContent } from './components/hyacinth/HyacinthClient'
 import { getPageContent } from '@/lib/content'
 
-interface HeroFrontmatter {
-  name: string;
-  tagline: string;
+export const metadata: Metadata = {
+  title: 'Andreas Tsang',
+  description:
+    'Andreas Tsang — applied physics, aerospace, computer science, and violin. A scroll-driven 3D portrait of a hyacinth, reconstructed as a point cloud.',
 }
 
 export default function Home() {
-  const { frontmatter } = getPageContent<HeroFrontmatter>('hero.md')
-  return (
-    <>
-      <Navigation />
-      <main className="min-h-screen">
-        <Hero name={frontmatter.name} tagline={frontmatter.tagline} />
-      </main>
-      <Footer />
-    </>
-  )
+  // Every word on the homepage is edited in content/home.md.
+  const { frontmatter } = getPageContent<HomeContent>('home.md')
+  return <HyacinthClient content={frontmatter} />
 }
