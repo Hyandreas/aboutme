@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import React from 'react'
 import HyacinthClient, { type HomeContent } from './components/hyacinth/HyacinthClient'
+import ColdOpen from './components/coldopen/ColdOpen'
 import { getPageContent } from '@/lib/content'
 
 export const metadata: Metadata = {
@@ -12,5 +13,10 @@ export const metadata: Metadata = {
 export default function Home() {
   // Every word on the homepage is edited in content/home.md.
   const { frontmatter } = getPageContent<HomeContent>('home.md')
-  return <HyacinthClient content={frontmatter} />
+  return (
+    <>
+      <ColdOpen />
+      <HyacinthClient content={frontmatter} />
+    </>
+  )
 }

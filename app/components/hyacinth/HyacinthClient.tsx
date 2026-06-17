@@ -16,6 +16,7 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import './hyacinth.css';
+import { coldOpenWillPlay } from '../coldopen/coldOpenState';
 
 export interface WorkItem {
   year: string;
@@ -291,6 +292,24 @@ export default function HyacinthClient({ content }: { content: HomeContent }) {
 
       const runOverture = () => {
         if (!overtureEl) return;
+        if (coldOpenWillPlay()) {
+          const liftAfterColdOpen = () => {
+            carveHero();
+            overtureEl.classList.add('lift');
+            const goneTimer = setTimeout(() => overtureEl.classList.add('gone'), 1300);
+            timers.push(() => clearTimeout(goneTimer));
+          };
+
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          if ((window as any).__coldOpenDone) {
+            liftAfterColdOpen();
+          } else {
+            document.addEventListener('hy:coldopen-done', liftAfterColdOpen, { once: true });
+            cleanups.push(() => document.removeEventListener('hy:coldopen-done', liftAfterColdOpen));
+          }
+          return;
+        }
+
         if (reduceMotion) {
           carveHero();
           overtureEl.classList.add('lift', 'gone');

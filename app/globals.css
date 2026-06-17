@@ -1,8 +1,9 @@
+/* Google Fonts are loaded via a <link> in app/layout.tsx <head>, NOT @import.
+   This project's webpack CSS pipeline does not keep an @import ahead of other
+   rules, so the browser dropped it; a <head> <link> is honored regardless. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Special+Elite&display=swap');
 
 /* ============================================================
    RELIQUARY — base

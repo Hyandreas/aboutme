@@ -21,6 +21,7 @@ const securityHeaders = [
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  outputFileTracingRoot: __dirname,
   images: {
     domains: [],
     unoptimized: true
