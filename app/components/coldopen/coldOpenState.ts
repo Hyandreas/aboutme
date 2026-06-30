@@ -1,7 +1,7 @@
 let decided = false;
 let willPlayMemo = false;
 
-export const COLD_OPEN_SEEN_KEY = 'hy:coldOpenSeen';
+export const COLD_OPEN_SEEN_KEY = 'hy:introSeenSession';
 
 export function coldOpenSeenInSession(): boolean {
   if (typeof window === 'undefined') return false;

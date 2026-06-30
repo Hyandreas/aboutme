@@ -39,7 +39,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* All Google Fonts — site faces (Crimson Text / Cinzel / Special Elite)
-            and the cold-open reel faces (Baloo 2 / Press Start 2P / VT323) —
+            and the cold-open reel faces (Press Start 2P / VT323) —
             loaded via <link>, NOT @import. This project's webpack CSS pipeline
             does not keep an @import ahead of other rules, so the browser silently
             dropped it (verified: the @import landed ~170 rules deep in the
@@ -47,7 +47,7 @@ export default function RootLayout({
             applies to every route. The no-page-custom-font lint rule targets
             pages/_document misuse and is a false positive for the app router. */}
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Special+Elite&family=Baloo+2:wght@600;700;800&family=Press+Start+2P&family=VT323&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Special+Elite&family=Press+Start+2P&family=VT323&display=swap" />
       </head>
       <body className="antialiased">
         {/* Ambient background — the LivingInk flow field + grain + click rifts +

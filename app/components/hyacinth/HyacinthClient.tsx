@@ -301,11 +301,11 @@ export default function HyacinthClient({ content }: { content: HomeContent }) {
           };
 
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          if ((window as any).__coldOpenDone) {
+          if ((window as any).__hyIntro2?.done) {
             liftAfterColdOpen();
           } else {
-            document.addEventListener('hy:coldopen-done', liftAfterColdOpen, { once: true });
-            cleanups.push(() => document.removeEventListener('hy:coldopen-done', liftAfterColdOpen));
+            document.addEventListener('hy:intro2-done', liftAfterColdOpen, { once: true });
+            cleanups.push(() => document.removeEventListener('hy:intro2-done', liftAfterColdOpen));
           }
           return;
         }
