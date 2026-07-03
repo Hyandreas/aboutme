@@ -1,70 +1,57 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import type { NavigationItem } from '@/lib/content';
 
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/projects', label: 'Projects' },
-];
+interface NavigationProps {
+  brand: string;
+  items: NavigationItem[];
+  mobileOpenLabel: string;
+  mobileCloseLabel: string;
+}
 
-const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+const Navigation = ({
+  brand,
+  items,
+  mobileOpenLabel,
+  mobileCloseLabel,
+}: NavigationProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 80);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const isHome = pathname === '/';
 
   return (
     <motion.nav
-      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
-        isScrolled
-          ? 'bg-void/85 backdrop-blur-md'
-          : 'bg-transparent backdrop-blur-sm'
-      }`}
-      style={{
-        borderBottom: isScrolled
-          ? '1px solid rgba(232,228,216,0.08)'
-          : '1px solid transparent',
-      }}
+      className="fixed top-0 w-full z-50 bg-transparent backdrop-blur-sm"
+      style={{ borderBottom: '1px solid transparent' }}
       initial={{ y: reduceMotion ? 0 : -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
-          {/* Wolfram mark — quietly links to the Summer Research publication */}
-          <Link
-            href="https://community.wolfram.com/groups/-/m/t/3500658"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3"
-            aria-label="Wolfram Summer Research Program publication"
-          >
-            <div className="relative">
-              <Image
-                src="/assets/wolfram.jpeg"
-                alt=""
-                width={32}
-                height={32}
-                className="rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-              />
-              <div className="absolute inset-0 rounded-full ring-1 ring-bone/10 group-hover:ring-bone/30 transition-all duration-500" />
-            </div>
-          </Link>
+          {!isHome && (
+            <Link
+              href="/"
+              className="text-bone/70 hover:text-bone transition-colors duration-500"
+              style={{
+                fontFamily: 'Cinzel, serif',
+                fontSize: '0.72rem',
+                letterSpacing: '0.34em',
+                textTransform: 'uppercase',
+              }}
+            >
+              {brand}
+            </Link>
+          )}
 
-          {/* Desktop — small-caps editorial labels */}
-          <div className="hidden md:flex items-center gap-10">
-            {navItems.map((item) => {
+          <div className="hidden md:flex items-center gap-10 ml-auto">
+            {items.map((item) => {
               const active = pathname === item.href;
               return (
                 <Link
@@ -108,11 +95,11 @@ const Navigation = () => {
 
           {/* Mobile trigger */}
           <motion.button
-            className="md:hidden text-bone p-2"
+            className="md:hidden ml-auto text-bone p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation"
-            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-label={isMobileMenuOpen ? mobileCloseLabel : mobileOpenLabel}
             whileTap={{ scale: 0.95 }}
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -133,7 +120,7 @@ const Navigation = () => {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="container-custom py-6">
-              {navItems.map((item, index) => {
+              {items.map((item, index) => {
                 const active = pathname === item.href;
                 return (
                   <motion.div

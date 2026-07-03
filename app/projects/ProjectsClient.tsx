@@ -228,7 +228,7 @@ export default function ProjectsClient({ current, past, future }: ProjectsClient
   return (
     <>
       <Overture spec="Andreas Tsang — Projects" />
-      <Navigation />
+      <Navigation brand="" items={[]} mobileOpenLabel="" mobileCloseLabel="" />
       <main className="relative min-h-screen">
         {/* Opening */}
         <section className="relative pt-40 md:pt-52 pb-12">

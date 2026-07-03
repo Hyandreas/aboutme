@@ -7,7 +7,7 @@
 // carrying a spiral raceme of florets made of light, ringed by
 // instrument dials. One smoothed scroll value (0..1) drives the
 // camera spiral, the bloom amount, the light colour/intensity/
-// direction, fog, and dial brightness. Mouse adds ±parallax.
+// direction, fog, and dial brightness.
 // Click anywhere = a calm bloom wave travels up the raceme.
 // ------------------------------------------------------------
 // Ported verbatim from the design bundle (spatial/hyacinth3d.js).
@@ -33,7 +33,6 @@ const PALETTE = {
 const DEG = Math.PI / 180;
 const isMobile = matchMedia('(max-width: 768px)').matches;
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 const smooth = (t) => t * t * (3 - 2 * t);
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -119,7 +118,7 @@ export function initHyacinth(opts = {}) {
   fill.position.set(5, -2, 3);
   scene.add(fill);
 
-  const root = new THREE.Group(); // mouse-parallax group
+  const root = new THREE.Group();
   scene.add(root);
 
   // ---------- the specimen + instruments + atmosphere ----------
@@ -149,15 +148,6 @@ export function initHyacinth(opts = {}) {
     target.addEventListener(ev, fn, opts);
     cleanups.push(() => target.removeEventListener(ev, fn, opts));
   };
-
-  // ---------- pointer ----------
-  const mouse = { x: 0, y: 0 }, mLerp = { x: 0, y: 0 };
-  if (finePointer) {
-    on(window, 'mousemove', (e) => {
-      mouse.x = (e.clientX / innerWidth) * 2 - 1;
-      mouse.y = (e.clientY / innerHeight) * 2 - 1;
-    }, { passive: true });
-  }
 
   // ---------- resize (robust to a 0-width init in iframes) ----------
   let lastW = 0, lastH = 0;
@@ -244,9 +234,6 @@ export function initHyacinth(opts = {}) {
     const targetP = clamp01(getProgress());
     smoothP += (targetP - smoothP) * 0.06;
 
-    mLerp.x += (mouse.x - mLerp.x) * 0.05;
-    mLerp.y += (mouse.y - mLerp.y) * 0.05;
-
     if (bloom.phase >= 0) {
       bloom.phase += dt / 1.9;
       if (bloom.phase > 1.35) bloom.phase = -1;
@@ -273,8 +260,8 @@ export function initHyacinth(opts = {}) {
       -k.lx * Math.sin(azr)
     );
     camera.position.set(
-      Math.sin(azr) * Math.cos(elr) * r + mLerp.x * 0.55,
-      k.ly + Math.sin(elr) * r - mLerp.y * 0.4,
+      Math.sin(azr) * Math.cos(elr) * r,
+      k.ly + Math.sin(elr) * r,
       Math.cos(azr) * Math.cos(elr) * r
     );
     camera.lookAt(lookTarget);
@@ -314,11 +301,8 @@ export function initHyacinth(opts = {}) {
       }
       imagePlane.quaternion.copy(camera.quaternion);
       const bob = Math.sin(t * 0.45) * 0.05;
-      imagePlane.position.set(imgBaseX + mLerp.x * 0.10, imgBaseY + bob - mLerp.y * 0.06, 0);
+      imagePlane.position.set(imgBaseX, imgBaseY + bob, 0);
     }
-
-    root.rotation.y = mLerp.x * 0.04;
-    root.rotation.x = -mLerp.y * 0.03;
 
     if (composer) composer.render(); else renderer.render(scene, camera);
   }

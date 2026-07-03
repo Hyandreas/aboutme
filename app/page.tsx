@@ -1,22 +1,40 @@
 import type { Metadata } from 'next'
 import React from 'react'
-import HyacinthClient, { type HomeContent } from './components/hyacinth/HyacinthClient'
-import ColdOpen from './components/coldopen/ColdOpen'
-import { getPageContent } from '@/lib/content'
+import FullscreenShell from './components/FullscreenShell'
+import { getHomeContent } from '@/lib/content'
 
-export const metadata: Metadata = {
-  title: 'Andreas Tsang',
-  description:
-    'Andreas Tsang — applied physics, aerospace, computer science, and violin. A scroll-driven 3D portrait of a hyacinth, reconstructed as a point cloud.',
+export function generateMetadata(): Metadata {
+  const content = getHomeContent()
+  const metadata: Metadata = {
+    title: content.meta_title,
+  }
+
+  if (content.meta_description) {
+    metadata.description = content.meta_description
+  }
+
+  return metadata
 }
 
 export default function Home() {
-  // Every word on the homepage is edited in content/home.md.
-  const { frontmatter } = getPageContent<HomeContent>('home.md')
+  const content = getHomeContent()
+
   return (
-    <>
-      <ColdOpen />
-      <HyacinthClient content={frontmatter} />
-    </>
+    <FullscreenShell className="home-screen">
+      <section className="screen-copy home-copy" aria-labelledby="home-title">
+        <p className="screen-kicker">{content.kicker}</p>
+        <h1 id="home-title" className="screen-title home-title">
+          {content.title}
+        </h1>
+        {content.intro && (
+          <p className="home-intro">{content.intro}</p>
+        )}
+        <div className="home-lines">
+          {content.lines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+      </section>
+    </FullscreenShell>
   )
 }

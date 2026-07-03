@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 
 interface LockdownOverlayProps {
+  kicker: string;
+  title: string;
   message: string;
 }
 
@@ -12,7 +14,7 @@ const DROP_DURATION = 1.0;
 const IMPACT_FRAC = 0.68;                            // fraction of DROP_DURATION when panel hits "floor"
 const IMPACT_AT = DROP_DELAY + DROP_DURATION * IMPACT_FRAC; // ~0.93s
 
-export default function LockdownOverlay({ message }: LockdownOverlayProps) {
+export default function LockdownOverlay({ kicker, title, message }: LockdownOverlayProps) {
   return (
     <>
       {/* Full-screen blur + dark veil */}
@@ -117,7 +119,7 @@ export default function LockdownOverlay({ message }: LockdownOverlayProps) {
               animate={{ opacity: 1 }}
               transition={{ delay: IMPACT_AT + 0.05, duration: 0.7 }}
             >
-              ⸻ &nbsp; notice &nbsp; ⸻
+              {kicker}
             </motion.p>
 
             <motion.h1
@@ -131,7 +133,7 @@ export default function LockdownOverlay({ message }: LockdownOverlayProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: IMPACT_AT + 0.2, duration: 0.7 }}
             >
-              Under Construction
+              {title}
             </motion.h1>
 
             <motion.div

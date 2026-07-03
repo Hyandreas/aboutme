@@ -23,7 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Local env files
-.env*.local
+.env
+.env.*
 
 # Vercel
 .vercel
@@ -62,8 +63,13 @@ pids
 # Optional stylelint cache
 .stylelintcache
 
-# Claude Code (keep CLAUDE.md; ignore local-only settings)
-.claude/settings.local.json
+# Local agent/tooling metadata
+.claude/
+.agents/
+.codex/
+CLAUDE.md
+AGENTS.md
+DESIGN.md
 
 # Design references / scratch
 *.zip

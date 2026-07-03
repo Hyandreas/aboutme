@@ -19,7 +19,11 @@ html.intro2-playing body { overflow: hidden; }
   --amethyst: #7C3AED;
   --indigo: #4F46E5;
 }
-.crt2.gone { display: none; }
+html.intro2-skip .crt2-preboot,
+.crt2-gone,
+.crt2.gone {
+  display: none;
+}
 
 /* ---- the tube ---------------------------------------------------- */
 .crt2-screen {
@@ -345,6 +349,72 @@ html.intro2-playing body { overflow: hidden; }
 .crt2.melting { animation: crt2Fade 780ms 180ms ease-out forwards; }
 @keyframes crt2Fade { to { background: rgba(0,0,0,0); } }
 
+/* ---- loading-complete start control ------------------------------ */
+.crt2-start {
+  position: absolute;
+  left: 50%;
+  top: 82%;
+  z-index: 31;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(17rem, 72vw);
+  min-height: 3.25rem;
+  padding: 0.95rem 1.3rem;
+  border: 1px solid rgba(252,251,247,0.72);
+  background: rgba(5,5,7,0.82);
+  color: rgba(252,251,247,0.94);
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.68rem, 2.2vw, 0.95rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 2px 0 rgba(255,0,90,0.36), -2px 0 rgba(0,170,255,0.36);
+  box-shadow:
+    0 0 0 3px rgba(5,5,7,0.82),
+    0 0 24px rgba(125,240,164,0.18),
+    inset 0 0 18px rgba(252,251,247,0.08);
+  transition:
+    color 220ms ease,
+    border-color 220ms ease,
+    opacity 220ms ease,
+    transform 220ms cubic-bezier(0.16,1,0.3,1);
+}
+.crt2.ready-to-play .crt2-start {
+  opacity: 1;
+  pointer-events: auto;
+}
+.crt2.ready-to-play .crt2-start:hover,
+.crt2.ready-to-play .crt2-start:focus-visible {
+  color: #fcfbf7;
+  border-color: #fcfbf7;
+  outline: none;
+  transform: translate(-50%, -50%) scale(1.02);
+}
+.crt2-start::before,
+.crt2-start::after {
+  content: '';
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: rgba(125,240,164,0.65);
+  opacity: 0.75;
+}
+.crt2-start::before { top: -0.5rem; }
+.crt2-start::after { bottom: -0.5rem; }
+.crt2.is-running:not(.ready-to-play) .crt2-start {
+  opacity: 0;
+  pointer-events: none;
+}
+.crt2-preboot .crt2-sound {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ---- sound toggle (the only chrome on the reel) ------------------ */
 .crt2-sound {
   position: absolute; bottom: 4.2vh; right: 5vw; z-index: 30;
@@ -363,8 +433,99 @@ html.intro2-playing body { overflow: hidden; }
 @keyframes crt2Eq { 0%,100%{height:30%;} 50%{height:100%;} }
 .crt2-sound.muted .eq i { height: 30%; opacity: 0.5; }
 
+/* ---- post-intro soundtrack control ------------------------------- */
+.post-intro-track {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2.2rem);
+  bottom: clamp(1rem, 3vw, 2.2rem);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.72rem;
+  max-width: min(25rem, calc(100vw - 2rem));
+  min-height: 3.25rem;
+  padding: 0.7rem 0.85rem 0.72rem;
+  border: 1px solid rgba(232,228,216,0.2);
+  background:
+    linear-gradient(135deg, rgba(12,10,24,0.92), rgba(5,3,9,0.86));
+  color: rgba(232,228,216,0.82);
+  cursor: pointer;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.38),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+  transition:
+    border-color 260ms ease,
+    color 260ms ease,
+    opacity 260ms ease,
+    transform 260ms cubic-bezier(0.16,1,0.3,1);
+}
+.post-intro-track[hidden] {
+  display: none;
+}
+.post-intro-track:hover,
+.post-intro-track:focus-visible {
+  color: rgba(252,251,247,0.96);
+  border-color: rgba(232,228,216,0.38);
+  outline: none;
+  transform: translateY(-1px);
+}
+.post-intro-track-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 14px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: rgba(125,240,164,0.78);
+}
+.post-intro-track-eq i {
+  width: 3px;
+  height: 34%;
+  background: currentColor;
+}
+.post-intro-track.is-playing .post-intro-track-eq i {
+  animation: crt2Eq 0.8s ease-in-out infinite;
+}
+.post-intro-track.is-playing .post-intro-track-eq i:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.post-intro-track.is-playing .post-intro-track-eq i:nth-child(3) {
+  animation-delay: 0.32s;
+}
+.post-intro-track-copy {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  text-align: left;
+}
+.post-intro-track-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232,228,216,0.46);
+}
+.post-intro-track-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(0.72rem, 1.5vw, 0.9rem);
+  letter-spacing: 0.08em;
+  color: currentColor;
+}
+
+@media (max-width: 640px) {
+  .post-intro-track {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .crt2-screen, .crt2.melting .crt2-screen,
   .crt2-flick, .crt2-track, .signon2-word, .crt2-sound.on .eq i,
+  .post-intro-track.is-playing .post-intro-track-eq i,
   .f2-static, .f2-static::before, .bars2-main .b6::after { animation: none !important; }
 }
