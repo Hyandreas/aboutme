@@ -92,6 +92,8 @@ function sampleCam(p) {
 export function initHyacinth(opts = {}) {
   const canvas = opts.canvas || document.getElementById('vault-gl');
   const getProgress = opts.getProgress || (() => 0);
+  const lookOffset = typeof opts.lookOffset === 'number' ? opts.lookOffset : null;
+  const transparentBackground = opts.transparentBackground === true;
   if (!canvas) return null;
 
   let renderer;
@@ -100,7 +102,7 @@ export function initHyacinth(opts = {}) {
   } catch (e) { return null; }
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.25));
   renderer.setSize(Math.max(innerWidth, 1), Math.max(innerHeight, 1));
-  renderer.setClearColor(PALETTE.void, 1);
+  renderer.setClearColor(PALETTE.void, transparentBackground ? 0 : 1);
 
   const scene = new THREE.Scene();
   scene.fog = new THREE.FogExp2(PALETTE.void, 0.042);
@@ -126,11 +128,11 @@ export function initHyacinth(opts = {}) {
   const dials = buildInstruments(root);
   const dustNear = addDust(root, isMobile ? 200 : 420, 20, PALETTE.bone, 0.42);
   const dustFar = addDust(root, isMobile ? 140 : 320, 44, PALETTE.amethyst, 0.28);
-  const sky = buildFluidSky(scene);
+  const sky = transparentBackground ? null : buildFluidSky(scene);
 
   // ---------- post: cinematic bloom (desktop only) ----------
   let composer = null, bloomPass = null;
-  if (!isMobile) {
+  if (!isMobile && !transparentBackground) {
     try {
       composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
@@ -254,10 +256,11 @@ export function initHyacinth(opts = {}) {
     const r = k.r * (1 - swell * 0.06);
     // offset the look target along the camera's RIGHT vector so the plant
     // always sits opposite the text, whatever the orbit angle
+    const lx = lookOffset ?? k.lx;
     lookTarget.set(
-      k.lx * Math.cos(azr),
+      lx * Math.cos(azr),
       k.ly,
-      -k.lx * Math.sin(azr)
+      -lx * Math.sin(azr)
     );
     camera.position.set(
       Math.sin(azr) * Math.cos(elr) * r,
@@ -286,7 +289,7 @@ export function initHyacinth(opts = {}) {
     dials.update(t, P, swell, intro);
     dustNear.material.uniforms.uTime.value = t;
     dustFar.material.uniforms.uTime.value = t;
-    sky.update(t, P);
+    sky?.update(t, P);
 
     // image-mode plane
     if (imagePlane) {

@@ -9,14 +9,18 @@
  */
 
 import { useEffect } from 'react';
-import { coldOpenWillPlay } from './coldOpenState';
-import type { ColdOpenContent } from '@/lib/content';
+import { usePathname } from 'next/navigation';
+import { coldOpenMarkFinished, coldOpenWillPlay } from './coldOpenState';
+import type { ColdOpenContent, DisabledPageConfig } from '@/lib/content';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 const COLD_OPEN_ROOT_ID = 'crt2-root';
 const POST_INTRO_AUDIO_ID = 'post-intro-track-audio';
 const POST_INTRO_TOGGLE_ID = 'post-intro-track-toggle';
+const AUTO_EXIT_WATCHDOG_MS = 18000;
+const LOAD_GATE_SETTLE_MS = 620;
+const MIN_LOAD_SCREEN_MS = 8600;
 
 function escapeHtml(value: string): string {
   return value
@@ -92,30 +96,46 @@ interface ColdOpenAudio {
   stopAll: () => void;
 }
 
+function makeSilentAudio(): ColdOpenAudio {
+  const noop = () => {};
+  const noopAsync = () => Promise.resolve();
+
+  return {
+    setMuted: noop,
+    resumeOnGesture: noop,
+    tryResume: noopAsync,
+    powerOn: noop,
+    staticHiss: noop,
+    tone: noop,
+    click: noop,
+    neonHum: noop,
+    resolveChime: noop,
+    stopAll: noop,
+  };
+}
+
 function makeAudio(): ColdOpenAudio {
   const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
-  if (!Ctx) {
-    const noop = () => {};
-    const noopAsync = () => Promise.resolve();
-    return {
-      setMuted: noop, resumeOnGesture: noop, tryResume: noopAsync,
-      powerOn: noop, staticHiss: noop, tone: noop, click: noop,
-      neonHum: noop, resolveChime: noop, stopAll: noop,
-    };
+  if (!Ctx) return makeSilentAudio();
+
+  let ctx: AudioContext;
+  let master: GainNode;
+  let noiseBuf: AudioBuffer;
+
+  try {
+    ctx = new Ctx();
+    master = ctx.createGain();
+    master.gain.value = 0.5;
+    master.connect(ctx.destination);
+
+    noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+    const d = noiseBuf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  } catch {
+    return makeSilentAudio();
   }
 
-  const ctx = new Ctx();
-  const master = ctx.createGain();
-  master.gain.value = 0.5;
-  master.connect(ctx.destination);
-
   let live: Array<AudioScheduledSourceNode> = [];
-  const noiseBuf = (() => {
-    const b = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
-    const d = b.getChannelData(0);
-    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-    return b;
-  })();
 
   const now = () => ctx.currentTime;
   const track = (node: AudioScheduledSourceNode) => {
@@ -136,7 +156,11 @@ function makeAudio(): ColdOpenAudio {
   };
   const afterResume = (fn: () => void) => {
     void tryResume();
-    fn();
+    try {
+      fn();
+    } catch {
+      /* audio optional */
+    }
   };
   const resumeOnGesture = () => {
     const fn = () => {
@@ -147,8 +171,12 @@ function makeAudio(): ColdOpenAudio {
     });
   };
   const setMuted = (m: boolean) => {
-    master.gain.cancelScheduledValues(now());
-    master.gain.linearRampToValueAtTime(m ? 0.0001 : 0.5, now() + 0.12);
+    try {
+      master.gain.cancelScheduledValues(now());
+      master.gain.linearRampToValueAtTime(m ? 0.0001 : 0.5, now() + 0.12);
+    } catch {
+      /* audio optional */
+    }
   };
 
   const powerOn = () => {
@@ -439,11 +467,21 @@ function makePostIntroPlayer(content: ColdOpenContent): PostIntroPlayer | null {
 
 interface ColdOpenProps {
   content: ColdOpenContent;
+  lockdown: boolean;
+  disabledPages: DisabledPageConfig[];
 }
 
-export default function ColdOpen({ content }: ColdOpenProps) {
+function normalizePath(path: string): string {
+  const withSlash = path.startsWith('/') ? path : `/${path}`;
+  return withSlash.length > 1 ? withSlash.replace(/\/+$/, '') : withSlash;
+}
+
+export default function ColdOpen({ content, lockdown, disabledPages }: ColdOpenProps) {
+  const pathname = normalizePath(usePathname() || '/');
+  const coldOpenDisabled = lockdown || disabledPages.some((page) => normalizePath(page.path) === pathname);
+
   useEffect(() => {
-    const willPlay = coldOpenWillPlay();
+    const willPlay = !coldOpenDisabled && coldOpenWillPlay();
     let root: HTMLDivElement | null = null;
     let cut: HTMLElement | null = null;
     let frames: Record<string, HTMLElement> = {};
@@ -462,6 +500,8 @@ export default function ColdOpen({ content }: ColdOpenProps) {
       const node = existing ?? document.createElement('div');
       node.id = COLD_OPEN_ROOT_ID;
       node.className = preboot ? 'crt2 crt2-preboot' : 'crt2';
+      node.removeAttribute('data-boot-reel');
+      node.removeAttribute('data-boot-stage');
       node.removeAttribute('aria-hidden');
       node.innerHTML = markup(content);
       if (!existing) document.body.prepend(node);
@@ -477,6 +517,9 @@ export default function ColdOpen({ content }: ColdOpenProps) {
     const clearAll = () => {
       timers.forEach((t) => clearTimeout(t));
       timers = [];
+    };
+    const schedule = (fn: () => void, delay: number) => {
+      timers.push(window.setTimeout(fn, delay));
     };
     const showOnly = (id: string) => {
       for (const k in frames) frames[k].classList.toggle('on', k === id);
@@ -504,7 +547,9 @@ export default function ColdOpen({ content }: ColdOpenProps) {
       startCleanup = null;
       audio?.resolveChime();
       (window as any).__hyIntro2.done = true;
+      coldOpenMarkFinished();
       document.documentElement.classList.remove('intro2-playing');
+      document.documentElement.classList.add('intro2-skip');
       try {
         document.dispatchEvent(new CustomEvent('hy:intro2-done'));
       } catch {
@@ -534,7 +579,7 @@ export default function ColdOpen({ content }: ColdOpenProps) {
 
       startButton?.addEventListener('click', begin);
       startCleanup = () => startButton?.removeEventListener('click', begin);
-      window.setTimeout(() => startButton?.focus({ preventScroll: true }), 0);
+      schedule(() => startButton?.focus({ preventScroll: true }), 0);
     };
 
     const runLoad = () => {
@@ -555,9 +600,13 @@ export default function ColdOpen({ content }: ColdOpenProps) {
 
       let i = 0;
       let prevColor = -1;
+      const loadStartedAt = window.performance?.now() ?? Date.now();
       const step = () => {
         if (!root || i >= vals.length) {
-          timers.push(window.setTimeout(showStartGate, 620));
+          const now = window.performance?.now() ?? Date.now();
+          const elapsed = now - loadStartedAt;
+          const delay = Math.max(LOAD_GATE_SETTLE_MS, MIN_LOAD_SCREEN_MS - elapsed);
+          schedule(showStartGate, delay);
           return;
         }
         const val = vals[i];
@@ -575,7 +624,7 @@ export default function ColdOpen({ content }: ColdOpenProps) {
         const dwell = Math.random() < 0.18
           ? 240 + Math.random() * 320
           : 55 + Math.random() * 120;
-        timers.push(window.setTimeout(step, dwell));
+        schedule(step, dwell);
       };
       step();
     };
@@ -591,12 +640,19 @@ export default function ColdOpen({ content }: ColdOpenProps) {
       root = prepareRoot();
       root.classList.add('is-running');
       root.classList.remove('ready-to-play');
-      postIntroPlayer = postIntroPlayer ?? makePostIntroPlayer(content);
-      postIntroPlayer?.reset();
-      postIntroPlayer?.prime();
+      try {
+        postIntroPlayer = postIntroPlayer ?? makePostIntroPlayer(content);
+        postIntroPlayer?.reset();
+        postIntroPlayer?.prime();
+      } catch {
+        postIntroPlayer = null;
+      }
       document.documentElement.classList.remove('intro2-skip');
       document.documentElement.classList.add('intro2-playing');
       (window as any).__hyIntro2.done = false;
+      schedule(() => {
+        if (!ended) melt();
+      }, AUTO_EXIT_WATCHDOG_MS);
 
       cut = root.querySelector<HTMLElement>('.crt2-cut');
       frames = {};
@@ -646,11 +702,15 @@ export default function ColdOpen({ content }: ColdOpenProps) {
 
       let t = 300;
       scenes.forEach((s) => {
-        if (s[2]) timers.push(window.setTimeout(flashCut, t - 60));
-        timers.push(window.setTimeout(() => {
+        if (s[2]) schedule(flashCut, Math.max(0, t - 60));
+        schedule(() => {
           showOnly(s[0]);
-          s[3]();
-        }, t));
+          try {
+            s[3]();
+          } catch {
+            showStartGate();
+          }
+        }, t);
         t += s[1];
       });
     };
@@ -671,6 +731,8 @@ export default function ColdOpen({ content }: ColdOpenProps) {
     if (willPlay) {
       play();
     } else {
+      document.documentElement.classList.remove('intro2-playing');
+      document.documentElement.classList.add('intro2-skip');
       hideRoot(getRoot());
     }
 
@@ -680,12 +742,11 @@ export default function ColdOpen({ content }: ColdOpenProps) {
       startCleanup = null;
       clearAll();
       document.documentElement.classList.remove('intro2-playing');
-      document.documentElement.classList.remove('intro2-skip');
       postIntroPlayer?.destroy();
       postIntroPlayer = null;
       teardown();
     };
-  }, [content]);
+  }, [coldOpenDisabled, content]);
 
   return (
     <div

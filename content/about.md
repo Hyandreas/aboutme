@@ -1,12 +1,12 @@
 ---
-# About page text and compact field notes.
-meta_title: Field Notes | Andreas Tsang
-meta_description: Field notes on Andreas Tsang.
+# About page text.
+meta_title: About | Andreas Tsang
+meta_description: A compact sketch of Andreas Tsang.
 kicker: About
 title: About
 lede: "I keep returning to systems where motion, constraint, and craft meet: flight paths, search spaces, mineral flow, music, and water."
 meta_label: Fields
-interests_label: Field notes
+interests_label: Interests
 now_label: Now
 now:
   - Studying applied physics, aerospace, computer science, and violin.

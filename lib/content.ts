@@ -127,11 +127,43 @@ export interface SongsPageContent {
   tracks: SpotifyTrackData[];
 }
 
+export interface DisabledPageConfig {
+  path: string;
+  kicker?: string;
+  title?: string;
+  message?: string;
+}
+
+export interface LockdownContent {
+  kicker: string;
+  title: string;
+  message: string;
+  home_label: string;
+  path?: string;
+}
+
+export interface ResolvedDisabledPageConfig extends LockdownContent {
+  path: string;
+}
+
 export interface SiteConfig {
   lockdown: boolean;
   lockdown_kicker: string;
   lockdown_title: string;
   lockdown_message: string;
+  lockdown_home_label: string;
+  disabled_pages: ResolvedDisabledPageConfig[];
+}
+
+type RawDisabledPageConfig = string | Partial<DisabledPageConfig>;
+
+interface SiteConfigFrontmatter {
+  lockdown?: boolean;
+  lockdown_kicker?: string;
+  lockdown_title?: string;
+  lockdown_message?: string;
+  lockdown_home_label?: string;
+  disabled_pages?: RawDisabledPageConfig[];
 }
 
 const defaultSiteChrome: SiteChromeContent = {
@@ -293,12 +325,71 @@ export function getSongsContent(): SongsPageContent {
 }
 
 export function getConfig(): SiteConfig {
-  const { frontmatter } = getPageContent<Partial<SiteConfig>>('config.md');
+  const { frontmatter } = getPageContent<SiteConfigFrontmatter>('config.md');
+  const fallback = {
+    kicker: frontmatter.lockdown_kicker ?? 'Notice',
+    title: frontmatter.lockdown_title ?? 'Under Construction',
+    message: frontmatter.lockdown_message ?? 'This site is currently under construction.',
+    home_label: frontmatter.lockdown_home_label ?? 'Return home',
+  };
+  const disabledPages: ResolvedDisabledPageConfig[] = (frontmatter.disabled_pages ?? [])
+    .map((entry) => {
+      if (typeof entry === 'string') return { path: entry, ...fallback };
+      return entry.path ? entry : null;
+    })
+    .filter((entry): entry is DisabledPageConfig => Boolean(entry?.path))
+    .map((entry): ResolvedDisabledPageConfig => {
+      const withSlash = entry.path.startsWith('/') ? entry.path : `/${entry.path}`;
+      return {
+        ...entry,
+        path: withSlash.length > 1 ? withSlash.replace(/\/+$/, '') : withSlash,
+        kicker: entry.kicker ?? fallback.kicker,
+        title: entry.title ?? fallback.title,
+        message: entry.message ?? fallback.message,
+        home_label: fallback.home_label,
+      };
+    });
+
   return {
     lockdown: frontmatter.lockdown ?? false,
-    lockdown_kicker: frontmatter.lockdown_kicker ?? 'Notice',
-    lockdown_title: frontmatter.lockdown_title ?? 'Under Construction',
-    lockdown_message: frontmatter.lockdown_message ?? 'This site is currently under construction.',
+    lockdown_kicker: fallback.kicker,
+    lockdown_title: fallback.title,
+    lockdown_message: fallback.message,
+    lockdown_home_label: fallback.home_label,
+    disabled_pages: disabledPages,
+  };
+}
+
+function normalizeRoutePath(pathname: string): string {
+  if (!pathname || pathname === '/') return '/';
+  const withSlash = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  return withSlash.length > 1 ? withSlash.replace(/\/+$/, '') : withSlash;
+}
+
+export function getDisabledPage(pathname: string): LockdownContent | null {
+  const { disabled_pages } = getConfig();
+  const target = normalizeRoutePath(pathname);
+  const disabledPage = disabled_pages.find((page) => normalizeRoutePath(page.path) === target);
+
+  if (!disabledPage) return null;
+
+  return {
+    kicker: disabledPage.kicker,
+    title: disabledPage.title,
+    message: disabledPage.message,
+    home_label: disabledPage.home_label,
+    path: disabledPage.path,
+  };
+}
+
+export function getDisabledPageMetadata(pathname: string): { title: string; description: string } | null {
+  const disabledPage = getDisabledPage(pathname);
+  if (!disabledPage) return null;
+
+  const { metadata } = getSiteChrome();
+  return {
+    title: `${disabledPage.title} | ${metadata.title}`,
+    description: disabledPage.message,
   };
 }
 

@@ -16,7 +16,7 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import './hyacinth.css';
-import { coldOpenWillPlay } from '../coldopen/coldOpenState';
+import { coldOpenCanPlay } from '../coldopen/coldOpenState';
 
 export interface WorkItem {
   year: string;
@@ -292,7 +292,7 @@ export default function HyacinthClient({ content }: { content: HomeContent }) {
 
       const runOverture = () => {
         if (!overtureEl) return;
-        if (coldOpenWillPlay()) {
+        if (coldOpenCanPlay()) {
           const liftAfterColdOpen = () => {
             carveHero();
             overtureEl.classList.add('lift');

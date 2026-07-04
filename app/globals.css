@@ -859,6 +859,127 @@ html.magnetic-cursor-active textarea {
   cursor: pointer;
 }
 
+.construction-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(1.25rem, 4vw, 4rem);
+  color: var(--bone);
+  background:
+    radial-gradient(ellipse 62% 78% at 78% 52%, rgba(64, 90, 78, 0.34), rgba(20, 35, 34, 0.12) 36%, transparent 68%),
+    radial-gradient(ellipse 52% 88% at 16% 46%, rgba(5, 3, 9, 0.88), rgba(5, 3, 9, 0.54) 58%, transparent 88%),
+    linear-gradient(115deg, rgba(5, 3, 9, 0.98), rgba(17, 15, 26, 0.94) 50%, rgba(4, 9, 10, 0.98));
+  isolation: isolate;
+}
+
+.construction-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(232, 228, 216, 0.08), transparent 23%, transparent 70%, rgba(125, 240, 164, 0.06)),
+    radial-gradient(ellipse 70% 56% at 72% 50%, transparent 0%, rgba(5, 3, 9, 0.64) 78%);
+}
+
+.construction-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(232, 228, 216, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 228, 216, 0.025) 1px, transparent 1px);
+  background-size: 100% 6px, clamp(4rem, 10vw, 8rem) 100%;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.construction-screen .hy.hy-still #vault-gl {
+  z-index: 0;
+  transform: translateX(18vw) scale(1.02);
+  opacity: 0.78;
+}
+
+.construction-screen .hy.hy-still .votive-fallback,
+.construction-screen .hy.hy-still .vignette {
+  display: none;
+}
+
+.construction-screen .hy.hy-still .grain {
+  z-index: 1;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+
+.construction-screen .hy.hy-still .bloom-glow {
+  z-index: 2;
+}
+
+.construction-screen .hy.hy-still .still-bloom-hit {
+  z-index: 3;
+  cursor: pointer;
+}
+
+.construction-grid {
+  position: relative;
+  z-index: 5;
+  width: min(1120px, 100%);
+  min-height: min(62dvh, 36rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: end start;
+}
+
+.construction-copy {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  max-width: 39rem;
+  text-shadow: 0 2px 28px rgba(5, 3, 9, 0.86);
+}
+
+.construction-copy h1 {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3.1rem, 8vw, 7.1rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: rgba(244, 242, 235, 0.97);
+  text-wrap: balance;
+}
+
+.construction-primary {
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.15rem;
+  padding: 0.72rem 0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 216, 0.9);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(125, 240, 164, 0.34);
+  transition:
+    color 420ms var(--ease-reliquary),
+    border-color 420ms var(--ease-reliquary),
+    transform 420ms var(--ease-reliquary);
+}
+
+.construction-primary:hover,
+.construction-primary:focus-visible {
+  color: rgba(252, 251, 247, 0.96);
+  border-color: rgba(125, 240, 164, 0.78);
+  outline: none;
+  transform: translateX(4px);
+}
+
 @media (max-width: 767px) {
   .hy-screen-shell {
     min-height: 100dvh;
@@ -923,5 +1044,45 @@ html.magnetic-cursor-active textarea {
   .interest-row em,
   .song-row em {
     grid-column: 2;
+  }
+
+  .construction-screen {
+    position: fixed;
+    place-items: start;
+    overflow-y: auto;
+    padding: 5.25rem 1.15rem 1.4rem;
+    background:
+      radial-gradient(ellipse 82% 52% at 92% 18%, rgba(64, 90, 78, 0.24), transparent 64%),
+      linear-gradient(150deg, rgba(5, 3, 9, 0.98), rgba(11, 15, 18, 0.96));
+  }
+
+  .construction-screen .hy.hy-still #vault-gl {
+    transform: translateX(32vw) translateY(-8vh) scale(1.18);
+    opacity: 0.45;
+  }
+
+  .construction-grid {
+    min-height: auto;
+    gap: 2.2rem;
+    align-items: start;
+  }
+
+  .construction-copy {
+    max-width: 100%;
+  }
+
+  .construction-copy h1 {
+    font-size: clamp(2.8rem, 16vw, 4.8rem);
+  }
+
+  .construction-panel {
+    width: 100%;
+    background: linear-gradient(90deg, rgba(5, 3, 9, 0.78), rgba(5, 3, 9, 0.28));
+  }
+
+  .construction-primary {
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.3;
   }
 }

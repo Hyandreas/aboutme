@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import React from 'react'
 import FullscreenShell from './components/FullscreenShell'
-import { getHomeContent } from '@/lib/content'
+import LockdownOverlay from './components/LockdownOverlay'
+import { getDisabledPage, getDisabledPageMetadata, getHomeContent } from '@/lib/content'
 
 export function generateMetadata(): Metadata {
+  const disabledMetadata = getDisabledPageMetadata('/')
+  if (disabledMetadata) return disabledMetadata
+
   const content = getHomeContent()
   const metadata: Metadata = {
     title: content.meta_title,
@@ -17,7 +21,12 @@ export function generateMetadata(): Metadata {
 }
 
 export default function Home() {
+  const lockdown = getDisabledPage('/')
   const content = getHomeContent()
+
+  if (lockdown) {
+    return <LockdownOverlay {...lockdown} />
+  }
 
   return (
     <FullscreenShell className="home-screen">

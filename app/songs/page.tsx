@@ -1,9 +1,13 @@
 import type { Metadata } from 'next';
 import FullscreenShell from '../components/FullscreenShell';
-import { getSongsContent } from '@/lib/content';
+import LockdownOverlay from '../components/LockdownOverlay';
+import { getDisabledPage, getDisabledPageMetadata, getSongsContent } from '@/lib/content';
 import SongsPreloadRelease from './SongsPreloadRelease';
 
 export function generateMetadata(): Metadata {
+  const disabledMetadata = getDisabledPageMetadata('/songs');
+  if (disabledMetadata) return disabledMetadata;
+
   const content = getSongsContent();
   return {
     title: content.meta_title,
@@ -12,7 +16,17 @@ export function generateMetadata(): Metadata {
 }
 
 export default function SongsPage() {
+  const lockdown = getDisabledPage('/songs');
   const content = getSongsContent();
+
+  if (lockdown) {
+    return (
+      <>
+        <SongsPreloadRelease />
+        <LockdownOverlay {...lockdown} />
+      </>
+    );
+  }
 
   return (
     <FullscreenShell className="songs-screen">

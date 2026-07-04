@@ -13,14 +13,24 @@ interface HyacinthModule {
   initHyacinth: (opts: {
     canvas: HTMLCanvasElement;
     getProgress: () => number;
+    lookOffset?: number;
+    transparentBackground?: boolean;
   }) => HyacinthApi | null;
 }
 
 interface HyacinthBackdropProps {
   bloomButtonLabel: string;
+  className?: string;
+  lookOffset?: number;
+  transparentBackground?: boolean;
 }
 
-export default function HyacinthBackdrop({ bloomButtonLabel }: HyacinthBackdropProps) {
+export default function HyacinthBackdrop({
+  bloomButtonLabel,
+  className = '',
+  lookOffset,
+  transparentBackground = false,
+}: HyacinthBackdropProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const apiRef = useRef<HyacinthApi | null>(null);
@@ -51,6 +61,8 @@ export default function HyacinthBackdrop({ bloomButtonLabel }: HyacinthBackdropP
       const api = mod.initHyacinth({
         canvas,
         getProgress: () => 0,
+        lookOffset,
+        transparentBackground,
       });
 
       if (disposed) {
@@ -70,10 +82,10 @@ export default function HyacinthBackdrop({ bloomButtonLabel }: HyacinthBackdropP
       document.body.classList.remove('hy-active');
       document.documentElement.classList.remove('hy-page-active');
     };
-  }, []);
+  }, [lookOffset, transparentBackground]);
 
   return (
-    <div className="hy hy-still" aria-hidden="true">
+    <div className={['hy hy-still', className].filter(Boolean).join(' ')} aria-hidden="true">
       <canvas id="vault-gl" ref={canvasRef} />
       <div className="votive-fallback" />
       <div className="vignette" />
