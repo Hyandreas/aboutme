@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lusion Spatial Storytelling"
+  short_description: "Plan immersive WebGL scenes from live-site evidence"
+  default_prompt: "Use $lusion-spatial-storytelling to plan an immersive scroll experience while preserving my site's existing visual identity."
