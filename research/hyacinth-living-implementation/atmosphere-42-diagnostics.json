@@ -1,0 +1,372 @@
+{
+  "at": 42,
+  "camera": [
+    -1.5,
+    -5.7,
+    10.4
+  ],
+  "direction": [
+    0.1736197431973583,
+    0.43193204405196467,
+    -0.8850372275182412
+  ],
+  "children": [
+    {
+      "name": "hyacinth-particle-currents",
+      "visible": true,
+      "count": 11500
+    },
+    {
+      "name": "hyacinth-bloom-ripples",
+      "visible": true,
+      "count": 4320
+    },
+    {
+      "name": "hyacinth-depth-accents",
+      "visible": true,
+      "count": 160
+    }
+  ],
+  "cpuUniforms": {
+    "uAt": 42,
+    "uTime": 0,
+    "uEnergy": 0.9759945130315499,
+    "uFlow": 0.77,
+    "uRipple": 0.85,
+    "uQuiet": 0.024005486968450063,
+    "uReveal": 1,
+    "uReducedMotion": 0,
+    "uFocus": [
+      0.55,
+      -0.6,
+      -0.05
+    ],
+    "uViewport": [
+      0,
+      0,
+      1440,
+      900
+    ],
+    "uPixelRatio": 1,
+    "uEventPhase": [
+      1,
+      1,
+      1,
+      0.3269230769230769
+    ],
+    "uEventStrength": [
+      0,
+      0,
+      0,
+      0.9128474830954169
+    ],
+    "uMaskStart": 0.38,
+    "uMaskEnd": 0.54
+  },
+  "prepare": [
+    {
+      "name": "hyacinth-particle-currents",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": false
+    },
+    {
+      "name": "hyacinth-bloom-ripples",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": false
+    },
+    {
+      "name": "hyacinth-depth-accents",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": false
+    },
+    {
+      "name": "hyacinth-particle-currents",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": true
+    },
+    {
+      "name": "hyacinth-bloom-ripples",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": true
+    },
+    {
+      "name": "hyacinth-depth-accents",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": true
+    },
+    {
+      "name": "hyacinth-particle-currents",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": false
+    },
+    {
+      "name": "hyacinth-bloom-ripples",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": false
+    },
+    {
+      "name": "hyacinth-depth-accents",
+      "before": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "after": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uploadMarked": false
+    }
+  ],
+  "isolated": {
+    "calls": 3,
+    "points": 15980,
+    "gpu": {
+      "uAt": 42,
+      "uTime": 0,
+      "uEnergy": 0.9759945130315499,
+      "uFlow": 0.77,
+      "uQuiet": 0.024005486968450063,
+      "uReveal": 1,
+      "uReducedMotion": 0,
+      "uPixelRatio": 1,
+      "uFocus": [
+        0.55,
+        -0.6,
+        -0.05
+      ],
+      "uViewport": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uMaskStart": 0.38,
+      "uMaskEnd": 0.54,
+      "uRipple": 0.85,
+      "uEventPhase": [
+        1,
+        1,
+        1,
+        0.3269230769230769
+      ],
+      "uEventStrength": [
+        0,
+        0,
+        0,
+        0.9128474830954169
+      ]
+    }
+  },
+  "forcedUniformUpload": {
+    "calls": 3,
+    "points": 15980,
+    "gpu": {
+      "uAt": 42,
+      "uTime": 0,
+      "uEnergy": 0.9759945130315499,
+      "uFlow": 0.77,
+      "uQuiet": 0.024005486968450063,
+      "uReveal": 1,
+      "uReducedMotion": 0,
+      "uPixelRatio": 1,
+      "uFocus": [
+        0.55,
+        -0.6,
+        -0.05
+      ],
+      "uViewport": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uMaskStart": 0.38,
+      "uMaskEnd": 0.54,
+      "uRipple": 0.85,
+      "uEventPhase": [
+        1,
+        1,
+        1,
+        0.3269230769230769
+      ],
+      "uEventStrength": [
+        0,
+        0,
+        0,
+        0.9128474830954169
+      ]
+    }
+  },
+  "noDepth": {
+    "calls": 3,
+    "points": 15980,
+    "gpu": {
+      "uAt": 42,
+      "uTime": 0,
+      "uEnergy": 0.9759945130315499,
+      "uFlow": 0.77,
+      "uQuiet": 0.024005486968450063,
+      "uReveal": 1,
+      "uReducedMotion": 0,
+      "uPixelRatio": 1,
+      "uFocus": [
+        0.55,
+        -0.6,
+        -0.05
+      ],
+      "uViewport": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uMaskStart": 0.38,
+      "uMaskEnd": 0.54,
+      "uRipple": 0.85,
+      "uEventPhase": [
+        1,
+        1,
+        1,
+        0.3269230769230769
+      ],
+      "uEventStrength": [
+        0,
+        0,
+        0,
+        0.9128474830954169
+      ]
+    }
+  },
+  "probe": {
+    "calls": 1,
+    "points": 11500,
+    "gpu": {
+      "uAt": 42,
+      "uTime": 0,
+      "uEnergy": 0.9759945130315499,
+      "uFlow": 0.77,
+      "uQuiet": 0.024005486968450063,
+      "uReveal": 1,
+      "uReducedMotion": 0,
+      "uPixelRatio": 1,
+      "uFocus": [
+        0.55,
+        -0.6,
+        -0.05
+      ],
+      "uViewport": [
+        0,
+        0,
+        1440,
+        900
+      ],
+      "uMaskStart": 0.38,
+      "uMaskEnd": 0.54,
+      "uRipple": 0.85,
+      "uEventPhase": [
+        1,
+        1,
+        1,
+        0.3269230769230769
+      ],
+      "uEventStrength": [
+        0,
+        0,
+        0,
+        0.9128474830954169
+      ]
+    }
+  }
+}

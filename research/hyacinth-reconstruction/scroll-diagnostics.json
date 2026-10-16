@@ -1,0 +1,2173 @@
+{
+  "mode": "verification",
+  "baseUrl": "http://127.0.0.1:5002",
+  "capturedAt": "2026-10-14T02:11:43.160Z",
+  "checks": [
+    {
+      "name": "native wheel moves document scroll",
+      "pass": true,
+      "detail": {
+        "before": 0,
+        "after": 1440
+      }
+    },
+    {
+      "name": "native wheel changes the rendered 3D camera",
+      "pass": true,
+      "detail": {
+        "translationDistance": 2.4375676416348244,
+        "liveFrames": 11
+      }
+    },
+    {
+      "name": "native motion keeps RAF running",
+      "pass": true,
+      "detail": {
+        "liveMatrices": 11
+      }
+    },
+    {
+      "name": "desktop text and navigation stay in place while scrolling",
+      "pass": true,
+      "detail": {
+        "initial": [
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625
+          }
+        ],
+        "forward": [
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625
+          }
+        ]
+      }
+    },
+    {
+      "name": "reverse wheel restores the initial camera pose",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0.005613114540293124
+      }
+    },
+    {
+      "name": "PageDown moves document and camera",
+      "pass": true,
+      "detail": {
+        "scrollY": 860,
+        "maxScroll": 1440,
+        "matrix": [
+          0.9845064282417297,
+          -0.017649298533797264,
+          0.17445798218250275,
+          0,
+          -3.469446951953614e-18,
+          0.9949216246604919,
+          0.10065270215272903,
+          0,
+          -0.17534847557544708,
+          -0.0990932360291481,
+          0.9795067310333252,
+          0,
+          1.775970697402954,
+          -1.3154385089874268,
+          -10.753253936767578,
+          1
+        ],
+        "matrices": 34,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "Home restores the native scroll position",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 1440,
+        "matrix": [
+          0.9570294618606567,
+          0.020037783309817314,
+          -0.289297491312027,
+          0,
+          0,
+          0.9976098537445068,
+          0.06909804046154022,
+          0,
+          0.2899906039237976,
+          -0.06612886488437653,
+          0.9547420740127563,
+          0,
+          1.191184401512146,
+          -1.6268441677093506,
+          -12.017462730407715,
+          1
+        ],
+        "matrices": 37,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "reload at home keeps the initial camera",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0,
+        "scrollY": 0
+      }
+    },
+    {
+      "name": "navigation cleans up the home scroll runway",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9591888189315796,
+          0.01952473074197769,
+          -0.28209149837493896,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.2827664017677307,
+          -0.06623100489377975,
+          0.9568994641304016,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 20,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "/projects keeps one viewport",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9584269523620605,
+          0.019702300429344177,
+          -0.2846570312976837,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.28533804416656494,
+          -0.06617840379476547,
+          0.9561394453048706,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 11,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "/projects keeps the static camera",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0
+      }
+    },
+    {
+      "name": "/about keeps one viewport",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9094731211662292,
+          0.02900214120745659,
+          -0.41474995017051697,
+          0,
+          -3.469446951953614e-18,
+          0.9975640773773193,
+          0.06975647062063217,
+          0,
+          0.415762722492218,
+          -0.06344164162874222,
+          0.9072576761245728,
+          0,
+          -0.5133012533187866,
+          -1.6154371500015259,
+          -12.068671226501465,
+          1
+        ],
+        "matrices": 12,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "/about keeps the static camera",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0
+      }
+    },
+    {
+      "name": "/songs keeps one viewport",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9580851793289185,
+          0.019781388342380524,
+          -0.28579968214035034,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.28648343682289124,
+          -0.06615480035543442,
+          0.9557985067367554,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 8,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "/songs keeps the static camera",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0
+      }
+    },
+    {
+      "name": "mobile native wheel moves document and 3D camera",
+      "pass": true,
+      "detail": {
+        "initial": {
+          "scrollY": 0,
+          "maxScroll": 1350,
+          "matrix": [
+            0.9600687026977539,
+            0.019317448139190674,
+            -0.27909672260284424,
+            0,
+            -3.469446951953614e-18,
+            0.997613251209259,
+            0.06904897838830948,
+            0,
+            0.27976444363594055,
+            -0.06629176437854767,
+            0.9577772617340088,
+            0,
+            1.1903088092803955,
+            -1.627341389656067,
+            -12.019186973571777,
+            1
+          ],
+          "matrices": 49,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        "forward": {
+          "scrollY": 1350,
+          "maxScroll": 1350,
+          "matrix": [
+            0.9670935273170471,
+            -0.03075653500854969,
+            0.2525552809238434,
+            0,
+            3.469446951953614e-18,
+            0.9926661252975464,
+            0.12088827043771744,
+            0,
+            -0.2544211745262146,
+            -0.11691026389598846,
+            0.9600009918212891,
+            0,
+            1.5238205194473267,
+            -1.3107383251190186,
+            -10.707791328430176,
+            1
+          ],
+          "matrices": 72,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        },
+        "cameraDelta": 1.3896856117083025,
+        "reverse": {
+          "scrollY": 0,
+          "maxScroll": 1350,
+          "matrix": [
+            0.9608344435691833,
+            0.019313061609864235,
+            -0.2764492630958557,
+            0,
+            3.469446951953614e-18,
+            0.9975686073303223,
+            0.06969128549098969,
+            0,
+            0.2771230638027191,
+            -0.06696178764104843,
+            0.9584982395172119,
+            0,
+            1.1942660808563232,
+            -1.623316764831543,
+            -12.005385398864746,
+            1
+          ],
+          "matrices": 83,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          }
+        }
+      }
+    },
+    {
+      "name": "mobile text and navigation stay in place while scrolling",
+      "pass": true,
+      "detail": {
+        "initial": [
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 35.59375,
+            "y": 119.34375,
+            "width": 350,
+            "height": 112.3125
+          }
+        ],
+        "forward": [
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 35.59375,
+            "y": 119.34375,
+            "width": 350,
+            "height": 112.3125
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile home keeps its personal copy within the screen",
+      "pass": true,
+      "detail": {
+        "title": "Andreas Tsang",
+        "heading": [
+          "Andreas Tsang"
+        ],
+        "nav": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 35.59375,
+            "y": 119.34375,
+            "width": 350,
+            "height": 112.3125
+          }
+        ],
+        "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile reverse wheel restores initial camera",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 1350,
+        "matrix": [
+          0.9608344435691833,
+          0.019313061609864235,
+          -0.2764492630958557,
+          0,
+          3.469446951953614e-18,
+          0.9975686073303223,
+          0.06969128549098969,
+          0,
+          0.2771230638027191,
+          -0.06696178764104843,
+          0.9584982395172119,
+          0,
+          1.1942660808563232,
+          -1.623316764831543,
+          -12.005385398864746,
+          1
+        ],
+        "matrices": 83,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    {
+      "name": "existing bloom action still responds",
+      "pass": true,
+      "detail": {
+        "bloomEvents": 1
+      }
+    },
+    {
+      "name": "mobile /projects keeps one viewport",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.960210382938385,
+          0.0192838367074728,
+          -0.27861109375953674,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.27927765250205994,
+          -0.06630154699087143,
+          0.957918643951416,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 35,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    {
+      "name": "mobile /about keeps one viewport",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9109455347061157,
+          0.028776399791240692,
+          -0.41152170300483704,
+          0,
+          -3.469446951953614e-18,
+          0.9975640773773193,
+          0.06975647062063217,
+          0,
+          0.41252657771110535,
+          -0.06354434788227081,
+          0.9087265729904175,
+          0,
+          -0.5133012533187866,
+          -1.6154371500015259,
+          -12.068671226501465,
+          1
+        ],
+        "matrices": 62,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    {
+      "name": "mobile /songs keeps one viewport",
+      "pass": false,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 49,
+        "matrix": [
+          0.9601917266845703,
+          0.019288264214992523,
+          -0.27867504954338074,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.27934178709983826,
+          -0.06630025804042816,
+          0.9579000473022461,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 40,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      }
+    },
+    {
+      "name": "desktop / preserves the personal website copy",
+      "pass": true,
+      "detail": {
+        "previous": {
+          "title": "Andreas Tsang",
+          "heading": [
+            "Andreas Tsang"
+          ],
+          "nav": [
+            {
+              "text": "Home",
+              "href": "/"
+            },
+            {
+              "text": "Projects",
+              "href": "/projects"
+            },
+            {
+              "text": "About",
+              "href": "/about"
+            },
+            {
+              "text": "Songs",
+              "href": "/songs"
+            }
+          ],
+          "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+          "mainRect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900
+          },
+          "horizontalOverflow": false,
+          "canvases": 1
+        },
+        "current": {
+          "title": "Andreas Tsang",
+          "heading": [
+            "Andreas Tsang"
+          ],
+          "nav": [
+            {
+              "text": "Home",
+              "href": "/"
+            },
+            {
+              "text": "Projects",
+              "href": "/projects"
+            },
+            {
+              "text": "About",
+              "href": "/about"
+            },
+            {
+              "text": "Songs",
+              "href": "/songs"
+            }
+          ],
+          "layout": [
+            {
+              "text": "Home",
+              "x": 897.265625,
+              "y": 23.359375,
+              "width": 49.8125,
+              "height": 17.265625
+            },
+            {
+              "text": "Projects",
+              "x": 987.078125,
+              "y": 23.359375,
+              "width": 82.671875,
+              "height": 17.265625
+            },
+            {
+              "text": "About",
+              "x": 1109.75,
+              "y": 23.359375,
+              "width": 57.9375,
+              "height": 17.265625
+            },
+            {
+              "text": "Songs",
+              "x": 1207.6875,
+              "y": 23.359375,
+              "width": 56.3125,
+              "height": 17.265625
+            },
+            {
+              "text": "Andreas Tsang",
+              "x": 89.59375,
+              "y": 288.234375,
+              "width": 576,
+              "height": 236.15625
+            }
+          ],
+          "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+          "mainRect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900
+          },
+          "horizontalOverflow": false,
+          "canvases": 1
+        }
+      }
+    },
+    {
+      "name": "desktop / preserves navigation",
+      "pass": true,
+      "detail": {
+        "previous": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "current": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ]
+      }
+    },
+    {
+      "name": "desktop / preserves the initial viewport layout",
+      "pass": true,
+      "detail": {
+        "previous": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "current": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        }
+      }
+    },
+    {
+      "name": "desktop / avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "Andreas Tsang",
+        "heading": [
+          "Andreas Tsang"
+        ],
+        "nav": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625
+          }
+        ],
+        "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop / has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop /projects avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "Work | Andreas Tsang",
+        "heading": [
+          "Recent Work"
+        ],
+        "nav": [
+          {
+            "text": "Andreas Tsang",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Andreas Tsang",
+            "x": 176,
+            "y": 23.359375,
+            "width": 147.859375,
+            "height": 17.265625
+          },
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Recent Work",
+            "x": 160,
+            "y": 397.375,
+            "width": 416.03125,
+            "height": 161.25
+          }
+        ],
+        "mainText": "Recent Work\n2026\nPAST\n\nRESEARCH AND IMPLEMENTATION\n\nHybrid Neural Heuristics for Faster Real-Time Path Planning\n\nConnecticut Science and Engineering Fair finalist medallion, Mathematics\n\nI tested whether learned spatial guidance could reduce search effort while preserving path quality in cluttered maps. The system pairs a U-Net corridor predictor with a learned costmap heuristic, then uses those outputs to narrow and guide A*.\n\nA*\nDijkstra\nU-Net\nNeural heuristics\nCSEF POSTER\nSummer 2025\nPAST\n\nWOLFRAM SUMMER RESEARCH PROGRAM\n\nChaotic Mineral Flow Simulation for Deposition Analysis\n\nPublic Wolfram Community technical writeup\n\nI modeled high-temperature mineral flow around obstacles with Navier-Stokes based functions, then turned the results into a 3D animated box and a 2D interactive interface for deposition analysis.\n\nNavier-Stokes\nWolfram Language\nCFD\nCOMMUNITY POST",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop /projects has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop /about avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "work in progress | Andreas Tsang",
+        "heading": [
+          "work in progress"
+        ],
+        "nav": [],
+        "layout": [
+          {
+            "text": "work in progress",
+            "x": 160,
+            "y": 518.109375,
+            "width": 624,
+            "height": 199.90625
+          }
+        ],
+        "mainText": "",
+        "mainRect": null,
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop /about has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop /songs avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "Favorite Songs | Andreas Tsang",
+        "heading": [
+          "Favorite Songs"
+        ],
+        "nav": [
+          {
+            "text": "Andreas Tsang",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Andreas Tsang",
+            "x": 176,
+            "y": 23.359375,
+            "width": 147.859375,
+            "height": 17.265625
+          },
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Favorite Songs",
+            "x": 132.796875,
+            "y": 257.75,
+            "width": 407.828125,
+            "height": 139.96875
+          }
+        ],
+        "mainText": "LISTENING\n\nFavorite Songs",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "desktop /songs has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile / avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "Andreas Tsang",
+        "heading": [
+          "Andreas Tsang"
+        ],
+        "nav": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 35.59375,
+            "y": 119.34375,
+            "width": 350,
+            "height": 112.3125
+          }
+        ],
+        "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile / has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile /projects avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "Work | Andreas Tsang",
+        "heading": [
+          "Recent Work"
+        ],
+        "nav": [
+          {
+            "text": "Andreas Tsang",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Andreas Tsang",
+            "x": 20,
+            "y": 23.359375,
+            "width": 147.859375,
+            "height": 17.265625
+          },
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Recent Work",
+            "x": 20,
+            "y": 84,
+            "width": 350,
+            "height": 43.1875
+          }
+        ],
+        "mainText": "Recent Work\n2026\nPAST\n\nRESEARCH AND IMPLEMENTATION\n\nHybrid Neural Heuristics for Faster Real-Time Path Planning\n\nConnecticut Science and Engineering Fair finalist medallion, Mathematics\n\nI tested whether learned spatial guidance could reduce search effort while preserving path quality in cluttered maps. The system pairs a U-Net corridor predictor with a learned costmap heuristic, then uses those outputs to narrow and guide A*.\n\nA*\nDijkstra\nU-Net\nNeural heuristics\nCSEF POSTER\nSummer 2025\nPAST\n\nWOLFRAM SUMMER RESEARCH PROGRAM\n\nChaotic Mineral Flow Simulation for Deposition Analysis\n\nPublic Wolfram Community technical writeup\n\nI modeled high-temperature mineral flow around obstacles with Navier-Stokes based functions, then turned the results into a 3D animated box and a 2D interactive interface for deposition analysis.\n\nNavier-Stokes\nWolfram Language\nCFD\nCOMMUNITY POST",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile /projects has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile /about avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "work in progress | Andreas Tsang",
+        "heading": [
+          "work in progress"
+        ],
+        "nav": [],
+        "layout": [
+          {
+            "text": "work in progress",
+            "x": 18.390625,
+            "y": 368.6875,
+            "width": 353.21875,
+            "height": 109.8125
+          }
+        ],
+        "mainText": "",
+        "mainRect": null,
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile /about has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile /songs avoids horizontal overflow",
+      "pass": true,
+      "detail": {
+        "title": "Favorite Songs | Andreas Tsang",
+        "heading": [
+          "Favorite Songs"
+        ],
+        "nav": [
+          {
+            "text": "Andreas Tsang",
+            "href": "/"
+          },
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Andreas Tsang",
+            "x": 20,
+            "y": 23.359375,
+            "width": 147.859375,
+            "height": 17.265625
+          },
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Favorite Songs",
+            "x": 20,
+            "y": 119.34375,
+            "width": 251.75,
+            "height": 86.375
+          }
+        ],
+        "mainText": "LISTENING\n\nFavorite Songs",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 892.890625
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      }
+    },
+    {
+      "name": "mobile /songs has one point-cloud canvas",
+      "pass": true,
+      "detail": {
+        "canvases": 1
+      }
+    },
+    {
+      "name": "no browser runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "routes": {
+    "desktop /": {
+      "title": "Andreas Tsang",
+      "heading": [
+        "Andreas Tsang"
+      ],
+      "nav": [
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "layout": [
+        {
+          "text": "Home",
+          "x": 897.265625,
+          "y": 23.359375,
+          "width": 49.8125,
+          "height": 17.265625
+        },
+        {
+          "text": "Projects",
+          "x": 987.078125,
+          "y": 23.359375,
+          "width": 82.671875,
+          "height": 17.265625
+        },
+        {
+          "text": "About",
+          "x": 1109.75,
+          "y": 23.359375,
+          "width": 57.9375,
+          "height": 17.265625
+        },
+        {
+          "text": "Songs",
+          "x": 1207.6875,
+          "y": 23.359375,
+          "width": 56.3125,
+          "height": 17.265625
+        },
+        {
+          "text": "Andreas Tsang",
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625
+        }
+      ],
+      "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "desktop /projects": {
+      "title": "Work | Andreas Tsang",
+      "heading": [
+        "Recent Work"
+      ],
+      "nav": [
+        {
+          "text": "Andreas Tsang",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "layout": [
+        {
+          "text": "Andreas Tsang",
+          "x": 176,
+          "y": 23.359375,
+          "width": 147.859375,
+          "height": 17.265625
+        },
+        {
+          "text": "Home",
+          "x": 897.265625,
+          "y": 23.359375,
+          "width": 49.8125,
+          "height": 17.265625
+        },
+        {
+          "text": "Projects",
+          "x": 987.078125,
+          "y": 23.359375,
+          "width": 82.671875,
+          "height": 17.265625
+        },
+        {
+          "text": "About",
+          "x": 1109.75,
+          "y": 23.359375,
+          "width": 57.9375,
+          "height": 17.265625
+        },
+        {
+          "text": "Songs",
+          "x": 1207.6875,
+          "y": 23.359375,
+          "width": 56.3125,
+          "height": 17.265625
+        },
+        {
+          "text": "Recent Work",
+          "x": 160,
+          "y": 397.375,
+          "width": 416.03125,
+          "height": 161.25
+        }
+      ],
+      "mainText": "Recent Work\n2026\nPAST\n\nRESEARCH AND IMPLEMENTATION\n\nHybrid Neural Heuristics for Faster Real-Time Path Planning\n\nConnecticut Science and Engineering Fair finalist medallion, Mathematics\n\nI tested whether learned spatial guidance could reduce search effort while preserving path quality in cluttered maps. The system pairs a U-Net corridor predictor with a learned costmap heuristic, then uses those outputs to narrow and guide A*.\n\nA*\nDijkstra\nU-Net\nNeural heuristics\nCSEF POSTER\nSummer 2025\nPAST\n\nWOLFRAM SUMMER RESEARCH PROGRAM\n\nChaotic Mineral Flow Simulation for Deposition Analysis\n\nPublic Wolfram Community technical writeup\n\nI modeled high-temperature mineral flow around obstacles with Navier-Stokes based functions, then turned the results into a 3D animated box and a 2D interactive interface for deposition analysis.\n\nNavier-Stokes\nWolfram Language\nCFD\nCOMMUNITY POST",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "desktop /about": {
+      "title": "work in progress | Andreas Tsang",
+      "heading": [
+        "work in progress"
+      ],
+      "nav": [],
+      "layout": [
+        {
+          "text": "work in progress",
+          "x": 160,
+          "y": 518.109375,
+          "width": 624,
+          "height": 199.90625
+        }
+      ],
+      "mainText": "",
+      "mainRect": null,
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "desktop /songs": {
+      "title": "Favorite Songs | Andreas Tsang",
+      "heading": [
+        "Favorite Songs"
+      ],
+      "nav": [
+        {
+          "text": "Andreas Tsang",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "layout": [
+        {
+          "text": "Andreas Tsang",
+          "x": 176,
+          "y": 23.359375,
+          "width": 147.859375,
+          "height": 17.265625
+        },
+        {
+          "text": "Home",
+          "x": 897.265625,
+          "y": 23.359375,
+          "width": 49.8125,
+          "height": 17.265625
+        },
+        {
+          "text": "Projects",
+          "x": 987.078125,
+          "y": 23.359375,
+          "width": 82.671875,
+          "height": 17.265625
+        },
+        {
+          "text": "About",
+          "x": 1109.75,
+          "y": 23.359375,
+          "width": 57.9375,
+          "height": 17.265625
+        },
+        {
+          "text": "Songs",
+          "x": 1207.6875,
+          "y": 23.359375,
+          "width": 56.3125,
+          "height": 17.265625
+        },
+        {
+          "text": "Favorite Songs",
+          "x": 132.796875,
+          "y": 257.75,
+          "width": 407.828125,
+          "height": 139.96875
+        }
+      ],
+      "mainText": "LISTENING\n\nFavorite Songs",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "mobile /": {
+      "title": "Andreas Tsang",
+      "heading": [
+        "Andreas Tsang"
+      ],
+      "nav": [
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "layout": [
+        {
+          "text": "Home",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Projects",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "About",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Songs",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Andreas Tsang",
+          "x": 35.59375,
+          "y": 119.34375,
+          "width": 350,
+          "height": 112.3125
+        }
+      ],
+      "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "mobile /projects": {
+      "title": "Work | Andreas Tsang",
+      "heading": [
+        "Recent Work"
+      ],
+      "nav": [
+        {
+          "text": "Andreas Tsang",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "layout": [
+        {
+          "text": "Andreas Tsang",
+          "x": 20,
+          "y": 23.359375,
+          "width": 147.859375,
+          "height": 17.265625
+        },
+        {
+          "text": "Home",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Projects",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "About",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Songs",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Recent Work",
+          "x": 20,
+          "y": 84,
+          "width": 350,
+          "height": 43.1875
+        }
+      ],
+      "mainText": "Recent Work\n2026\nPAST\n\nRESEARCH AND IMPLEMENTATION\n\nHybrid Neural Heuristics for Faster Real-Time Path Planning\n\nConnecticut Science and Engineering Fair finalist medallion, Mathematics\n\nI tested whether learned spatial guidance could reduce search effort while preserving path quality in cluttered maps. The system pairs a U-Net corridor predictor with a learned costmap heuristic, then uses those outputs to narrow and guide A*.\n\nA*\nDijkstra\nU-Net\nNeural heuristics\nCSEF POSTER\nSummer 2025\nPAST\n\nWOLFRAM SUMMER RESEARCH PROGRAM\n\nChaotic Mineral Flow Simulation for Deposition Analysis\n\nPublic Wolfram Community technical writeup\n\nI modeled high-temperature mineral flow around obstacles with Navier-Stokes based functions, then turned the results into a 3D animated box and a 2D interactive interface for deposition analysis.\n\nNavier-Stokes\nWolfram Language\nCFD\nCOMMUNITY POST",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "mobile /about": {
+      "title": "work in progress | Andreas Tsang",
+      "heading": [
+        "work in progress"
+      ],
+      "nav": [],
+      "layout": [
+        {
+          "text": "work in progress",
+          "x": 18.390625,
+          "y": 368.6875,
+          "width": 353.21875,
+          "height": 109.8125
+        }
+      ],
+      "mainText": "",
+      "mainRect": null,
+      "horizontalOverflow": false,
+      "canvases": 1
+    },
+    "mobile /songs": {
+      "title": "Favorite Songs | Andreas Tsang",
+      "heading": [
+        "Favorite Songs"
+      ],
+      "nav": [
+        {
+          "text": "Andreas Tsang",
+          "href": "/"
+        },
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "layout": [
+        {
+          "text": "Andreas Tsang",
+          "x": 20,
+          "y": 23.359375,
+          "width": 147.859375,
+          "height": 17.265625
+        },
+        {
+          "text": "Home",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Projects",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "About",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Songs",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Favorite Songs",
+          "x": 20,
+          "y": 119.34375,
+          "width": 251.75,
+          "height": 86.375
+        }
+      ],
+      "mainText": "LISTENING\n\nFavorite Songs",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 892.890625
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    }
+  },
+  "errors": [],
+  "home": {
+    "initial": {
+      "scrollY": 0,
+      "maxScroll": 1440,
+      "matrix": [
+        0.9560630917549133,
+        0.020242471247911453,
+        -0.2924613356590271,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.2931610345840454,
+        -0.06601517647504807,
+        0.9537811875343323,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "matrices": 4,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    "forward": {
+      "scrollY": 1440,
+      "maxScroll": 1440,
+      "matrix": [
+        0.8930320143699646,
+        -0.053988341242074966,
+        0.4467427432537079,
+        0,
+        0,
+        0.9927768111228943,
+        0.11997591704130173,
+        0,
+        -0.4499931335449219,
+        -0.10714233666658401,
+        0.8865814805030823,
+        0,
+        2.121443033218384,
+        -1.1403900384902954,
+        -9.819731712341309,
+        1
+      ],
+      "matrices": 15,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    "cameraDelta": 2.4375676416348244,
+    "reverse": {
+      "scrollY": 0,
+      "maxScroll": 1440,
+      "matrix": [
+        0.9562340378761292,
+        0.020244276151061058,
+        -0.2919018268585205,
+        0,
+        6.938893903907228e-18,
+        0.997603714466095,
+        0.06918684393167496,
+        0,
+        0.2926029860973358,
+        -0.06615880876779556,
+        0.953942596912384,
+        0,
+        1.1927698850631714,
+        -1.6259443759918213,
+        -12.014339447021484,
+        1
+      ],
+      "matrices": 25,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    "reloaded": {
+      "scrollY": 0,
+      "maxScroll": 1440,
+      "matrix": [
+        0.9589390754699707,
+        0.019583135843276978,
+        -0.28293532133102417,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.2836122512817383,
+        -0.06621376425027847,
+        0.9566503167152405,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "matrices": 8,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    }
+  },
+  "mobile": {
+    "initial": {
+      "scrollY": 0,
+      "maxScroll": 1350,
+      "matrix": [
+        0.9600687026977539,
+        0.019317448139190674,
+        -0.27909672260284424,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.27976444363594055,
+        -0.06629176437854767,
+        0.9577772617340088,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "matrices": 49,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    "forward": {
+      "scrollY": 1350,
+      "maxScroll": 1350,
+      "matrix": [
+        0.9670935273170471,
+        -0.03075653500854969,
+        0.2525552809238434,
+        0,
+        3.469446951953614e-18,
+        0.9926661252975464,
+        0.12088827043771744,
+        0,
+        -0.2544211745262146,
+        -0.11691026389598846,
+        0.9600009918212891,
+        0,
+        1.5238205194473267,
+        -1.3107383251190186,
+        -10.707791328430176,
+        1
+      ],
+      "matrices": 72,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    "cameraDelta": 1.3896856117083025,
+    "reverse": {
+      "scrollY": 0,
+      "maxScroll": 1350,
+      "matrix": [
+        0.9608344435691833,
+        0.019313061609864235,
+        -0.2764492630958557,
+        0,
+        3.469446951953614e-18,
+        0.9975686073303223,
+        0.06969128549098969,
+        0,
+        0.2771230638027191,
+        -0.06696178764104843,
+        0.9584982395172119,
+        0,
+        1.1942660808563232,
+        -1.623316764831543,
+        -12.005385398864746,
+        1
+      ],
+      "matrices": 83,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  }
+}

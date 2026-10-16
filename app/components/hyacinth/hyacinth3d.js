@@ -1,20 +1,21 @@
 /* eslint-disable */
 // @ts-nocheck
 // ============================================================
-// HYACINTH — one procedural WebGL scene you move through.
-// No textures, no images: the north star is a hyacinth built
-// from geometry and shaders — a dark sculptural stem and leaves
-// carrying a spiral raceme of florets made of light, ringed by
-// instrument dials. One smoothed scroll value (0..1) drives the
-// camera spiral, the bloom amount, the light colour/intensity/
-// direction, fog, and dial brightness.
+// HYACINTH — the original photograph's dots on reconstructed 3D petals.
+// The homepage's native scroll moves its camera while preserving the
+// original colour treatment, instruments, and ambient particle motion.
 // Click anywhere = a calm bloom wave travels up the raceme.
 // ------------------------------------------------------------
-// Ported verbatim from the design bundle (spatial/hyacinth3d.js).
-// Only change: three/addons/* import specifiers rewritten to
-// three/examples/jsm/* so they resolve under the Next.js bundler.
+// Based on the original design bundle (spatial/hyacinth3d.js).
 // ============================================================
 import * as THREE from 'three';
+import { createReconstructedCloud } from './hyacinthReconstructedCloud';
+import { sampleHyacinthScrollCamera } from './hyacinthScrollCamera';
+import { loadHyacinthAsset } from './hyacinthAsset';
+import { sampleHyacinthJourney } from './hyacinthChoreography';
+import { createHyacinthAtmosphere } from './hyacinthAtmosphere';
+import { createHyacinthSpatialWorld } from './hyacinthSpatialWorld';
+import { sampleHyacinthSecondaries } from './hyacinthSecondaryChoreography';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
@@ -32,7 +33,6 @@ const PALETTE = {
 };
 const DEG = Math.PI / 180;
 const isMobile = matchMedia('(max-width: 768px)').matches;
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const smooth = (t) => t * t * (3 - 2 * t);
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
@@ -58,10 +58,8 @@ function makeSprite(stops) {
 const dotSprite = () => makeSprite([[0, 'rgba(232,228,216,1)'], [0.4, 'rgba(232,228,216,0.35)'], [1, 'rgba(232,228,216,0)']]);
 
 // ============================================================
-// CAMERA PATH — a full multi-revolution orbit around the specimen.
-// The photo-relief cloud reads as a coherent flower from ALL sides
-// (verified empirically), so the camera makes TURNS full revolutions
-// across the scroll instead of a partial sweep.
+// Legacy camera keys retained for existing non-home mounts.
+// The active homepage uses sampleHyacinthScrollCamera below.
 // ============================================================
 // Azimuth is continuous + LINEAR in scroll progress (computed in step(), not
 // keyframed) so the spin is smooth and never pulses/stalls at a waypoint.
@@ -94,11 +92,15 @@ export function initHyacinth(opts = {}) {
   const getProgress = opts.getProgress || (() => 0);
   const lookOffset = typeof opts.lookOffset === 'number' ? opts.lookOffset : null;
   const transparentBackground = opts.transparentBackground === true;
+  const scrollScene = opts.scrollScene === true;
+  const mobile = matchMedia('(max-width: 768px)').matches;
+  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduceMotion = motionPreference.matches;
   if (!canvas) return null;
 
   let renderer;
   try {
-    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile, powerPreference: 'high-performance', stencil: false, depth: true, preserveDrawingBuffer: true });
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !mobile, powerPreference: 'high-performance', stencil: false, depth: true, preserveDrawingBuffer: true });
   } catch (e) { return null; }
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.25));
   renderer.setSize(Math.max(innerWidth, 1), Math.max(innerHeight, 1));
@@ -109,6 +111,7 @@ export function initHyacinth(opts = {}) {
 
   const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, 0.1, 300);
   const lookTarget = new THREE.Vector3(0, 0.7, 0);
+  let lastCanvasShift = null;
 
   // ---------- lights ----------
   const ambient = new THREE.AmbientLight(PALETTE.bone, 0.85);
@@ -124,15 +127,19 @@ export function initHyacinth(opts = {}) {
   scene.add(root);
 
   // ---------- the specimen + instruments + atmosphere ----------
-  const plant = buildPhotoCloud(root);
+  const plant = buildPhotoCloud(root, { mobile, secondaryOcclusion: scrollScene, reconstruct: opts.reconstruct === true || (scrollScene && opts.reconstruct !== false) });
   const dials = buildInstruments(root);
   const dustNear = addDust(root, isMobile ? 200 : 420, 20, PALETTE.bone, 0.42);
   const dustFar = addDust(root, isMobile ? 140 : 320, 44, PALETTE.amethyst, 0.28);
   const sky = transparentBackground ? null : buildFluidSky(scene);
+  const atmosphere = scrollScene ? createHyacinthAtmosphere(scene, mobile) : null;
+  const spatialWorld = scrollScene ? createHyacinthSpatialWorld(scene, mobile) : null;
+  const atmosphereFocus = new THREE.Vector3();
+  const skyFocus = new THREE.Vector3();
 
   // ---------- post: cinematic bloom (desktop only) ----------
   let composer = null, bloomPass = null;
-  if (!isMobile && !transparentBackground) {
+  if (!mobile && !transparentBackground) {
     try {
       composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
@@ -162,6 +169,7 @@ export function initHyacinth(opts = {}) {
     camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.25));
     renderer.setSize(w, h);
+    plant.resize?.(h, renderer.getPixelRatio());
     if (composer) composer.setSize(w, h);
   }
   let resizePending = false;
@@ -180,6 +188,7 @@ export function initHyacinth(opts = {}) {
 
   // ---------- bloom pulse (the calm click interaction) ----------
   const bloom = { phase: -1 }; // -1 idle; 0..1 wave travelling up
+  on(motionPreference, 'change', () => { reduceMotion = motionPreference.matches; bloom.phase = -1; });
   let imagePlane = null, imageSweepStart = -1, imagePlaneIntro = 0;
   let imgBaseX = 0, imgBaseY = 1.0;
   let audioCtx = null;
@@ -200,6 +209,7 @@ export function initHyacinth(opts = {}) {
     } catch (e) { /* audio optional */ }
   }
   function triggerBloom() {
+    if (reduceMotion) return;
     if (bloom.phase >= 0 && bloom.phase < 0.8) return;
     bloom.phase = 0;
     chime();
@@ -229,12 +239,14 @@ export function initHyacinth(opts = {}) {
   function frame() {
     if (disposed) return;
     raf = requestAnimationFrame(frame);
-    const dt = Math.min(clock.getDelta(), 0.05);
+    const elapsedDt = clock.getDelta();
+    const dt = Math.min(elapsedDt, 0.05);
     const t = clock.elapsedTime;
     intro = Math.min(1, intro + dt * 0.45);
 
     const targetP = clamp01(getProgress());
-    smoothP += (targetP - smoothP) * 0.06;
+    const damping = scrollScene ? (reduceMotion ? 1 : 1 - Math.exp(-Math.min(elapsedDt, .25) * 12)) : .06;
+    smoothP += (targetP - smoothP) * damping;
 
     if (bloom.phase >= 0) {
       bloom.phase += dt / 1.9;
@@ -246,12 +258,23 @@ export function initHyacinth(opts = {}) {
 
   function step(P, t, dt) {
     // bloom wave position (travels up the raceme) + soft global swell
-    const wave = bloom.phase >= 0 ? bloom.phase * 1.25 - 0.12 : -10;
+    const journey = scrollScene ? sampleHyacinthJourney(P, reduceMotion) : null;
+    if (journey) {
+      // The reading shade uses the same damped distance as the WebGL forms.
+      const secondary = sampleHyacinthSecondaries(journey.at, reduceMotion);
+      canvas.closest('.hy-scroll-scene')?.style.setProperty('--hy-world-reveal', secondary.shade.toFixed(4));
+    }
+    // Homepage clicks reinforce the focused blossom; legacy routes retain their pulse.
+    const focusedClick = scrollScene;
+    const wave = !focusedClick && bloom.phase >= 0 ? bloom.phase * 1.25 - 0.12 : -10;
     const swell = bloom.phase >= 0 ? Math.sin(clamp01(bloom.phase) * Math.PI) : 0;
+    if (journey && focusedClick && swell > 0) journey.blooms[journey.focusSlot] = Math.min(1, journey.blooms[journey.focusSlot] + swell * .20);
+    plant.setMotion?.(journey?.blooms || [0, 0, 0, 0], reduceMotion ? 0 : t, reduceMotion);
+    const focus = journey ? plant.getFocus?.(journey.focusSlot) : null;
 
-    // --- camera on the spiral ---
+    const scrollPose = scrollScene ? sampleHyacinthScrollCamera(P, { mobile: innerWidth <= 768, reducedMotion: reduceMotion }) : null;
     const k = sampleCam(P);
-    const azr = (AZ_START + P * TURNS * 360) * DEG;   // continuous multi-revolution orbit
+    const azr = scrollPose ? Math.atan2(scrollPose.position[0], scrollPose.position[2]) : (AZ_START + P * TURNS * 360) * DEG;
     const elr = k.el * DEG;
     const r = k.r * (1 - swell * 0.06);
     // offset the look target along the camera's RIGHT vector so the plant
@@ -269,27 +292,61 @@ export function initHyacinth(opts = {}) {
     );
     camera.lookAt(lookTarget);
 
-    // --- light: colour temperature indigo -> amethyst -> pale gold ---
-    if (P < 0.55) tmpCol.copy(hueA).lerp(hueB, smooth(P / 0.55));
-    else tmpCol.copy(hueB).lerp(hueC, smooth((P - 0.55) / 0.45));
+    if (scrollPose) {
+      camera.position.fromArray(scrollPose.position);
+      lookTarget.fromArray(scrollPose.target);
+      if (focus) lookTarget.lerp(focus.position, journey.focusWeight);
+      camera.lookAt(lookTarget);
+      camera.rotateZ(scrollPose.roll);
+      camera.setViewOffset(innerWidth, innerHeight, -innerWidth * scrollPose.lensShift, 0, innerWidth, innerHeight);
+      if (scrollPose.canvasShift !== lastCanvasShift) {
+        canvas.style.setProperty('--hy-scene-shift', `${scrollPose.canvasShift * 100}vw`);
+        lastCanvasShift = scrollPose.canvasShift;
+      }
+    }
+
+    // Scrolling reveals geometry while retaining the portfolio's original treatment.
+    const styleP = scrollScene ? 0 : P;
+    if (styleP < 0.55) tmpCol.copy(hueA).lerp(hueB, smooth(styleP / 0.55));
+    else tmpCol.copy(hueB).lerp(hueC, smooth((styleP - 0.55) / 0.45));
     key.color.copy(tmpCol);
     const breathe = 0.88 + Math.sin(t * 0.55) * 0.12;
-    key.intensity = lerp(90, 120, P) * breathe * (1 + swell * 0.8);
-    fill.intensity = lerp(40, 26, P) * (1 + swell * 0.4);
-    ambient.intensity = lerp(0.85, 0.65, P) + swell * 0.3;
+    key.intensity = lerp(90, 120, styleP) * breathe * (1 + swell * 0.8);
+    fill.intensity = lerp(40, 26, styleP) * (1 + swell * 0.4);
+    ambient.intensity = lerp(0.85, 0.65, styleP) + swell * 0.3;
     // light direction circles ahead of the camera so the specimen is always raked
     const lightAz = azr + 0.8;
-    key.position.set(Math.sin(lightAz) * 7, lerp(4, 1, P), Math.cos(lightAz) * 7 + 1.5);
-    fill.position.set(Math.sin(azr - 1.7) * 6, lerp(-1, 3, P), Math.cos(azr - 1.7) * 6);
+    key.position.set(Math.sin(lightAz) * 7, lerp(4, 1, styleP), Math.cos(lightAz) * 7 + 1.5);
+    fill.position.set(Math.sin(azr - 1.7) * 6, lerp(-1, 3, styleP), Math.cos(azr - 1.7) * 6);
 
-    scene.fog.density = lerp(0.038, 0.058, P);
+    scene.fog.density = lerp(0.038, 0.058, styleP);
 
     // --- world updates ---
-    plant.update(t, dt, P, wave, swell, tmpCol, intro);
-    dials.update(t, P, swell, intro);
-    dustNear.material.uniforms.uTime.value = t;
-    dustFar.material.uniforms.uTime.value = t;
-    sky?.update(t, P);
+    plant.update(t, dt, styleP, wave, swell, tmpCol, intro);
+    plant.setJourney?.(scrollScene ? P : 0, reduceMotion);
+    const ambientTime = reduceMotion ? 0 : t;
+    dials.update(ambientTime, styleP, swell, intro, journey);
+    dustNear.material.uniforms.uTime.value = ambientTime;
+    dustFar.material.uniforms.uTime.value = ambientTime;
+    camera.getWorldDirection(skyFocus);
+    sky?.update(ambientTime, styleP, journey, skyFocus, reduceMotion);
+    if (atmosphere && journey) {
+      // The composed look target blends between petals, so currents do not
+      // teleport when the authored focal subject changes.
+      atmosphereFocus.copy(lookTarget);
+      const worldState = { ...journey,
+        energy: Math.min(1, journey.energy + swell * .55),
+        ripple: Math.min(1, journey.ripple + swell * .65),
+        focus: atmosphereFocus.toArray(), eye: camera.position.toArray(), reducedMotion: reduceMotion,
+        emissionFrames: plant.getEmissionAnchors?.() };
+      atmosphere.update(worldState, ambientTime);
+      spatialWorld?.update(worldState, ambientTime);
+    }
+    if (bloomPass && scrollScene) {
+      bloomPass.strength = .13 + journey.energy * .19;
+      bloomPass.threshold = .86 - journey.energy * .12;
+      bloomPass.radius = .5;
+    }
 
     // image-mode plane
     if (imagePlane) {
@@ -311,19 +368,32 @@ export function initHyacinth(opts = {}) {
   }
 
   function setRunning(on) {
+    if (disposed) return;
     if (on && !running) { running = true; clock.getDelta(); raf = requestAnimationFrame(frame); }
     else if (!on && running) { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
   }
   let hideTimer = null;
+  let contextLost = false;
+  on(canvas, 'webglcontextlost', (event) => {
+    event.preventDefault(); contextLost = true; setRunning(false);
+    document.body.classList.remove('gl-ready');
+    document.dispatchEvent(new CustomEvent('hyacinth:unavailable'));
+  });
+  on(canvas, 'webglcontextrestored', () => {
+    if (disposed) return;
+    contextLost = false;
+    if (plant.ready) document.body.classList.add('gl-ready');
+    document.dispatchEvent(new CustomEvent('hyacinth:available'));
+    setRunning(true);
+  });
   on(document, 'visibilitychange', () => {
     clearTimeout(hideTimer);
     if (document.hidden) hideTimer = setTimeout(() => setRunning(false), 2000);
-    else setRunning(true);
+    else if (!contextLost) setRunning(true);
   });
   ['scroll', 'wheel', 'pointermove', 'touchstart', 'focus'].forEach((ev) =>
-    on(window, ev, () => setRunning(true), { passive: true }));
+    on(window, ev, () => { if (!contextLost) setRunning(true); }, { passive: true }));
 
-  document.body.classList.add('gl-ready');
   frame();
 
   // First-paint recovery independent of rAF, ResizeObserver, 'load', AND of any
@@ -353,6 +423,7 @@ export function initHyacinth(opts = {}) {
     anchors: plant.anchors,
     plant,
     debugRenderAt: (p, sw) => { intro = 1; if (sw) bloom.phase = 0.4; step(clamp01(p), clock.elapsedTime, 0.016); },
+    renderScene: () => { if (composer) composer.render(); else renderer.render(scene, camera); },
     scene, camera, renderer,
     // Full teardown for SPA route unmount: stops the loop, detaches every
     // listener, disconnects the ResizeObserver, and frees the WebGL context.
@@ -362,12 +433,23 @@ export function initHyacinth(opts = {}) {
       running = false;
       if (raf) cancelAnimationFrame(raf);
       raf = null;
+      if (scrollScene) canvas.style.removeProperty('--hy-scene-shift');
       clearTimeout(hideTimer);
       cleanups.forEach((fn) => { try { fn(); } catch (e) { /* noop */ } });
       cleanups.length = 0;
       if (ro) { ro.disconnect(); ro = null; }
       try { document.body.classList.remove('gl-ready'); } catch (e) { /* noop */ }
       try { if (composer && composer.dispose) composer.dispose(); } catch (e) { /* noop */ }
+      try { plant.dispose?.(); } catch (e) { /* noop */ }
+      atmosphere?.dispose();
+      spatialWorld?.dispose();
+      // Scene-owned geometry/materials also include the old dust, rings and sky.
+      scene.traverse((object) => {
+        object.geometry?.dispose();
+        const materials = Array.isArray(object.material) ? object.material : [object.material];
+        materials.forEach((material) => material?.dispose());
+      });
+      if (audioCtx) { audioCtx.close().catch(() => {}); audioCtx = null; }
       try {
         renderer.dispose();
         if (renderer.forceContextLoss) renderer.forceContextLoss();
@@ -385,20 +467,23 @@ export function initHyacinth(opts = {}) {
 // when the bloom wave travels up it. Pure-black background pixels
 // are discarded so the flower floats free.
 // ============================================================
-function buildPhotoCloud(parent) {
+function buildPhotoCloud(parent, options = {}) {
+  const mobile = options.mobile ?? matchMedia('(max-width: 768px)').matches;
   const group = new THREE.Group();
   group.position.y = 0.15;
   parent.add(group);
-  let points = null;
+  let points = null, reconstructed = null, pendingImage = null;
+  let disposed = false, generation = 0, pointSizeFactor = 0;
 
   function disposeCurrent() {
     if (points) { group.remove(points); points.geometry.dispose(); points.material.dispose(); points = null; }
+    if (reconstructed) { group.remove(reconstructed.depthSurface, reconstructed.secondaryDepthSurface); reconstructed.disposeDepth(); reconstructed = null; }
   }
 
-  function buildFrom(img) {
+  function buildFrom(img, asset) {
     const iw = img.naturalWidth || img.width, ih = img.naturalHeight || img.height;
     if (!iw || !ih) return;
-    const maxDim = isMobile ? 400 : 700;            // sampling resolution (dense = photoreal)
+    const maxDim = mobile ? 400 : 700;
     const sc = Math.min(1, maxDim / Math.max(iw, ih));
     const cw = Math.max(2, Math.round(iw * sc)), ch = Math.max(2, Math.round(ih * sc));
     const cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
@@ -428,11 +513,12 @@ function buildPhotoCloud(parent) {
     }
     const total = idxs.length / 3;
     if (!total) return;
-    const target = isMobile ? 90000 : 300000;
+    const target = mobile ? 90000 : 300000;
     const stride = Math.max(1, Math.round(total / target));
     const N = Math.ceil(total / stride);
     const pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
     const seed = new Float32Array(N), hh = new Float32Array(N);
+    const referenceUV = new Float32Array(N * 2);
     let n = 0;
     for (let p = 0; p < total; p += stride) {
       const i = idxs[p * 3], x = idxs[p * 3 + 1], y = idxs[p * 3 + 2];
@@ -451,6 +537,7 @@ function buildPhotoCloud(parent) {
       pos[n * 3 + 2] = Math.cos(theta) * rr;             // curved around the axis at the origin
       col[n * 3] = r * 0.97; col[n * 3 + 1] = g * 0.97; col[n * 3 + 2] = b * 0.97;
       seed[n] = Math.random();
+      referenceUV[n * 2] = u; referenceUV[n * 2 + 1] = v;
       hh[n] = 1 - v;                                     // 0 at base, 1 at crown
       n++;
     }
@@ -462,7 +549,8 @@ function buildPhotoCloud(parent) {
     geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, 0), Math.max(W, H));
 
     const fov = 42 * Math.PI / 180;
-    const uSize = spacing * 1.15 * (innerHeight * 0.5) / Math.tan(fov / 2) * Math.min(devicePixelRatio || 1, 1.25);
+    pointSizeFactor = spacing * 1.15 * 0.5 / Math.tan(fov / 2);
+    const uSize = pointSizeFactor * innerHeight * Math.min(devicePixelRatio || 1, 1.25);
     const mat = new THREE.ShaderMaterial({
       transparent: true, depthTest: true, depthWrite: true,
       uniforms: {
@@ -506,18 +594,39 @@ function buildPhotoCloud(parent) {
         }`,
     });
     disposeCurrent();
-    points = new THREE.Points(geo, mat);
+    if (options.reconstruct) {
+      reconstructed = createReconstructedCloud(geo, mat, { uv: referenceUV, offset: [0, 0.15, -ZOFF], asset });
+      points = reconstructed.points;
+      group.add(reconstructed.depthSurface);
+      if (options.secondaryOcclusion) group.add(reconstructed.secondaryDepthSurface);
+    } else {
+      points = new THREE.Points(geo, mat);
+    }
     points.frustumCulled = false;
     group.add(points);
   }
 
   function rebuild(url) {
+    if (disposed) return;
+    const current = ++generation;
+    if (pendingImage) { pendingImage.onload = null; pendingImage.onerror = null; }
     const img = new Image();
+    pendingImage = img;
+    const asset = options.reconstruct && url === '/assets/hyacinth.png'
+      ? loadHyacinthAsset(mobile).catch(() => undefined) : Promise.resolve(undefined);
     img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      try { buildFrom(img); } catch (e) { /* ignore */ }
-      document.dispatchEvent(new CustomEvent('hyacinth:imageLoaded'));
+    img.onload = async () => {
+      const baked = await asset;
+      if (disposed || current !== generation) return;
+      pendingImage = null;
+      try {
+        buildFrom(img, baked);
+        if (points) document.body.classList.add('gl-ready');
+        document.dispatchEvent(new CustomEvent('hyacinth:available'));
+        document.dispatchEvent(new CustomEvent('hyacinth:imageLoaded'));
+      } catch (error) { console.error('Hyacinth geometry could not be initialized', error); document.dispatchEvent(new CustomEvent('hyacinth:unavailable')); }
     };
+    img.onerror = () => { if (!disposed && current === generation) document.dispatchEvent(new CustomEvent('hyacinth:unavailable')); };
     img.src = url;
   }
 
@@ -533,7 +642,28 @@ function buildPhotoCloud(parent) {
     u.uIntro.value = intro;
   }
 
-  return { group, update, rebuild, anchors: [] };
+  function setJourney(progress, reducedMotion) {
+    if (!points?.material.uniforms.uJourneyProgress) return;
+    points.material.uniforms.uJourneyProgress.value = progress;
+    points.material.uniforms.uPixelRatio.value = Math.min(devicePixelRatio || 1, 1.25);
+    if (progress > 0) group.rotation.y *= 1 - smooth(Math.min(1, progress * 44));
+    if (reducedMotion) { points.material.uniforms.uTime.value = 0; group.rotation.y = 0; }
+  }
+  function resize(height, pixelRatio) {
+    if (!points) return;
+    points.material.uniforms.uSize.value = pointSizeFactor * height * pixelRatio;
+    if (points.material.uniforms.uPixelRatio) points.material.uniforms.uPixelRatio.value = pixelRatio;
+  }
+  function dispose() {
+    disposed = true; generation++;
+    if (pendingImage) { pendingImage.onload = null; pendingImage.onerror = null; pendingImage = null; }
+    disposeCurrent();
+  }
+  return { group, update, rebuild, setJourney, resize,
+    setMotion: (blooms, time, reducedMotion) => reconstructed?.setMotion?.(blooms, time, reducedMotion),
+    getFocus: (slot) => reconstructed?.getFocus?.(slot),
+    getEmissionAnchors: () => reconstructed?.getEmissionAnchors?.(),
+    anchors: [], get ready() { return !!points; }, get reconstruction() { return reconstructed?.reconstruction || null; }, dispose };
 }
 
 // ============================================================
@@ -1013,7 +1143,7 @@ function buildInstruments(parent) {
   ring2.position.y = 0.4;
   group.add(ring2);
 
-  function update(t, P, swell, intro) {
+  function update(t, P, swell, intro, journey) {
     ring.rotation.x = Math.PI / 2 + Math.sin(t * 0.12) * 0.35 + 0.25;
     ring.rotation.z = t * 0.05;
     ring2.rotation.x = Math.PI / 2 - Math.sin(t * 0.09) * 0.3 - 0.2;
@@ -1025,6 +1155,16 @@ function buildInstruments(parent) {
     ring.material.opacity = 0.2 * wake;
     ring2.material.opacity = 0.11 * wake;
     dial.rotation.y = t * 0.02;
+    if (journey) {
+      const response = journey.reducedMotion ? 0 : journey.ripple;
+      ring.scale.set(1 + response * .32, 1 - response * .16, 1 + response * .12);
+      ring2.scale.setScalar(1 + response * .48);
+      ring.rotation.x += response * .22;
+      ring2.rotation.z -= response * .30;
+      ring.material.opacity += journey.energy * .13;
+      ring2.material.opacity += response * .14;
+      circleMat.opacity += response * .06;
+    }
   }
 
   return { update };
@@ -1108,6 +1248,10 @@ function buildFluidSky(scene) {
     uniforms: {
       uTime: { value: 0 },
       uProg: { value: 0 },
+      uEnergy: { value: 0 },
+      uWorldAt: { value: 0 },
+      uWorldReveal: { value: 0 },
+      uFocus: { value: new THREE.Vector3(0, 0, -1) },
       uVoid: { value: new THREE.Color(0x06040c) },
       uInk:  { value: new THREE.Color(0x3a2778) },   // violet plume
       uInk2: { value: new THREE.Color(0x122a4e) },   // cold indigo undertow
@@ -1121,7 +1265,8 @@ function buildFluidSky(scene) {
     fragmentShader: `
       precision highp float;
       varying vec3 vDir;
-      uniform float uTime, uProg;
+      uniform float uTime, uProg, uEnergy, uWorldAt, uWorldReveal;
+      uniform vec3 uFocus;
       uniform vec3 uVoid, uInk, uInk2;
       float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 34.5); return fract(p.x * p.y); }
       float noise(vec2 p){
@@ -1138,6 +1283,8 @@ function buildFluidSky(scene) {
       void main(){
         // direction -> a 2D plane (longitude / latitude)
         vec2 uv = vec2(atan(vDir.z, vDir.x) * 0.9, vDir.y * 1.5) * 1.9;
+        float attention = exp(-pow(length(normalize(vDir) - uFocus) * 2.4, 2.0));
+        uv += uEnergy * attention * vec2(sin(uv.y * 3.0), cos(uv.x * 2.0)) * .09;
         float t = uTime * 0.014;
         // two-stage domain warp = the flow
         vec2 q = vec2(fbm(uv + vec2(0.0, t)), fbm(uv + vec2(5.2, 1.3) - t));
@@ -1151,8 +1298,32 @@ function buildFluidSky(scene) {
         // bright filaments where the warp folds — these catch the bloom
         float fil = smoothstep(0.6, 0.98, fbm(uv * 1.5 + 6.0 * r));
         col += uInk * fil * (0.3 + 0.45 * uProg);
+        col += uEnergy * attention * (vec3(.025, .12, .20) * fil + vec3(.07, .012, .12) * f * f);
         // sink the poles back into the void so the plume reads as a band
         col = mix(uVoid, col, smoothstep(-1.1, 0.25, vDir.y) * smoothstep(1.25, 0.35, vDir.y));
+        // A continuous distant world: large auroral folds and their fine
+        // contours remain visible between blooms, instead of fading to black.
+        float drift = uWorldAt * 0.075 + uTime * 0.025;
+        vec2 space = uv + vec2(drift * 0.13, -drift * 0.09);
+        space += vec2(sin(space.y * 2.1 + sin(space.x * 1.8) + drift * 0.25),
+          cos(space.x * 1.7 - space.y * 0.7 - drift * 0.18)) * 0.60;
+        float foldA = space.y - 0.52 * sin(space.x * 1.45 + drift) - 0.28 * sin(space.x * 2.8 - drift * 0.6);
+        float foldB = space.y + space.x * 0.35 - 0.56 * cos(space.x * 1.1 - drift * 0.7) + 0.65;
+        // Pigment-like pools and fractured luminous ridges, with broad dark
+        // intervals between them. Avoid a uniform neon contour wallpaper.
+        float pigment = fbm(space * 2.4 + r * 2.0);
+        float veilA = exp(-abs(foldA + (pigment - 0.5) * 0.55) * 4.2);
+        float veilB = exp(-abs(foldB - (pigment - 0.5) * 0.70) * 3.8);
+        float brokenLight = smoothstep(0.32, 0.66, pigment + 0.12 * sin(space.x * 2.0 + drift));
+        float ridgeA = exp(-abs(foldA + sin(space.x * 4.0) * 0.12) * 32.0) * brokenLight;
+        float ridgeB = exp(-abs(foldB + cos(space.y * 3.0) * 0.14) * 38.0) * brokenLight;
+        float grain = 0.82 + hash(gl_FragCoord.xy) * 0.18;
+        vec3 aurora = vec3(0.18, 0.12, 0.35) * veilA * (0.24 + pigment * 0.50)
+          + vec3(0.045, 0.23, 0.25) * veilB * 0.36
+          + vec3(0.64, 0.35, 0.28) * ridgeA * 0.48
+          + vec3(0.41, 0.28, 0.63) * ridgeB * 0.72;
+        aurora *= grain;
+        col += aurora * uWorldReveal * (0.48 + uEnergy * 0.72);
         gl_FragColor = vec4(col, 1.0);
       }`,
   });
@@ -1161,6 +1332,12 @@ function buildFluidSky(scene) {
   mesh.renderOrder = -10;
   scene.add(mesh);
   return {
-    update(t, P) { mat.uniforms.uTime.value = t; mat.uniforms.uProg.value = P; },
+    update(t, P, journey, focus, reducedMotion = false) {
+      mat.uniforms.uTime.value = t; mat.uniforms.uProg.value = P;
+      mat.uniforms.uEnergy.value = journey?.energy || 0;
+      mat.uniforms.uWorldAt.value = reducedMotion ? 0 : journey?.at || 0;
+      mat.uniforms.uWorldReveal.value = journey ? sampleHyacinthSecondaries(journey.at, reducedMotion).sky : 0;
+      if (focus) mat.uniforms.uFocus.value.copy(focus);
+    },
   };
 }

@@ -1,0 +1,6 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "mode": "reference-based image editing",
+  "status": "Concept stills, not live implementation screenshots",
+  "lockedInterfaceReference": "../hyacinth-reconstruction/scroll-smoke-1440x900-initial.png"
+}

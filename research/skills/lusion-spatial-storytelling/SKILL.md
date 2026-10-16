@@ -70,7 +70,11 @@ Keep persistent geometry and point identities. Build assets and buffers outside 
 
 Distinguish input from scene state. Native document scrolling can drive normalized chapter progress while a fixed or sticky canvas displays the scene. Scroll reversal must recover the previous composition, rather than replaying a one-shot animation. A click response can use its own short-lived interaction state without taking control of the scroll timeline.
 
+Verify the active public mount has a real scroll range and passes changing progress to the renderer. A reconstructed model and an isolated orbit test do not make a fixed homepage scroll-driven. Exercise physical wheel input on the delivered route and confirm its camera changes while ambient motion continues. Reverse through the same route, rather than testing only a diagnostic scene.
+
 Preserve DOM text, semantic links, and visible focus. Give canvas interactions equivalent controls when they affect meaningful navigation or information. Local pointer responses should not unexpectedly move the camera or the whole subject. Keep audio optional and deliberate.
+
+When pinning existing copy, measure whether it actually fits the viewport. Short screens and enlarged text need an accessible content overflow path. Do not make part of a personal site's text unreachable to achieve a fixed composition.
 
 ## Judge the result from more than the hero
 

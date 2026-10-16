@@ -1,0 +1,2759 @@
+{
+  "baseUrl": "http://127.0.0.1:5003",
+  "capturedAt": "2026-10-14T14:26:19.077Z",
+  "checks": [
+    {
+      "name": "desktop has exactly 22 viewports of native travel",
+      "pass": true,
+      "detail": 19800
+    },
+    {
+      "name": "desktop keeps one canvas, readable fixed copy, and no horizontal overflow",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 19800,
+        "nativeProgress": 0,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9586893916130066,
+          0.0196413341909647,
+          -0.283776193857193,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.2844550907611847,
+          -0.06619652360677719,
+          0.9564012289047241,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          0,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0,
+        "frames": 4,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "the first modest wheel input moves both document and camera",
+      "pass": true,
+      "detail": {
+        "scrollY": 450,
+        "maxScroll": 19800,
+        "nativeProgress": 0.022727272727272728,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9569047689437866,
+          0.02141222171485424,
+          -0.2896113395690918,
+          0,
+          3.469446951953614e-18,
+          0.9972780346870422,
+          0.07373308390378952,
+          0,
+          0.290401816368103,
+          -0.07055553793907166,
+          0.9543001055717468,
+          0,
+          0.7956555485725403,
+          -1.5782337188720703,
+          -10.945569038391113,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.0651567131280899,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.02267093745053031,
+        "frames": 25,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "copy and navigation stay fixed during wheel descent",
+      "pass": true,
+      "detail": {
+        "initial": {
+          "scrollY": 0,
+          "maxScroll": 19800,
+          "nativeProgress": 0,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "matrix": [
+            0.9586893916130066,
+            0.0196413341909647,
+            -0.283776193857193,
+            0,
+            -3.469446951953614e-18,
+            0.997613251209259,
+            0.06904897838830948,
+            0,
+            0.2844550907611847,
+            -0.06619652360677719,
+            0.9564012289047241,
+            0,
+            1.1903088092803955,
+            -1.627341389656067,
+            -12.019186973571777,
+            1
+          ],
+          "projection": [
+            1.6281806230545044,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            0,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "progress": 0,
+          "frames": 4,
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "bottom": 900
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625,
+            "bottom": 524.390625
+          },
+          "copy": [
+            {
+              "x": 89.59375,
+              "y": 250.96875,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 268.234375
+            },
+            {
+              "x": 89.59375,
+              "y": 546.78125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 582.1875
+            },
+            {
+              "x": 89.59375,
+              "y": 595.78125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 629
+            },
+            {
+              "x": 89.59375,
+              "y": 633.796875,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 667.015625
+            },
+            {
+              "x": 89.59375,
+              "y": 671.8125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 705.03125
+            }
+          ],
+          "mainPosition": "fixed",
+          "horizontalOverflow": false,
+          "canvasCount": 1,
+          "reducedMotion": false
+        },
+        "forward": {
+          "scrollY": 450,
+          "maxScroll": 19800,
+          "nativeProgress": 0.022727272727272728,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "matrix": [
+            0.9569047689437866,
+            0.02141222171485424,
+            -0.2896113395690918,
+            0,
+            3.469446951953614e-18,
+            0.9972780346870422,
+            0.07373308390378952,
+            0,
+            0.290401816368103,
+            -0.07055553793907166,
+            0.9543001055717468,
+            0,
+            0.7956555485725403,
+            -1.5782337188720703,
+            -10.945569038391113,
+            1
+          ],
+          "projection": [
+            1.6281806230545044,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.0651567131280899,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "progress": 0.02267093745053031,
+          "frames": 25,
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "bottom": 900
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625,
+            "bottom": 524.390625
+          },
+          "copy": [
+            {
+              "x": 89.59375,
+              "y": 250.96875,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 268.234375
+            },
+            {
+              "x": 89.59375,
+              "y": 546.78125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 582.1875
+            },
+            {
+              "x": 89.59375,
+              "y": 595.78125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 629
+            },
+            {
+              "x": 89.59375,
+              "y": 633.796875,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 667.015625
+            },
+            {
+              "x": 89.59375,
+              "y": 671.8125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 705.03125
+            }
+          ],
+          "mainPosition": "fixed",
+          "horizontalOverflow": false,
+          "canvasCount": 1,
+          "reducedMotion": false
+        }
+      }
+    },
+    {
+      "name": "reverse wheel returns to the original camera",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 19800,
+        "nativeProgress": 0,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9550476670265198,
+          0.020472673699259758,
+          -0.29574450850486755,
+          0,
+          6.938893903907228e-18,
+          0.9976125955581665,
+          0.06905891746282578,
+          0,
+          0.29645228385925293,
+          -0.06595455855131149,
+          0.952767550945282,
+          0,
+          1.1893681287765503,
+          -1.6272225379943848,
+          -12.016615867614746,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.00016112181765493006,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.000056334930606514056,
+        "frames": 29,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "desktop station 3 follows native scroll and retains fixed interface",
+      "pass": true,
+      "detail": {
+        "scrollY": 2700,
+        "maxScroll": 19800,
+        "nativeProgress": 0.13636363636363635,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9505383372306824,
+          0.034652236849069595,
+          -0.3086682856082916,
+          0,
+          6.938893903907228e-18,
+          0.9937573671340942,
+          0.11156285554170609,
+          0,
+          0.31060731410980225,
+          -0.10604476928710938,
+          0.9446044564247131,
+          0,
+          -0.7263985872268677,
+          -1.2935367822647095,
+          -6.853560447692871,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.37997549772262573,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.1363468147062709,
+        "frames": 32,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "desktop station 10 follows native scroll and retains fixed interface",
+      "pass": true,
+      "detail": {
+        "scrollY": 9000,
+        "maxScroll": 19800,
+        "nativeProgress": 0.45454545454545453,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9703289866447449,
+          0.010761693120002747,
+          -0.2415488064289093,
+          0,
+          1.734723475976807e-18,
+          0.9990090131759644,
+          0.04450872167944908,
+          0,
+          0.24178841710090637,
+          -0.04318810626864433,
+          0.9693673849105835,
+          0,
+          -1.132246494293213,
+          0.05736057460308075,
+          -4.21493673324585,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.4400000274181366,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.4545061877896088,
+        "frames": 45,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "desktop station 15 follows native scroll and retains fixed interface",
+      "pass": true,
+      "detail": {
+        "scrollY": 13500,
+        "maxScroll": 19800,
+        "nativeProgress": 0.6818181818181818,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9900021553039551,
+          -0.019324732944369316,
+          -0.13972234725952148,
+          0,
+          3.469446951953614e-18,
+          0.9905704855918884,
+          -0.13700392842292786,
+          0,
+          0.14105241000652313,
+          0.135634183883667,
+          0.9806669354438782,
+          0,
+          -1.056284785270691,
+          1.2950059175491333,
+          -5.086872577667236,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.4599979519844055,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.6817901341354348,
+        "frames": 58,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "desktop station 22 follows native scroll and retains fixed interface",
+      "pass": true,
+      "detail": {
+        "scrollY": 19800,
+        "maxScroll": 19800,
+        "nativeProgress": 1,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "matrix": [
+          0.9789144396781921,
+          -0.07659129798412323,
+          -0.18936820328235626,
+          0,
+          -1.3877787807814457e-17,
+          0.9270451068878174,
+          -0.3749498724937439,
+          0,
+          0.20427076518535614,
+          0.3670438528060913,
+          0.9074978232383728,
+          0,
+          -0.6330690383911133,
+          0.9878027439117432,
+          -14.758101463317871,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.46000000834465027,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.9999607332441542,
+        "frames": 70,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900,
+          "bottom": 900
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "bottom": 524.390625
+        },
+        "copy": [
+          {
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 268.234375
+          },
+          {
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 582.1875
+          },
+          {
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 629
+          },
+          {
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 667.015625
+          },
+          {
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 705.03125
+          }
+        ],
+        "mainPosition": "fixed",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "Home returns to entry",
+      "pass": true
+    },
+    {
+      "name": "End reaches the complete journey ending",
+      "pass": true
+    },
+    {
+      "name": "resize preserves native and rendered journey progress",
+      "pass": false,
+      "detail": {
+        "beforeResize": {
+          "scrollY": 9000,
+          "maxScroll": 19800,
+          "nativeProgress": 0.45454545454545453,
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "matrix": [
+            0.9703299403190613,
+            0.010752907954156399,
+            -0.24154533445835114,
+            0,
+            0,
+            0.9990105628967285,
+            0.04447309672832489,
+            0,
+            0.24178455770015717,
+            -0.04315357655286789,
+            0.9693698883056641,
+            0,
+            -1.1323943138122559,
+            0.058008063584566116,
+            -4.214685440063477,
+            1
+          ],
+          "projection": [
+            1.6281806230545044,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.4399999976158142,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "progress": 0.45461276822579144,
+          "frames": 92,
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900,
+            "bottom": 900
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625,
+            "bottom": 524.390625
+          },
+          "copy": [
+            {
+              "x": 89.59375,
+              "y": 250.96875,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 268.234375
+            },
+            {
+              "x": 89.59375,
+              "y": 546.78125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 582.1875
+            },
+            {
+              "x": 89.59375,
+              "y": 595.78125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 629
+            },
+            {
+              "x": 89.59375,
+              "y": 633.796875,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 667.015625
+            },
+            {
+              "x": 89.59375,
+              "y": 671.8125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 705.03125
+            }
+          ],
+          "mainPosition": "fixed",
+          "horizontalOverflow": false,
+          "canvasCount": 1,
+          "reducedMotion": false
+        },
+        "resized": {
+          "scrollY": 9000,
+          "maxScroll": 19900,
+          "nativeProgress": 0.45226130653266333,
+          "viewport": {
+            "width": 1280,
+            "height": 800
+          },
+          "matrix": [
+            0.9703299403190613,
+            0.010752907954156399,
+            -0.24154533445835114,
+            0,
+            0,
+            0.9990105628967285,
+            0.04447309672832489,
+            0,
+            0.24178455770015717,
+            -0.04315357655286789,
+            0.9693698883056641,
+            0,
+            -1.1323943138122559,
+            0.058008063584566116,
+            -4.214685440063477,
+            1
+          ],
+          "projection": [
+            1.6281806230545044,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.4399999976158142,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "progress": 0.45461276822579144,
+          "frames": 92,
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 800,
+            "bottom": 800
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 83.1875,
+            "y": 246.890625,
+            "width": 576,
+            "height": 218.84375,
+            "bottom": 465.734375
+          },
+          "copy": [
+            {
+              "x": 83.1875,
+              "y": 209.625,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 226.890625
+            },
+            {
+              "x": 83.1875,
+              "y": 488.125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 523.53125
+            },
+            {
+              "x": 83.1875,
+              "y": 537.125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 570.34375
+            },
+            {
+              "x": 83.1875,
+              "y": 575.140625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 608.359375
+            },
+            {
+              "x": 83.1875,
+              "y": 613.15625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 646.375
+            }
+          ],
+          "mainPosition": "fixed",
+          "horizontalOverflow": false,
+          "canvasCount": 1,
+          "reducedMotion": false
+        }
+      }
+    },
+    {
+      "name": "route navigation removes the homepage runway",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "nativeProgress": 0,
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "matrix": [
+          0.9617658257484436,
+          0.018910661339759827,
+          -0.273219496011734,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.27387315034866333,
+          -0.06640894711017609,
+          0.9594703316688538,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          0,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": 0.4545455437309812,
+        "frames": 97,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active",
+        "shellClasses": "hy-screen-shell",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 800,
+          "bottom": 800
+        },
+        "nav": {
+          "x": 0,
+          "y": -40,
+          "width": 1280,
+          "height": 65,
+          "bottom": 25
+        },
+        "heading": {
+          "x": 80,
+          "y": 355.421875,
+          "width": 417.890625,
+          "height": 145.125,
+          "bottom": 500.546875
+        },
+        "copy": [
+          {
+            "x": 647.46875,
+            "y": 201.078125,
+            "width": 420.328125,
+            "height": 15.34375,
+            "bottom": 216.421875
+          },
+          {
+            "x": 647.46875,
+            "y": 281.796875,
+            "width": 420.328125,
+            "height": 41.59375,
+            "bottom": 323.390625
+          },
+          {
+            "x": 647.46875,
+            "y": 332.1875,
+            "width": 420.328125,
+            "height": 42.65625,
+            "bottom": 374.84375
+          },
+          {
+            "x": 647.46875,
+            "y": 448.78125,
+            "width": 379.21875,
+            "height": 15.34375,
+            "bottom": 464.125
+          },
+          {
+            "x": 647.46875,
+            "y": 555.3125,
+            "width": 379.21875,
+            "height": 20.796875,
+            "bottom": 576.109375
+          },
+          {
+            "x": 647.46875,
+            "y": 584.90625,
+            "width": 379.21875,
+            "height": 42.65625,
+            "bottom": 627.5625
+          }
+        ],
+        "mainPosition": "relative",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "/projects remains a static single-viewport page",
+      "pass": true,
+      "detail": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "nativeProgress": 0,
+        "viewport": {
+          "width": 1280,
+          "height": 800
+        },
+        "matrix": [
+          0.9589725732803345,
+          0.01957530342042446,
+          -0.2828221619129181,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.2834987938404083,
+          -0.06621607393026352,
+          0.9566837549209595,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "projection": [
+          1.6281806230545044,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          0,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "progress": null,
+        "frames": 7,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active",
+        "shellClasses": "hy-screen-shell",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 800,
+          "bottom": 800
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 80,
+          "y": 355.421875,
+          "width": 417.890625,
+          "height": 145.125,
+          "bottom": 500.546875
+        },
+        "copy": [
+          {
+            "x": 647.46875,
+            "y": 201.078125,
+            "width": 420.328125,
+            "height": 15.34375,
+            "bottom": 216.421875
+          },
+          {
+            "x": 647.46875,
+            "y": 281.796875,
+            "width": 420.328125,
+            "height": 41.59375,
+            "bottom": 323.390625
+          },
+          {
+            "x": 647.46875,
+            "y": 332.1875,
+            "width": 420.328125,
+            "height": 42.65625,
+            "bottom": 374.84375
+          },
+          {
+            "x": 647.46875,
+            "y": 448.78125,
+            "width": 379.21875,
+            "height": 15.34375,
+            "bottom": 464.125
+          },
+          {
+            "x": 647.46875,
+            "y": 555.3125,
+            "width": 379.21875,
+            "height": 20.796875,
+            "bottom": 576.109375
+          },
+          {
+            "x": 647.46875,
+            "y": 584.90625,
+            "width": 379.21875,
+            "height": 42.65625,
+            "bottom": 627.5625
+          }
+        ],
+        "mainPosition": "relative",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "desktop test sequence completes",
+      "pass": false,
+      "detail": {
+        "message": "page.evaluate: TypeError: Failed to execute 'getComputedStyle' on 'Window': parameter 1 is not of type 'Element'.\n    at eval (eval at evaluate (:311:30), <anonymous>:16:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      }
+    },
+    {
+      "name": "mobile test sequence completes",
+      "pass": false,
+      "detail": {
+        "message": "page.waitForFunction: Timeout 30000ms exceeded."
+      }
+    },
+    {
+      "name": "reduced-motion test sequence completes",
+      "pass": false,
+      "detail": {
+        "message": "page.waitForFunction: Timeout 30000ms exceeded."
+      }
+    },
+    {
+      "name": "no-WebGL fallback removes the long runway",
+      "pass": true,
+      "detail": {
+        "scrollY": 139,
+        "maxScroll": 171,
+        "nativeProgress": 0.8128654970760234,
+        "viewport": {
+          "width": 1024,
+          "height": 320
+        },
+        "matrix": null,
+        "projection": null,
+        "progress": null,
+        "frames": 0,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene hy-scroll-content-overflow hy-scroll-unavailable",
+        "main": {
+          "x": 0,
+          "y": -139,
+          "width": 1024,
+          "height": 490.765625,
+          "bottom": 351.765625
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 72.953125,
+          "y": -15.65625,
+          "width": 576,
+          "height": 175.09375,
+          "bottom": 159.4375
+        },
+        "copy": [
+          {
+            "x": 72.953125,
+            "y": -51,
+            "width": 576,
+            "height": 15.34375,
+            "bottom": -35.65625
+          },
+          {
+            "x": 72.953125,
+            "y": 181.828125,
+            "width": 576,
+            "height": 29.015625,
+            "bottom": 210.84375
+          },
+          {
+            "x": 72.953125,
+            "y": 224.4375,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 253.015625
+          },
+          {
+            "x": 72.953125,
+            "y": 257.8125,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 286.390625
+          },
+          {
+            "x": 72.953125,
+            "y": 291.1875,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 319.765625
+          }
+        ],
+        "mainPosition": "relative",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "no-WebGL short-screen copy remains reachable by native scrolling",
+      "pass": true,
+      "detail": {
+        "before": {
+          "scrollY": 0,
+          "maxScroll": 171,
+          "nativeProgress": 0,
+          "viewport": {
+            "width": 1024,
+            "height": 320
+          },
+          "matrix": null,
+          "projection": null,
+          "progress": null,
+          "frames": 0,
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene hy-scroll-content-overflow hy-scroll-unavailable",
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 490.765625,
+            "bottom": 490.765625
+          },
+          "nav": {
+            "x": 0,
+            "y": -40,
+            "width": 1024,
+            "height": 65,
+            "bottom": 25
+          },
+          "heading": {
+            "x": 72.953125,
+            "y": 123.34375,
+            "width": 576,
+            "height": 175.09375,
+            "bottom": 298.4375
+          },
+          "copy": [
+            {
+              "x": 72.953125,
+              "y": 88,
+              "width": 576,
+              "height": 15.34375,
+              "bottom": 103.34375
+            },
+            {
+              "x": 72.953125,
+              "y": 320.828125,
+              "width": 576,
+              "height": 29.015625,
+              "bottom": 349.84375
+            },
+            {
+              "x": 72.953125,
+              "y": 363.4375,
+              "width": 576,
+              "height": 28.578125,
+              "bottom": 392.015625
+            },
+            {
+              "x": 72.953125,
+              "y": 396.8125,
+              "width": 576,
+              "height": 28.578125,
+              "bottom": 425.390625
+            },
+            {
+              "x": 72.953125,
+              "y": 430.1875,
+              "width": 576,
+              "height": 28.578125,
+              "bottom": 458.765625
+            }
+          ],
+          "mainPosition": "relative",
+          "horizontalOverflow": false,
+          "canvasCount": 1,
+          "reducedMotion": false
+        },
+        "after": {
+          "scrollY": 139,
+          "maxScroll": 171,
+          "nativeProgress": 0.8128654970760234,
+          "viewport": {
+            "width": 1024,
+            "height": 320
+          },
+          "matrix": null,
+          "projection": null,
+          "progress": null,
+          "frames": 0,
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene hy-scroll-content-overflow hy-scroll-unavailable",
+          "main": {
+            "x": 0,
+            "y": -139,
+            "width": 1024,
+            "height": 490.765625,
+            "bottom": 351.765625
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1024,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 72.953125,
+            "y": -15.65625,
+            "width": 576,
+            "height": 175.09375,
+            "bottom": 159.4375
+          },
+          "copy": [
+            {
+              "x": 72.953125,
+              "y": -51,
+              "width": 576,
+              "height": 15.34375,
+              "bottom": -35.65625
+            },
+            {
+              "x": 72.953125,
+              "y": 181.828125,
+              "width": 576,
+              "height": 29.015625,
+              "bottom": 210.84375
+            },
+            {
+              "x": 72.953125,
+              "y": 224.4375,
+              "width": 576,
+              "height": 28.578125,
+              "bottom": 253.015625
+            },
+            {
+              "x": 72.953125,
+              "y": 257.8125,
+              "width": 576,
+              "height": 28.578125,
+              "bottom": 286.390625
+            },
+            {
+              "x": 72.953125,
+              "y": 291.1875,
+              "width": 576,
+              "height": 28.578125,
+              "bottom": 319.765625
+            }
+          ],
+          "mainPosition": "relative",
+          "horizontalOverflow": false,
+          "canvasCount": 1,
+          "reducedMotion": false
+        }
+      }
+    },
+    {
+      "name": "no-WebGL fallback retains usable route navigation",
+      "pass": true
+    },
+    {
+      "name": "no application runtime or shader errors",
+      "pass": true,
+      "detail": {
+        "runtimeErrors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "views": {
+    "desktopInitial": {
+      "scrollY": 0,
+      "maxScroll": 19800,
+      "nativeProgress": 0,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "matrix": [
+        0.9586893916130066,
+        0.0196413341909647,
+        -0.283776193857193,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.2844550907611847,
+        -0.06619652360677719,
+        0.9564012289047241,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        0,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": 0,
+      "frames": 4,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900,
+        "bottom": 900
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 89.59375,
+        "y": 288.234375,
+        "width": 576,
+        "height": 236.15625,
+        "bottom": 524.390625
+      },
+      "copy": [
+        {
+          "x": 89.59375,
+          "y": 250.96875,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 268.234375
+        },
+        {
+          "x": 89.59375,
+          "y": 546.78125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 582.1875
+        },
+        {
+          "x": 89.59375,
+          "y": 595.78125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 629
+        },
+        {
+          "x": 89.59375,
+          "y": 633.796875,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 667.015625
+        },
+        {
+          "x": 89.59375,
+          "y": 671.8125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 705.03125
+        }
+      ],
+      "mainPosition": "fixed",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "desktop3": {
+      "scrollY": 2700,
+      "maxScroll": 19800,
+      "nativeProgress": 0.13636363636363635,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "matrix": [
+        0.9505383372306824,
+        0.034652236849069595,
+        -0.3086682856082916,
+        0,
+        6.938893903907228e-18,
+        0.9937573671340942,
+        0.11156285554170609,
+        0,
+        0.31060731410980225,
+        -0.10604476928710938,
+        0.9446044564247131,
+        0,
+        -0.7263985872268677,
+        -1.2935367822647095,
+        -6.853560447692871,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.37997549772262573,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": 0.1363468147062709,
+      "frames": 32,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900,
+        "bottom": 900
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 89.59375,
+        "y": 288.234375,
+        "width": 576,
+        "height": 236.15625,
+        "bottom": 524.390625
+      },
+      "copy": [
+        {
+          "x": 89.59375,
+          "y": 250.96875,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 268.234375
+        },
+        {
+          "x": 89.59375,
+          "y": 546.78125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 582.1875
+        },
+        {
+          "x": 89.59375,
+          "y": 595.78125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 629
+        },
+        {
+          "x": 89.59375,
+          "y": 633.796875,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 667.015625
+        },
+        {
+          "x": 89.59375,
+          "y": 671.8125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 705.03125
+        }
+      ],
+      "mainPosition": "fixed",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "desktop10": {
+      "scrollY": 9000,
+      "maxScroll": 19800,
+      "nativeProgress": 0.45454545454545453,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "matrix": [
+        0.9703289866447449,
+        0.010761693120002747,
+        -0.2415488064289093,
+        0,
+        1.734723475976807e-18,
+        0.9990090131759644,
+        0.04450872167944908,
+        0,
+        0.24178841710090637,
+        -0.04318810626864433,
+        0.9693673849105835,
+        0,
+        -1.132246494293213,
+        0.05736057460308075,
+        -4.21493673324585,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.4400000274181366,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": 0.4545061877896088,
+      "frames": 45,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900,
+        "bottom": 900
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 89.59375,
+        "y": 288.234375,
+        "width": 576,
+        "height": 236.15625,
+        "bottom": 524.390625
+      },
+      "copy": [
+        {
+          "x": 89.59375,
+          "y": 250.96875,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 268.234375
+        },
+        {
+          "x": 89.59375,
+          "y": 546.78125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 582.1875
+        },
+        {
+          "x": 89.59375,
+          "y": 595.78125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 629
+        },
+        {
+          "x": 89.59375,
+          "y": 633.796875,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 667.015625
+        },
+        {
+          "x": 89.59375,
+          "y": 671.8125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 705.03125
+        }
+      ],
+      "mainPosition": "fixed",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "desktop15": {
+      "scrollY": 13500,
+      "maxScroll": 19800,
+      "nativeProgress": 0.6818181818181818,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "matrix": [
+        0.9900021553039551,
+        -0.019324732944369316,
+        -0.13972234725952148,
+        0,
+        3.469446951953614e-18,
+        0.9905704855918884,
+        -0.13700392842292786,
+        0,
+        0.14105241000652313,
+        0.135634183883667,
+        0.9806669354438782,
+        0,
+        -1.056284785270691,
+        1.2950059175491333,
+        -5.086872577667236,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.4599979519844055,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": 0.6817901341354348,
+      "frames": 58,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900,
+        "bottom": 900
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 89.59375,
+        "y": 288.234375,
+        "width": 576,
+        "height": 236.15625,
+        "bottom": 524.390625
+      },
+      "copy": [
+        {
+          "x": 89.59375,
+          "y": 250.96875,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 268.234375
+        },
+        {
+          "x": 89.59375,
+          "y": 546.78125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 582.1875
+        },
+        {
+          "x": 89.59375,
+          "y": 595.78125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 629
+        },
+        {
+          "x": 89.59375,
+          "y": 633.796875,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 667.015625
+        },
+        {
+          "x": 89.59375,
+          "y": 671.8125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 705.03125
+        }
+      ],
+      "mainPosition": "fixed",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "desktop22": {
+      "scrollY": 19800,
+      "maxScroll": 19800,
+      "nativeProgress": 1,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "matrix": [
+        0.9789144396781921,
+        -0.07659129798412323,
+        -0.18936820328235626,
+        0,
+        -1.3877787807814457e-17,
+        0.9270451068878174,
+        -0.3749498724937439,
+        0,
+        0.20427076518535614,
+        0.3670438528060913,
+        0.9074978232383728,
+        0,
+        -0.6330690383911133,
+        0.9878027439117432,
+        -14.758101463317871,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.46000000834465027,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": 0.9999607332441542,
+      "frames": 70,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900,
+        "bottom": 900
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 89.59375,
+        "y": 288.234375,
+        "width": 576,
+        "height": 236.15625,
+        "bottom": 524.390625
+      },
+      "copy": [
+        {
+          "x": 89.59375,
+          "y": 250.96875,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 268.234375
+        },
+        {
+          "x": 89.59375,
+          "y": 546.78125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 582.1875
+        },
+        {
+          "x": 89.59375,
+          "y": 595.78125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 629
+        },
+        {
+          "x": 89.59375,
+          "y": 633.796875,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 667.015625
+        },
+        {
+          "x": 89.59375,
+          "y": 671.8125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 705.03125
+        }
+      ],
+      "mainPosition": "fixed",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "resized": {
+      "scrollY": 9000,
+      "maxScroll": 19900,
+      "nativeProgress": 0.45226130653266333,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "matrix": [
+        0.9703299403190613,
+        0.010752907954156399,
+        -0.24154533445835114,
+        0,
+        0,
+        0.9990105628967285,
+        0.04447309672832489,
+        0,
+        0.24178455770015717,
+        -0.04315357655286789,
+        0.9693698883056641,
+        0,
+        -1.1323943138122559,
+        0.058008063584566116,
+        -4.214685440063477,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.4399999976158142,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": 0.45461276822579144,
+      "frames": 92,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 800,
+        "bottom": 800
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 83.1875,
+        "y": 246.890625,
+        "width": 576,
+        "height": 218.84375,
+        "bottom": 465.734375
+      },
+      "copy": [
+        {
+          "x": 83.1875,
+          "y": 209.625,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 226.890625
+        },
+        {
+          "x": 83.1875,
+          "y": 488.125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 523.53125
+        },
+        {
+          "x": 83.1875,
+          "y": 537.125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 570.34375
+        },
+        {
+          "x": 83.1875,
+          "y": 575.140625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 608.359375
+        },
+        {
+          "x": 83.1875,
+          "y": 613.15625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 646.375
+        }
+      ],
+      "mainPosition": "fixed",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "/projects": {
+      "scrollY": 0,
+      "maxScroll": 0,
+      "nativeProgress": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "matrix": [
+        0.9589725732803345,
+        0.01957530342042446,
+        -0.2828221619129181,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.2834987938404083,
+        -0.06621607393026352,
+        0.9566837549209595,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "projection": [
+        1.6281806230545044,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        0,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "progress": null,
+      "frames": 7,
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active",
+      "shellClasses": "hy-screen-shell",
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 800,
+        "bottom": 800
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 80,
+        "y": 355.421875,
+        "width": 417.890625,
+        "height": 145.125,
+        "bottom": 500.546875
+      },
+      "copy": [
+        {
+          "x": 647.46875,
+          "y": 201.078125,
+          "width": 420.328125,
+          "height": 15.34375,
+          "bottom": 216.421875
+        },
+        {
+          "x": 647.46875,
+          "y": 281.796875,
+          "width": 420.328125,
+          "height": 41.59375,
+          "bottom": 323.390625
+        },
+        {
+          "x": 647.46875,
+          "y": 332.1875,
+          "width": 420.328125,
+          "height": 42.65625,
+          "bottom": 374.84375
+        },
+        {
+          "x": 647.46875,
+          "y": 448.78125,
+          "width": 379.21875,
+          "height": 15.34375,
+          "bottom": 464.125
+        },
+        {
+          "x": 647.46875,
+          "y": 555.3125,
+          "width": 379.21875,
+          "height": 20.796875,
+          "bottom": 576.109375
+        },
+        {
+          "x": 647.46875,
+          "y": 584.90625,
+          "width": 379.21875,
+          "height": 42.65625,
+          "bottom": 627.5625
+        }
+      ],
+      "mainPosition": "relative",
+      "horizontalOverflow": false,
+      "canvasCount": 1,
+      "reducedMotion": false
+    },
+    "fallback": {
+      "before": {
+        "scrollY": 0,
+        "maxScroll": 171,
+        "nativeProgress": 0,
+        "viewport": {
+          "width": 1024,
+          "height": 320
+        },
+        "matrix": null,
+        "projection": null,
+        "progress": null,
+        "frames": 0,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene hy-scroll-content-overflow hy-scroll-unavailable",
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 490.765625,
+          "bottom": 490.765625
+        },
+        "nav": {
+          "x": 0,
+          "y": -40,
+          "width": 1024,
+          "height": 65,
+          "bottom": 25
+        },
+        "heading": {
+          "x": 72.953125,
+          "y": 123.34375,
+          "width": 576,
+          "height": 175.09375,
+          "bottom": 298.4375
+        },
+        "copy": [
+          {
+            "x": 72.953125,
+            "y": 88,
+            "width": 576,
+            "height": 15.34375,
+            "bottom": 103.34375
+          },
+          {
+            "x": 72.953125,
+            "y": 320.828125,
+            "width": 576,
+            "height": 29.015625,
+            "bottom": 349.84375
+          },
+          {
+            "x": 72.953125,
+            "y": 363.4375,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 392.015625
+          },
+          {
+            "x": 72.953125,
+            "y": 396.8125,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 425.390625
+          },
+          {
+            "x": 72.953125,
+            "y": 430.1875,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 458.765625
+          }
+        ],
+        "mainPosition": "relative",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      },
+      "after": {
+        "scrollY": 139,
+        "maxScroll": 171,
+        "nativeProgress": 0.8128654970760234,
+        "viewport": {
+          "width": 1024,
+          "height": 320
+        },
+        "matrix": null,
+        "projection": null,
+        "progress": null,
+        "frames": 0,
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene hy-scroll-content-overflow hy-scroll-unavailable",
+        "main": {
+          "x": 0,
+          "y": -139,
+          "width": 1024,
+          "height": 490.765625,
+          "bottom": 351.765625
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 72.953125,
+          "y": -15.65625,
+          "width": 576,
+          "height": 175.09375,
+          "bottom": 159.4375
+        },
+        "copy": [
+          {
+            "x": 72.953125,
+            "y": -51,
+            "width": 576,
+            "height": 15.34375,
+            "bottom": -35.65625
+          },
+          {
+            "x": 72.953125,
+            "y": 181.828125,
+            "width": 576,
+            "height": 29.015625,
+            "bottom": 210.84375
+          },
+          {
+            "x": 72.953125,
+            "y": 224.4375,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 253.015625
+          },
+          {
+            "x": 72.953125,
+            "y": 257.8125,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 286.390625
+          },
+          {
+            "x": 72.953125,
+            "y": 291.1875,
+            "width": 576,
+            "height": 28.578125,
+            "bottom": 319.765625
+          }
+        ],
+        "mainPosition": "relative",
+        "horizontalOverflow": false,
+        "canvasCount": 1,
+        "reducedMotion": false
+      }
+    }
+  },
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "externalFontErrors": [],
+  "expectedFallbackErrors": [
+    {
+      "label": "no-webgl-short",
+      "message": "THREE.WebGLRenderer: Error creating WebGL context.",
+      "location": {
+        "url": "http://127.0.0.1:5003/_next/static/chunks/b536a0f1.140fd7ef674f0367.js",
+        "line": 0,
+        "column": 422888,
+        "lineNumber": 0,
+        "columnNumber": 422888
+      }
+    }
+  ],
+  "requestFailures": [],
+  "completedAt": "2026-10-14T14:30:54.050Z",
+  "pass": false
+}

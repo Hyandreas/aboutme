@@ -1,0 +1,2070 @@
+{
+  "baseUrl": "http://127.0.0.1:5003",
+  "viewports": 44,
+  "mode": "smoke",
+  "capturedAt": "2026-10-14T16:38:05.557Z",
+  "checks": [
+    {
+      "name": "homepage supplies exactly 44 viewports of native travel",
+      "pass": true,
+      "detail": 31680
+    },
+    {
+      "name": "entry retains one canvas, readable fixed copy and no horizontal overflow",
+      "pass": true,
+      "detail": {
+        "matrix": [
+          0.9577494859695435,
+          0.019858751446008682,
+          -0.28691741824150085,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.28760385513305664,
+          -0.06613162159919739,
+          0.9554635882377625,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "projection": [
+          1.465362548828125,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          0,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "frames": 5,
+        "flower": {
+          "uTime": 13.614100000023841,
+          "uWave": -10,
+          "uSwell": 0,
+          "uIntro": 1,
+          "uSize": 10.77737060597093,
+          "uJourneyProgress": 0,
+          "uReferenceView": 1.0000000000000002,
+          "uPixelRatio": 1,
+          "uPetalActive": 0,
+          "uPetalBloom": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "uPetalEye": [
+            -4.381869892,
+            2.45337031,
+            11.10398527609679
+          ],
+          "uPetalTime": 13.614100000023841
+        },
+        "environment": {},
+        "programs": 1,
+        "bloomEvents": 0,
+        "scrollY": 0,
+        "range": 31680,
+        "progress": 0,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720,
+          "bottom": 720
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 83.1875,
+          "y": 206.890625,
+          "width": 576,
+          "height": 218.84375,
+          "bottom": 425.734375
+        },
+        "copy": [
+          {
+            "x": 83.1875,
+            "y": 169.625,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 186.890625
+          },
+          {
+            "x": 83.1875,
+            "y": 448.125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 483.53125
+          },
+          {
+            "x": 83.1875,
+            "y": 497.125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 530.34375
+          },
+          {
+            "x": 83.1875,
+            "y": 535.140625,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 568.359375
+          },
+          {
+            "x": 83.1875,
+            "y": 573.15625,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 606.375
+          }
+        ],
+        "mainPosition": "fixed",
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "canvasCount": 1,
+        "horizontalOverflow": false,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "entry begins with no authored petal opening",
+      "pass": true,
+      "detail": {
+        "uTime": 13.614100000023841,
+        "uWave": -10,
+        "uSwell": 0,
+        "uIntro": 1,
+        "uSize": 10.77737060597093,
+        "uJourneyProgress": 0,
+        "uReferenceView": 1.0000000000000002,
+        "uPixelRatio": 1,
+        "uPetalActive": 0,
+        "uPetalBloom": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "uPetalEye": [
+          -4.381869892,
+          2.45337031,
+          11.10398527609679
+        ],
+        "uPetalTime": 13.614100000023841
+      }
+    },
+    {
+      "name": "a modest native wheel input moves the camera while copy stays fixed",
+      "pass": true,
+      "detail": {
+        "matrix": [
+          0.9578824043273926,
+          0.02055397629737854,
+          -0.2864241600036621,
+          0,
+          -3.469446951953614e-18,
+          0.9974350929260254,
+          0.0715765655040741,
+          0,
+          0.2871606945991516,
+          -0.06856193393468857,
+          0.9554255604743958,
+          0,
+          0.9860489368438721,
+          -1.6174001693725586,
+          -11.520831108093262,
+          1
+        ],
+        "projection": [
+          1.465362548828125,
+          0,
+          0,
+          0,
+          0,
+          2.605088949203491,
+          0,
+          0,
+          -0.039163459092378616,
+          0,
+          -1.000666856765747,
+          -1,
+          0,
+          0,
+          -0.2000666856765747,
+          0
+        ],
+        "frames": 14,
+        "flower": {
+          "uTime": 22.464200000047676,
+          "uWave": -10,
+          "uSwell": 0,
+          "uIntro": 1,
+          "uSize": 10.77737060597093,
+          "uJourneyProgress": 0.011362692549721653,
+          "uReferenceView": 0.9999212768653034,
+          "uPixelRatio": 1,
+          "uPetalActive": 0,
+          "uPetalBloom": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "uPetalEye": [
+            -4.381869892,
+            2.45337031,
+            11.10398527609679
+          ],
+          "uPetalTime": 22.464200000047676
+        },
+        "environment": {
+          "current": {
+            "uAt": 0.4999584721877527,
+            "uTime": 22.464200000047676,
+            "uEnergy": 0.005925003116313017,
+            "uFlow": 0.14,
+            "uQuiet": 0.994074996883687,
+            "uReveal": 0.0967079189269953,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              -1.2418456522112367,
+              1.8479546652398608,
+              -0.5113616980015727
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "ripple": {
+            "uRipple": 0,
+            "uQuiet": 0.994074996883687,
+            "uReveal": 0.0967079189269953,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              -1.2418456522112367,
+              1.8479546652398608,
+              -0.5113616980015727
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uEventPhase": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "uEventStrength": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "accent": {
+            "uAt": 0.4999584721877527,
+            "uTime": 22.464200000047676,
+            "uEnergy": 0.005925003116313017,
+            "uQuiet": 0.994074996883687,
+            "uReveal": 0.0967079189269953,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          }
+        },
+        "programs": 4,
+        "bloomEvents": 0,
+        "scrollY": 360,
+        "range": 31680,
+        "progress": 0.011363636363636364,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720,
+          "bottom": 720
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 83.1875,
+          "y": 206.890625,
+          "width": 576,
+          "height": 218.84375,
+          "bottom": 425.734375
+        },
+        "copy": [
+          {
+            "x": 83.1875,
+            "y": 169.625,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 186.890625
+          },
+          {
+            "x": 83.1875,
+            "y": 448.125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 483.53125
+          },
+          {
+            "x": 83.1875,
+            "y": 497.125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 530.34375
+          },
+          {
+            "x": 83.1875,
+            "y": 535.140625,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 568.359375
+          },
+          {
+            "x": 83.1875,
+            "y": 573.15625,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 606.375
+          }
+        ],
+        "mainPosition": "fixed",
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "canvasCount": 1,
+        "horizontalOverflow": false,
+        "reducedMotion": false
+      }
+    },
+    {
+      "name": "first opening reaches an authored physical bloom and environmental response",
+      "pass": true,
+      "detail": {
+        "flower": {
+          "uTime": 27.90839999997615,
+          "uWave": -10,
+          "uSwell": 0,
+          "uIntro": 1,
+          "uSize": 10.77737060597093,
+          "uJourneyProgress": 0.19318070105229868,
+          "uReferenceView": 0.8952257114491405,
+          "uPixelRatio": 1,
+          "uPetalActive": 0.9999999990980045,
+          "uPetalBloom": [
+            0.9999999990980045,
+            0,
+            0,
+            0
+          ],
+          "uPetalEye": [
+            -4.381869892,
+            2.45337031,
+            11.10398527609679
+          ],
+          "uPetalTime": 27.90839999997615
+        },
+        "environment": {
+          "current": {
+            "uAt": 8.499950846301141,
+            "uTime": 27.90839999997615,
+            "uEnergy": 0.9499999993315568,
+            "uFlow": 0.7199999998210319,
+            "uQuiet": 0.050000000668443234,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              0.8752485603336552,
+              2.2206232600653224,
+              0.8843045729946816
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "ripple": {
+            "uRipple": 0.7678005921824963,
+            "uQuiet": 0.050000000668443234,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              0.8752485603336552,
+              2.2206232600653224,
+              0.8843045729946816
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uEventPhase": [
+              0.4230674704425272,
+              0,
+              0,
+              0
+            ],
+            "uEventStrength": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "accent": {
+            "uAt": 8.499950846301141,
+            "uTime": 27.90839999997615,
+            "uEnergy": 0.9499999993315568,
+            "uQuiet": 0.050000000668443234,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          }
+        }
+      }
+    },
+    {
+      "name": "paused peak holds camera and authored bloom/environment state",
+      "pass": true,
+      "detail": {
+        "before": {
+          "matrix": [
+            0.9138315916061401,
+            0.010873441584408283,
+            -0.4059477746486664,
+            0,
+            -0.011999893002212048,
+            0.9999279975891113,
+            -0.00022964220261201262,
+            0,
+            0.4059160351753235,
+            0.005081184208393097,
+            0.9138962626457214,
+            0,
+            -1.6462016105651855,
+            -2.0908968448638916,
+            -4.303721904754639,
+            1
+          ],
+          "projection": [
+            1.465362548828125,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.47999951243400574,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "frames": 21,
+          "flower": {
+            "uTime": 27.90839999997615,
+            "uWave": -10,
+            "uSwell": 0,
+            "uIntro": 1,
+            "uSize": 10.77737060597093,
+            "uJourneyProgress": 0.19318070105229868,
+            "uReferenceView": 0.8952257114491405,
+            "uPixelRatio": 1,
+            "uPetalActive": 0.9999999990980045,
+            "uPetalBloom": [
+              0.9999999990980045,
+              0,
+              0,
+              0
+            ],
+            "uPetalEye": [
+              -4.381869892,
+              2.45337031,
+              11.10398527609679
+            ],
+            "uPetalTime": 27.90839999997615
+          },
+          "environment": {
+            "current": {
+              "uAt": 8.499950846301141,
+              "uTime": 27.90839999997615,
+              "uEnergy": 0.9499999993315568,
+              "uFlow": 0.7199999998210319,
+              "uQuiet": 0.050000000668443234,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8752485603336552,
+                2.2206232600653224,
+                0.8843045729946816
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "ripple": {
+              "uRipple": 0.7678005921824963,
+              "uQuiet": 0.050000000668443234,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8752485603336552,
+                2.2206232600653224,
+                0.8843045729946816
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uEventPhase": [
+                0.4230674704425272,
+                0,
+                0,
+                0
+              ],
+              "uEventStrength": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "accent": {
+              "uAt": 8.499950846301141,
+              "uTime": 27.90839999997615,
+              "uEnergy": 0.9499999993315568,
+              "uQuiet": 0.050000000668443234,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            }
+          },
+          "programs": 4,
+          "bloomEvents": 0,
+          "scrollY": 6120,
+          "range": 31680,
+          "progress": 0.19318181818181818,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "bottom": 720
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 83.1875,
+            "y": 206.890625,
+            "width": 576,
+            "height": 218.84375,
+            "bottom": 425.734375
+          },
+          "copy": [
+            {
+              "x": 83.1875,
+              "y": 169.625,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 186.890625
+            },
+            {
+              "x": 83.1875,
+              "y": 448.125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 483.53125
+            },
+            {
+              "x": 83.1875,
+              "y": 497.125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 530.34375
+            },
+            {
+              "x": 83.1875,
+              "y": 535.140625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 568.359375
+            },
+            {
+              "x": 83.1875,
+              "y": 573.15625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 606.375
+            }
+          ],
+          "mainPosition": "fixed",
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "canvasCount": 1,
+          "horizontalOverflow": false,
+          "reducedMotion": false
+        },
+        "after": {
+          "matrix": [
+            0.9138573408126831,
+            0.010884799994528294,
+            -0.40588948130607605,
+            0,
+            -0.011999720707535744,
+            0.9999279975891113,
+            -0.0002020669635385275,
+            0,
+            0.40585803985595703,
+            0.005055220797657967,
+            0.913922131061554,
+            0,
+            -1.6459288597106934,
+            -2.090771198272705,
+            -4.303885459899902,
+            1
+          ],
+          "projection": [
+            1.465362548828125,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.47999998927116394,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "frames": 22,
+          "flower": {
+            "uTime": 28.56329999995231,
+            "uWave": -10,
+            "uSwell": 0,
+            "uIntro": 1,
+            "uSize": 10.77737060597093,
+            "uJourneyProgress": 0.19318176256321443,
+            "uReferenceView": 0.8952259313923134,
+            "uPixelRatio": 1,
+            "uPetalActive": 0.9999999999977643,
+            "uPetalBloom": [
+              0.9999999999977643,
+              0,
+              0,
+              0
+            ],
+            "uPetalEye": [
+              -4.381869892,
+              2.45337031,
+              11.10398527609679
+            ],
+            "uPetalTime": 28.56329999995231
+          },
+          "environment": {
+            "current": {
+              "uAt": 8.499997552781435,
+              "uTime": 28.56329999995231,
+              "uEnergy": 0.9499999999983431,
+              "uFlow": 0.7199999999995564,
+              "uQuiet": 0.05000000000165694,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8750369795909789,
+                2.220545333800314,
+                0.8843569708198167
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "ripple": {
+              "uRipple": 0.7677863623595231,
+              "uQuiet": 0.05000000000165694,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8750369795909789,
+                2.220545333800314,
+                0.8843569708198167
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uEventPhase": [
+                0.4230764524579684,
+                0,
+                0,
+                0
+              ],
+              "uEventStrength": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "accent": {
+              "uAt": 8.499997552781435,
+              "uTime": 28.56329999995231,
+              "uEnergy": 0.9499999999983431,
+              "uQuiet": 0.05000000000165694,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            }
+          },
+          "programs": 4,
+          "bloomEvents": 0,
+          "scrollY": 6120,
+          "range": 31680,
+          "progress": 0.19318181818181818,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "bottom": 720
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 83.1875,
+            "y": 206.890625,
+            "width": 576,
+            "height": 218.84375,
+            "bottom": 425.734375
+          },
+          "copy": [
+            {
+              "x": 83.1875,
+              "y": 169.625,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 186.890625
+            },
+            {
+              "x": 83.1875,
+              "y": 448.125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 483.53125
+            },
+            {
+              "x": 83.1875,
+              "y": 497.125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 530.34375
+            },
+            {
+              "x": 83.1875,
+              "y": 535.140625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 568.359375
+            },
+            {
+              "x": 83.1875,
+              "y": 573.15625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 606.375
+            }
+          ],
+          "mainPosition": "fixed",
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "canvasCount": 1,
+          "horizontalOverflow": false,
+          "reducedMotion": false
+        }
+      }
+    },
+    {
+      "name": "underside interval is quieter and focuses a different blossom",
+      "pass": true,
+      "detail": {
+        "peak": {
+          "current": {
+            "uAt": 8.499950846301141,
+            "uTime": 27.90839999997615,
+            "uEnergy": 0.9499999993315568,
+            "uFlow": 0.7199999998210319,
+            "uQuiet": 0.050000000668443234,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              0.8752485603336552,
+              2.2206232600653224,
+              0.8843045729946816
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "ripple": {
+            "uRipple": 0.7678005921824963,
+            "uQuiet": 0.050000000668443234,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              0.8752485603336552,
+              2.2206232600653224,
+              0.8843045729946816
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uEventPhase": [
+              0.4230674704425272,
+              0,
+              0,
+              0
+            ],
+            "uEventStrength": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "accent": {
+            "uAt": 8.499950846301141,
+            "uTime": 27.90839999997615,
+            "uEnergy": 0.9499999993315568,
+            "uQuiet": 0.050000000668443234,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          }
+        },
+        "quiet": {
+          "current": {
+            "uAt": 25.999994646708647,
+            "uTime": 31.690499999999993,
+            "uEnergy": 0.05500000000157618,
+            "uFlow": 0.14,
+            "uQuiet": 0.9449999999984238,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              0.6999999999985014,
+              0.10000047234944852,
+              0.19999982155946655
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "ripple": {
+            "uRipple": 0,
+            "uQuiet": 0.9449999999984238,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uFocus": [
+              0.6999999999985014,
+              0.10000047234944852,
+              0.19999982155946655
+            ],
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uEventPhase": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "uEventStrength": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          },
+          "accent": {
+            "uAt": 25.999994646708647,
+            "uTime": 31.690499999999993,
+            "uEnergy": 0.05500000000157618,
+            "uQuiet": 0.9449999999984238,
+            "uReveal": 1,
+            "uReducedMotion": 0,
+            "uPixelRatio": 1,
+            "uViewport": [
+              0,
+              0,
+              1280,
+              720
+            ],
+            "uMaskStart": 0.38,
+            "uMaskEnd": 0.54
+          }
+        }
+      }
+    },
+    {
+      "name": "reverse wheel restores full peak camera, projection and authored scene state",
+      "pass": true,
+      "detail": {
+        "peak": {
+          "matrix": [
+            0.9138315916061401,
+            0.010873441584408283,
+            -0.4059477746486664,
+            0,
+            -0.011999893002212048,
+            0.9999279975891113,
+            -0.00022964220261201262,
+            0,
+            0.4059160351753235,
+            0.005081184208393097,
+            0.9138962626457214,
+            0,
+            -1.6462016105651855,
+            -2.0908968448638916,
+            -4.303721904754639,
+            1
+          ],
+          "projection": [
+            1.465362548828125,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.47999951243400574,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "frames": 21,
+          "flower": {
+            "uTime": 27.90839999997615,
+            "uWave": -10,
+            "uSwell": 0,
+            "uIntro": 1,
+            "uSize": 10.77737060597093,
+            "uJourneyProgress": 0.19318070105229868,
+            "uReferenceView": 0.8952257114491405,
+            "uPixelRatio": 1,
+            "uPetalActive": 0.9999999990980045,
+            "uPetalBloom": [
+              0.9999999990980045,
+              0,
+              0,
+              0
+            ],
+            "uPetalEye": [
+              -4.381869892,
+              2.45337031,
+              11.10398527609679
+            ],
+            "uPetalTime": 27.90839999997615
+          },
+          "environment": {
+            "current": {
+              "uAt": 8.499950846301141,
+              "uTime": 27.90839999997615,
+              "uEnergy": 0.9499999993315568,
+              "uFlow": 0.7199999998210319,
+              "uQuiet": 0.050000000668443234,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8752485603336552,
+                2.2206232600653224,
+                0.8843045729946816
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "ripple": {
+              "uRipple": 0.7678005921824963,
+              "uQuiet": 0.050000000668443234,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8752485603336552,
+                2.2206232600653224,
+                0.8843045729946816
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uEventPhase": [
+                0.4230674704425272,
+                0,
+                0,
+                0
+              ],
+              "uEventStrength": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "accent": {
+              "uAt": 8.499950846301141,
+              "uTime": 27.90839999997615,
+              "uEnergy": 0.9499999993315568,
+              "uQuiet": 0.050000000668443234,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            }
+          },
+          "programs": 4,
+          "bloomEvents": 0,
+          "scrollY": 6120,
+          "range": 31680,
+          "progress": 0.19318181818181818,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "bottom": 720
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 83.1875,
+            "y": 206.890625,
+            "width": 576,
+            "height": 218.84375,
+            "bottom": 425.734375
+          },
+          "copy": [
+            {
+              "x": 83.1875,
+              "y": 169.625,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 186.890625
+            },
+            {
+              "x": 83.1875,
+              "y": 448.125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 483.53125
+            },
+            {
+              "x": 83.1875,
+              "y": 497.125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 530.34375
+            },
+            {
+              "x": 83.1875,
+              "y": 535.140625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 568.359375
+            },
+            {
+              "x": 83.1875,
+              "y": 573.15625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 606.375
+            }
+          ],
+          "mainPosition": "fixed",
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "canvasCount": 1,
+          "horizontalOverflow": false,
+          "reducedMotion": false
+        },
+        "returned": {
+          "matrix": [
+            0.9138350486755371,
+            0.010874327272176743,
+            -0.4059399962425232,
+            0,
+            -0.01199969183653593,
+            0.9999279975891113,
+            -0.00022711415658704937,
+            0,
+            0.4059082865715027,
+            0.005078699439764023,
+            0.9138997197151184,
+            0,
+            -1.6461654901504517,
+            -2.090881109237671,
+            -4.303741455078125,
+            1
+          ],
+          "projection": [
+            1.465362548828125,
+            0,
+            0,
+            0,
+            0,
+            2.605088949203491,
+            0,
+            0,
+            -0.4800000488758087,
+            0,
+            -1.000666856765747,
+            -1,
+            0,
+            0,
+            -0.2000666856765747,
+            0
+          ],
+          "frames": 35,
+          "flower": {
+            "uTime": 37.5165,
+            "uWave": -10,
+            "uSwell": 0,
+            "uIntro": 1,
+            "uSize": 10.77737060597093,
+            "uJourneyProgress": 0.19318193984751383,
+            "uReferenceView": 0.8952259681331651,
+            "uPixelRatio": 1,
+            "uPetalActive": 0.9999999999893011,
+            "uPetalBloom": [
+              0.9999999999893011,
+              0,
+              0,
+              0
+            ],
+            "uPetalEye": [
+              -4.381869892,
+              2.45337031,
+              11.10398527609679
+            ],
+            "uPetalTime": 37.5165
+          },
+          "environment": {
+            "current": {
+              "uAt": 8.500005353290609,
+              "uTime": 37.5165,
+              "uEnergy": 0.9499999999918841,
+              "uFlow": 0.7199999999988537,
+              "uQuiet": 0.050000000008115886,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8752204881265229,
+                2.220612349589512,
+                0.8843111909675918
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "ripple": {
+              "uRipple": 0.7677839857198375,
+              "uQuiet": 0.050000000008115886,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uFocus": [
+                0.8752204881265229,
+                2.220612349589512,
+                0.8843111909675918
+              ],
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uEventPhase": [
+                0.42307795255588637,
+                0,
+                0,
+                0
+              ],
+              "uEventStrength": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            },
+            "accent": {
+              "uAt": 8.500005353290609,
+              "uTime": 37.5165,
+              "uEnergy": 0.9499999999918841,
+              "uQuiet": 0.050000000008115886,
+              "uReveal": 1,
+              "uReducedMotion": 0,
+              "uPixelRatio": 1,
+              "uViewport": [
+                0,
+                0,
+                1280,
+                720
+              ],
+              "uMaskStart": 0.38,
+              "uMaskEnd": 0.54
+            }
+          },
+          "programs": 4,
+          "bloomEvents": 0,
+          "scrollY": 6120,
+          "range": 31680,
+          "progress": 0.19318181818181818,
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "main": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 720,
+            "bottom": 720
+          },
+          "nav": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 65,
+            "bottom": 65
+          },
+          "heading": {
+            "x": 83.1875,
+            "y": 206.890625,
+            "width": 576,
+            "height": 218.84375,
+            "bottom": 425.734375
+          },
+          "copy": [
+            {
+              "x": 83.1875,
+              "y": 169.625,
+              "width": 576,
+              "height": 17.265625,
+              "bottom": 186.890625
+            },
+            {
+              "x": 83.1875,
+              "y": 448.125,
+              "width": 576,
+              "height": 35.40625,
+              "bottom": 483.53125
+            },
+            {
+              "x": 83.1875,
+              "y": 497.125,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 530.34375
+            },
+            {
+              "x": 83.1875,
+              "y": 535.140625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 568.359375
+            },
+            {
+              "x": 83.1875,
+              "y": 573.15625,
+              "width": 576,
+              "height": 33.21875,
+              "bottom": 606.375
+            }
+          ],
+          "mainPosition": "fixed",
+          "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+          "shellClasses": "hy-screen-shell hy-scroll-scene",
+          "canvasCount": 1,
+          "horizontalOverflow": false,
+          "reducedMotion": false
+        }
+      }
+    },
+    {
+      "name": "no application runtime or shader errors",
+      "pass": true,
+      "detail": {
+        "runtimeErrors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "views": {
+    "entry": {
+      "matrix": [
+        0.9577494859695435,
+        0.019858751446008682,
+        -0.28691741824150085,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.28760385513305664,
+        -0.06613162159919739,
+        0.9554635882377625,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "projection": [
+        1.465362548828125,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        0,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "frames": 5,
+      "flower": {
+        "uTime": 13.614100000023841,
+        "uWave": -10,
+        "uSwell": 0,
+        "uIntro": 1,
+        "uSize": 10.77737060597093,
+        "uJourneyProgress": 0,
+        "uReferenceView": 1.0000000000000002,
+        "uPixelRatio": 1,
+        "uPetalActive": 0,
+        "uPetalBloom": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "uPetalEye": [
+          -4.381869892,
+          2.45337031,
+          11.10398527609679
+        ],
+        "uPetalTime": 13.614100000023841
+      },
+      "environment": {},
+      "programs": 1,
+      "bloomEvents": 0,
+      "scrollY": 0,
+      "range": 31680,
+      "progress": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "bottom": 720
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 83.1875,
+        "y": 206.890625,
+        "width": 576,
+        "height": 218.84375,
+        "bottom": 425.734375
+      },
+      "copy": [
+        {
+          "x": 83.1875,
+          "y": 169.625,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 186.890625
+        },
+        {
+          "x": 83.1875,
+          "y": 448.125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 483.53125
+        },
+        {
+          "x": 83.1875,
+          "y": 497.125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 530.34375
+        },
+        {
+          "x": 83.1875,
+          "y": 535.140625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 568.359375
+        },
+        {
+          "x": 83.1875,
+          "y": 573.15625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 606.375
+        }
+      ],
+      "mainPosition": "fixed",
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "canvasCount": 1,
+      "horizontalOverflow": false,
+      "reducedMotion": false
+    },
+    "firstOpening": {
+      "matrix": [
+        0.9138315916061401,
+        0.010873441584408283,
+        -0.4059477746486664,
+        0,
+        -0.011999893002212048,
+        0.9999279975891113,
+        -0.00022964220261201262,
+        0,
+        0.4059160351753235,
+        0.005081184208393097,
+        0.9138962626457214,
+        0,
+        -1.6462016105651855,
+        -2.0908968448638916,
+        -4.303721904754639,
+        1
+      ],
+      "projection": [
+        1.465362548828125,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.47999951243400574,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "frames": 21,
+      "flower": {
+        "uTime": 27.90839999997615,
+        "uWave": -10,
+        "uSwell": 0,
+        "uIntro": 1,
+        "uSize": 10.77737060597093,
+        "uJourneyProgress": 0.19318070105229868,
+        "uReferenceView": 0.8952257114491405,
+        "uPixelRatio": 1,
+        "uPetalActive": 0.9999999990980045,
+        "uPetalBloom": [
+          0.9999999990980045,
+          0,
+          0,
+          0
+        ],
+        "uPetalEye": [
+          -4.381869892,
+          2.45337031,
+          11.10398527609679
+        ],
+        "uPetalTime": 27.90839999997615
+      },
+      "environment": {
+        "current": {
+          "uAt": 8.499950846301141,
+          "uTime": 27.90839999997615,
+          "uEnergy": 0.9499999993315568,
+          "uFlow": 0.7199999998210319,
+          "uQuiet": 0.050000000668443234,
+          "uReveal": 1,
+          "uReducedMotion": 0,
+          "uPixelRatio": 1,
+          "uFocus": [
+            0.8752485603336552,
+            2.2206232600653224,
+            0.8843045729946816
+          ],
+          "uViewport": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "uMaskStart": 0.38,
+          "uMaskEnd": 0.54
+        },
+        "ripple": {
+          "uRipple": 0.7678005921824963,
+          "uQuiet": 0.050000000668443234,
+          "uReveal": 1,
+          "uReducedMotion": 0,
+          "uPixelRatio": 1,
+          "uFocus": [
+            0.8752485603336552,
+            2.2206232600653224,
+            0.8843045729946816
+          ],
+          "uViewport": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "uEventPhase": [
+            0.4230674704425272,
+            0,
+            0,
+            0
+          ],
+          "uEventStrength": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "uMaskStart": 0.38,
+          "uMaskEnd": 0.54
+        },
+        "accent": {
+          "uAt": 8.499950846301141,
+          "uTime": 27.90839999997615,
+          "uEnergy": 0.9499999993315568,
+          "uQuiet": 0.050000000668443234,
+          "uReveal": 1,
+          "uReducedMotion": 0,
+          "uPixelRatio": 1,
+          "uViewport": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "uMaskStart": 0.38,
+          "uMaskEnd": 0.54
+        }
+      },
+      "programs": 4,
+      "bloomEvents": 0,
+      "scrollY": 6120,
+      "range": 31680,
+      "progress": 0.19318181818181818,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "bottom": 720
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 83.1875,
+        "y": 206.890625,
+        "width": 576,
+        "height": 218.84375,
+        "bottom": 425.734375
+      },
+      "copy": [
+        {
+          "x": 83.1875,
+          "y": 169.625,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 186.890625
+        },
+        {
+          "x": 83.1875,
+          "y": 448.125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 483.53125
+        },
+        {
+          "x": 83.1875,
+          "y": 497.125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 530.34375
+        },
+        {
+          "x": 83.1875,
+          "y": 535.140625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 568.359375
+        },
+        {
+          "x": 83.1875,
+          "y": 573.15625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 606.375
+        }
+      ],
+      "mainPosition": "fixed",
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "canvasCount": 1,
+      "horizontalOverflow": false,
+      "reducedMotion": false
+    },
+    "underside": {
+      "matrix": [
+        0.9363290667533875,
+        -0.08002844452857971,
+        -0.3418820798397064,
+        0,
+        -2.5019520677460605e-8,
+        0.9736796617507935,
+        -0.22792096436023712,
+        0,
+        0.35112378001213074,
+        0.21340902149677277,
+        0.911684513092041,
+        0,
+        -1.1687729358673096,
+        -0.2073003202676773,
+        -5.053694725036621,
+        1
+      ],
+      "projection": [
+        1.465362548828125,
+        0,
+        0,
+        0,
+        0,
+        2.605088949203491,
+        0,
+        0,
+        -0.46000000834465027,
+        0,
+        -1.000666856765747,
+        -1,
+        0,
+        0,
+        -0.2000666856765747,
+        0
+      ],
+      "frames": 27,
+      "flower": {
+        "uTime": 31.690499999999993,
+        "uWave": -10,
+        "uSwell": 0,
+        "uIntro": 1,
+        "uSize": 10.77737060597093,
+        "uJourneyProgress": 0.5909089692433783,
+        "uReferenceView": 0.8642876929792336,
+        "uPixelRatio": 1,
+        "uPetalActive": 0.16000000000155823,
+        "uPetalBloom": [
+          0.12,
+          0.16000000000155823,
+          0,
+          0
+        ],
+        "uPetalEye": [
+          -4.381869892,
+          2.45337031,
+          11.10398527609679
+        ],
+        "uPetalTime": 31.690499999999993
+      },
+      "environment": {
+        "current": {
+          "uAt": 25.999994646708647,
+          "uTime": 31.690499999999993,
+          "uEnergy": 0.05500000000157618,
+          "uFlow": 0.14,
+          "uQuiet": 0.9449999999984238,
+          "uReveal": 1,
+          "uReducedMotion": 0,
+          "uPixelRatio": 1,
+          "uFocus": [
+            0.6999999999985014,
+            0.10000047234944852,
+            0.19999982155946655
+          ],
+          "uViewport": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "uMaskStart": 0.38,
+          "uMaskEnd": 0.54
+        },
+        "ripple": {
+          "uRipple": 0,
+          "uQuiet": 0.9449999999984238,
+          "uReveal": 1,
+          "uReducedMotion": 0,
+          "uPixelRatio": 1,
+          "uFocus": [
+            0.6999999999985014,
+            0.10000047234944852,
+            0.19999982155946655
+          ],
+          "uViewport": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "uEventPhase": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "uEventStrength": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "uMaskStart": 0.38,
+          "uMaskEnd": 0.54
+        },
+        "accent": {
+          "uAt": 25.999994646708647,
+          "uTime": 31.690499999999993,
+          "uEnergy": 0.05500000000157618,
+          "uQuiet": 0.9449999999984238,
+          "uReveal": 1,
+          "uReducedMotion": 0,
+          "uPixelRatio": 1,
+          "uViewport": [
+            0,
+            0,
+            1280,
+            720
+          ],
+          "uMaskStart": 0.38,
+          "uMaskEnd": 0.54
+        }
+      },
+      "programs": 4,
+      "bloomEvents": 0,
+      "scrollY": 18720,
+      "range": 31680,
+      "progress": 0.5909090909090909,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "bottom": 720
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 83.1875,
+        "y": 206.890625,
+        "width": 576,
+        "height": 218.84375,
+        "bottom": 425.734375
+      },
+      "copy": [
+        {
+          "x": 83.1875,
+          "y": 169.625,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 186.890625
+        },
+        {
+          "x": 83.1875,
+          "y": 448.125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 483.53125
+        },
+        {
+          "x": 83.1875,
+          "y": 497.125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 530.34375
+        },
+        {
+          "x": 83.1875,
+          "y": 535.140625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 568.359375
+        },
+        {
+          "x": 83.1875,
+          "y": 573.15625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 606.375
+        }
+      ],
+      "mainPosition": "fixed",
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "canvasCount": 1,
+      "horizontalOverflow": false,
+      "reducedMotion": false
+    }
+  },
+  "capturesSkipped": true,
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "fontErrors": [],
+  "requestFailures": [],
+  "expectedFallbackErrors": [],
+  "completedAt": "2026-10-14T16:38:54.255Z",
+  "pass": true
+}

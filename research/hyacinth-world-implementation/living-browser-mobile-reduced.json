@@ -1,0 +1,342 @@
+{
+  "baseUrl": "http://127.0.0.1:5003",
+  "viewports": 44,
+  "mode": "verification",
+  "capturedAt": "2026-10-14T17:49:38.696Z",
+  "checks": [
+    {
+      "name": "mobile sequence completes",
+      "pass": false,
+      "detail": {
+        "message": "page.waitForFunction: Timeout 45000ms exceeded."
+      }
+    },
+    {
+      "name": "reduced sequence completes",
+      "pass": false,
+      "detail": {
+        "message": "page.waitForFunction: Timeout 45000ms exceeded."
+      }
+    },
+    {
+      "name": "no application runtime or shader errors",
+      "pass": true,
+      "detail": {
+        "runtimeErrors": [],
+        "consoleErrors": []
+      }
+    }
+  ],
+  "views": {
+    "readinessTimeout": {
+      "matrix": null,
+      "projection": null,
+      "frames": 0,
+      "flower": {},
+      "environment": {
+        "sky": {
+          "uTime": 0,
+          "uProg": 0,
+          "uEnergy": 0,
+          "uWorldAt": 0,
+          "uWorldReveal": 0,
+          "uFocus": [
+            0.271849711569481,
+            -0.06904897793644614,
+            -0.9598593506162882
+          ],
+          "uVoid": [
+            0.0018211619011764706,
+            0.001214107934117647,
+            0.0036765073221525194
+          ],
+          "uInk": [
+            0.04231141061442144,
+            0.02028856305209031,
+            0.1878207722902346
+          ],
+          "uInk2": [
+            0.006048833020386069,
+            0.023153366173251363,
+            0.07618538147321911
+          ]
+        }
+      },
+      "programs": 1,
+      "bloomEvents": 0,
+      "scrollY": 0,
+      "range": 31680,
+      "progress": 0,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "main": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "bottom": 720
+      },
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 65,
+        "bottom": 65
+      },
+      "heading": {
+        "x": 83.1875,
+        "y": 206.890625,
+        "width": 576,
+        "height": 218.84375,
+        "bottom": 425.734375
+      },
+      "copy": [
+        {
+          "x": 83.1875,
+          "y": 169.625,
+          "width": 576,
+          "height": 17.265625,
+          "bottom": 186.890625
+        },
+        {
+          "x": 83.1875,
+          "y": 448.125,
+          "width": 576,
+          "height": 35.40625,
+          "bottom": 483.53125
+        },
+        {
+          "x": 83.1875,
+          "y": 497.125,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 530.34375
+        },
+        {
+          "x": 83.1875,
+          "y": 535.140625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 568.359375
+        },
+        {
+          "x": 83.1875,
+          "y": 573.15625,
+          "width": 576,
+          "height": 33.21875,
+          "bottom": 606.375
+        }
+      ],
+      "mainPosition": "fixed",
+      "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+      "shellClasses": "hy-screen-shell hy-scroll-scene",
+      "canvasCount": 1,
+      "horizontalOverflow": false,
+      "reducedMotion": true
+    },
+    "mobileFailure": {
+      "url": "http://127.0.0.1:5003/",
+      "state": {
+        "matrix": null,
+        "projection": null,
+        "frames": 0,
+        "flower": {},
+        "environment": {},
+        "programs": 0,
+        "bloomEvents": 0,
+        "scrollY": 0,
+        "range": 37136,
+        "progress": 0,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "bottom": 844
+        },
+        "nav": {
+          "x": 0,
+          "y": -40,
+          "width": 390,
+          "height": 65,
+          "bottom": 25
+        },
+        "heading": {
+          "x": 35.59375,
+          "y": 119.34375,
+          "width": 350,
+          "height": 112.3125,
+          "bottom": 231.65625
+        },
+        "copy": [
+          {
+            "x": 35.59375,
+            "y": 84,
+            "width": 350,
+            "height": 15.34375,
+            "bottom": 99.34375
+          },
+          {
+            "x": 35.59375,
+            "y": 254.046875,
+            "width": 350,
+            "height": 28.0625,
+            "bottom": 282.109375
+          },
+          {
+            "x": 35.59375,
+            "y": 295.703125,
+            "width": 350,
+            "height": 27.265625,
+            "bottom": 322.96875
+          },
+          {
+            "x": 35.59375,
+            "y": 327.765625,
+            "width": 350,
+            "height": 27.265625,
+            "bottom": 355.03125
+          },
+          {
+            "x": 35.59375,
+            "y": 359.828125,
+            "width": 350,
+            "height": 54.53125,
+            "bottom": 414.359375
+          }
+        ],
+        "mainPosition": "fixed",
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "canvasCount": 1,
+        "horizontalOverflow": false,
+        "reducedMotion": false
+      }
+    },
+    "reduced-motionFailure": {
+      "url": "http://127.0.0.1:5003/",
+      "state": {
+        "matrix": null,
+        "projection": null,
+        "frames": 0,
+        "flower": {},
+        "environment": {
+          "sky": {
+            "uTime": 0,
+            "uProg": 0,
+            "uEnergy": 0,
+            "uWorldAt": 0,
+            "uWorldReveal": 0,
+            "uFocus": [
+              0.271849711569481,
+              -0.06904897793644614,
+              -0.9598593506162882
+            ],
+            "uVoid": [
+              0.0018211619011764706,
+              0.001214107934117647,
+              0.0036765073221525194
+            ],
+            "uInk": [
+              0.04231141061442144,
+              0.02028856305209031,
+              0.1878207722902346
+            ],
+            "uInk2": [
+              0.006048833020386069,
+              0.023153366173251363,
+              0.07618538147321911
+            ]
+          }
+        },
+        "programs": 1,
+        "bloomEvents": 0,
+        "scrollY": 0,
+        "range": 31680,
+        "progress": 0,
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "main": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720,
+          "bottom": 720
+        },
+        "nav": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 65,
+          "bottom": 65
+        },
+        "heading": {
+          "x": 83.1875,
+          "y": 206.890625,
+          "width": 576,
+          "height": 218.84375,
+          "bottom": 425.734375
+        },
+        "copy": [
+          {
+            "x": 83.1875,
+            "y": 169.625,
+            "width": 576,
+            "height": 17.265625,
+            "bottom": 186.890625
+          },
+          {
+            "x": 83.1875,
+            "y": 448.125,
+            "width": 576,
+            "height": 35.40625,
+            "bottom": 483.53125
+          },
+          {
+            "x": 83.1875,
+            "y": 497.125,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 530.34375
+          },
+          {
+            "x": 83.1875,
+            "y": 535.140625,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 568.359375
+          },
+          {
+            "x": 83.1875,
+            "y": 573.15625,
+            "width": 576,
+            "height": 33.21875,
+            "bottom": 606.375
+          }
+        ],
+        "mainPosition": "fixed",
+        "htmlClasses": "scroll-smooth intro2-skip hy-page-active hy-scroll-active",
+        "shellClasses": "hy-screen-shell hy-scroll-scene",
+        "canvasCount": 1,
+        "horizontalOverflow": false,
+        "reducedMotion": true
+      }
+    }
+  },
+  "capturesSkipped": true,
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "fontErrors": [],
+  "requestFailures": [],
+  "expectedFallbackErrors": [],
+  "completedAt": "2026-10-14T17:52:43.889Z",
+  "pass": false
+}

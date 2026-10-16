@@ -1,0 +1,116 @@
+{
+  "mode": "baseline",
+  "baseUrl": "http://127.0.0.1:5002",
+  "capturedAt": "2026-10-14T02:04:25.538Z",
+  "checks": [
+    {
+      "name": "native wheel moves document scroll",
+      "pass": false,
+      "detail": {
+        "before": 0,
+        "after": 0
+      }
+    },
+    {
+      "name": "native wheel changes the rendered 3D camera",
+      "pass": false,
+      "detail": {
+        "matrixDistance": 0.012579869867006762,
+        "liveFrames": 12
+      }
+    }
+  ],
+  "routes": {
+    "desktop /": {
+      "title": "Andreas Tsang",
+      "heading": [
+        "Andreas Tsang"
+      ],
+      "nav": [
+        {
+          "text": "Home",
+          "href": "/"
+        },
+        {
+          "text": "Projects",
+          "href": "/projects"
+        },
+        {
+          "text": "About",
+          "href": "/about"
+        },
+        {
+          "text": "Songs",
+          "href": "/songs"
+        }
+      ],
+      "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+      "mainRect": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 900
+      },
+      "horizontalOverflow": false,
+      "canvases": 1
+    }
+  },
+  "errors": [],
+  "home": {
+    "initial": {
+      "scrollY": 0,
+      "maxScroll": 0,
+      "matrix": [
+        0.9576506018638611,
+        0.01988147385418415,
+        -0.2872456908226013,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.2879329025745392,
+        -0.0661247968673706,
+        0.9553649425506592,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "matrices": 4,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    "forward": {
+      "scrollY": 0,
+      "maxScroll": 0,
+      "matrix": [
+        0.9550514817237854,
+        0.020468881353735924,
+        -0.2957324981689453,
+        0,
+        -3.469446951953614e-18,
+        0.997613251209259,
+        0.06904897838830948,
+        0,
+        0.2964400351047516,
+        -0.0659453272819519,
+        0.9527720212936401,
+        0,
+        1.1903088092803955,
+        -1.627341389656067,
+        -12.019186973571777,
+        1
+      ],
+      "matrices": 16,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      }
+    },
+    "cameraDelta": 0.012579869867006762
+  }
+}

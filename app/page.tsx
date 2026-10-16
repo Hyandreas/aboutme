@@ -29,7 +29,7 @@ export default function Home() {
   }
 
   return (
-    <FullscreenShell className="home-screen">
+    <FullscreenShell className="home-screen" scrollScene>
       <section className="screen-copy home-copy" aria-labelledby="home-title">
         <p className="screen-kicker">{content.kicker}</p>
         <h1 id="home-title" className="screen-title home-title">

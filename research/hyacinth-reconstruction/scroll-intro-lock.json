@@ -1,0 +1,24 @@
+{
+  "mode": "intro-lock",
+  "before": {
+    "scrollY": 0,
+    "classes": "scroll-smooth intro2-playing",
+    "htmlOverflowY": "visible",
+    "bodyOverflowY": "hidden"
+  },
+  "after": {
+    "scrollY": 0,
+    "classes": "scroll-smooth intro2-playing hy-page-active hy-scroll-active",
+    "htmlOverflowY": "hidden",
+    "bodyOverflowY": "hidden"
+  },
+  "released": {
+    "scrollY": 600,
+    "classes": "scroll-smooth hy-page-active hy-scroll-active intro2-skip",
+    "htmlOverflowY": "auto",
+    "bodyOverflowY": "auto"
+  },
+  "locked": true,
+  "pass": true,
+  "errors": []
+}

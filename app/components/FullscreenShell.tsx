@@ -6,17 +6,19 @@ import { getSiteChrome } from '@/lib/content';
 interface FullscreenShellProps {
   children: React.ReactNode;
   className?: string;
+  scrollScene?: boolean;
 }
 
 export default function FullscreenShell({
   children,
   className = '',
+  scrollScene = false,
 }: FullscreenShellProps) {
   const { navigation, hyacinth } = getSiteChrome();
 
   return (
-    <div className="hy-screen-shell">
-      <HyacinthBackdrop bloomButtonLabel={hyacinth.bloom_button_label} />
+    <div className={`hy-screen-shell${scrollScene ? ' hy-scroll-scene' : ''}`}>
+      <HyacinthBackdrop bloomButtonLabel={hyacinth.bloom_button_label} scrollScene={scrollScene} />
       <Navigation
         brand={navigation.brand}
         items={navigation.items}

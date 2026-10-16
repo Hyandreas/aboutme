@@ -451,6 +451,41 @@ html.magnetic-cursor-active textarea {
   padding: 5.25rem 1.25rem 1.5rem;
 }
 
+/* The homepage keeps its composition while native scrolling moves the 3D view. */
+html.hy-page-active.hy-scroll-active:not(.intro2-playing),
+html.hy-page-active.hy-scroll-active:not(.intro2-playing) body {
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+}
+
+html.hy-scroll-active::-webkit-scrollbar,
+html.hy-scroll-active body::-webkit-scrollbar {
+  display: none;
+}
+
+.hy-screen-shell.hy-scroll-scene {
+  min-height: var(--hy-scroll-length, 4500svh);
+}
+
+.hy-screen-shell.hy-scroll-unavailable {
+  min-height: 100dvh;
+}
+
+.hy-scroll-scene > .hy-screen-main {
+  position: fixed;
+  inset: 0;
+}
+
+/* Short screens and enlarged text keep the original readable document flow. */
+.hy-scroll-scene.hy-scroll-content-overflow > .hy-screen-main {
+  position: relative;
+  inset: auto;
+  height: auto;
+}
+
 .hy-screen-main::before {
   content: '';
   position: fixed;
@@ -460,6 +495,12 @@ html.magnetic-cursor-active textarea {
   background:
     radial-gradient(ellipse 54% 80% at 18% 52%, rgba(5, 3, 9, 0.82), rgba(5, 3, 9, 0.5) 52%, transparent 78%),
     linear-gradient(90deg, rgba(5, 3, 9, 0.68) 0%, rgba(5, 3, 9, 0.4) 42%, transparent 72%);
+}
+
+/* Let the surrounding world show through after entry while keeping the
+   original copy and its local contrast in the same place. */
+.hy-scroll-scene > .hy-screen-main::before {
+  opacity: calc(1 - var(--hy-world-reveal, 0) * .32);
 }
 
 @media (min-width: 768px) {
@@ -843,7 +884,7 @@ html.magnetic-cursor-active textarea {
 }
 
 .hy.hy-still #vault-gl {
-  transform: translateX(10vw);
+  transform: translateX(var(--hy-scene-shift, 10vw));
 }
 
 .hy.hy-still .still-bloom-hit {
@@ -994,6 +1035,12 @@ html.magnetic-cursor-active textarea {
     background:
       radial-gradient(ellipse 92% 78% at 10% 34%, rgba(5, 3, 9, 0.94), rgba(5, 3, 9, 0.72) 58%, rgba(5, 3, 9, 0.22) 100%),
       linear-gradient(90deg, rgba(5, 3, 9, 0.96), rgba(5, 3, 9, 0.72) 72%, rgba(5, 3, 9, 0.25));
+  }
+
+  .hy-scroll-scene > .hy-screen-main::before {
+    /* Keep the reading area shaded; reveal fine artwork below it after entry. */
+    mask-image: linear-gradient(to bottom, #000 44%,
+      rgba(0, 0, 0, calc(1 - var(--hy-world-reveal, 0) * .9)) 80%);
   }
 
   .screen-title {

@@ -1,0 +1,570 @@
+{
+  "mode": "final-smoke",
+  "baseUrl": "http://127.0.0.1:5002",
+  "capturedAt": "2026-10-14T02:17:44.732Z",
+  "checks": [
+    {
+      "name": "1440x900 native wheel moves document and 3D camera",
+      "pass": true,
+      "detail": {
+        "scrollY": 1440,
+        "translationDistance": 2.4377863753323696
+      }
+    },
+    {
+      "name": "1440x900 copy and navigation stay in place",
+      "pass": true,
+      "detail": {
+        "initial": [
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625
+          }
+        ],
+        "forward": [
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625
+          }
+        ]
+      }
+    },
+    {
+      "name": "1440x900 copy fits its viewport",
+      "pass": true,
+      "detail": [
+        {
+          "text": "2026",
+          "x": 89.59375,
+          "y": 250.96875,
+          "width": 576,
+          "height": 17.265625,
+          "fitsViewport": true
+        },
+        {
+          "text": "Andreas Tsang",
+          "x": 89.59375,
+          "y": 288.234375,
+          "width": 576,
+          "height": 236.15625,
+          "fitsViewport": true
+        },
+        {
+          "text": "Make the difference.",
+          "x": 89.59375,
+          "y": 546.78125,
+          "width": 576,
+          "height": 35.40625,
+          "fitsViewport": true
+        },
+        {
+          "text": "High school junior @ Taft School, Connecticut.",
+          "x": 89.59375,
+          "y": 595.78125,
+          "width": 576,
+          "height": 33.21875,
+          "fitsViewport": true
+        },
+        {
+          "text": "Previously @ Diocesan Boys' School, Hong Kong.",
+          "x": 89.59375,
+          "y": 633.796875,
+          "width": 576,
+          "height": 33.21875,
+          "fitsViewport": true
+        },
+        {
+          "text": "Computer science & robotics student interested in AI & startups.",
+          "x": 89.59375,
+          "y": 671.8125,
+          "width": 576,
+          "height": 33.21875,
+          "fitsViewport": true
+        }
+      ]
+    },
+    {
+      "name": "568x320 native wheel moves document and 3D camera",
+      "pass": true,
+      "detail": {
+        "scrollY": 200,
+        "translationDistance": 0.4288582126638617
+      }
+    },
+    {
+      "name": "568x320 final personal-copy line can be read after scrolling",
+      "pass": true,
+      "detail": {
+        "before": {
+          "x": 42.71875,
+          "y": 374.234375,
+          "width": 528,
+          "height": 27.265625
+        },
+        "after": {
+          "x": 42.71875,
+          "y": 174.234375,
+          "width": 528,
+          "height": 27.265625
+        }
+      }
+    },
+    {
+      "name": "568x320 overflow copy follows native document scrolling",
+      "pass": true,
+      "detail": {
+        "before": 374.234375,
+        "after": 174.234375,
+        "scrollY": 200
+      }
+    },
+    {
+      "name": "no browser runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "routes": {
+    "1440x900": {
+      "initial": {
+        "scrollY": 0,
+        "maxScroll": 1440,
+        "matrix": [
+          0.9589542150497437,
+          0.019579589366912842,
+          -0.2828840911388397,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.2835608720779419,
+          -0.06621480733156204,
+          0.9566654562950134,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 5,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "forward": {
+        "scrollY": 1440,
+        "maxScroll": 1440,
+        "matrix": [
+          0.8920933604240417,
+          -0.05421306565403938,
+          0.4485870897769928,
+          0,
+          -6.938893903907228e-18,
+          0.9927763342857361,
+          0.11997993290424347,
+          0,
+          -0.45185109972953796,
+          -0.10703329741954803,
+          0.8856491446495056,
+          0,
+          2.1215109825134277,
+          -1.1403554677963257,
+          -9.819525718688965,
+          1
+        ],
+        "matrices": 26,
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        }
+      },
+      "content": {
+        "title": "Andreas Tsang",
+        "heading": [
+          "Andreas Tsang"
+        ],
+        "nav": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Home",
+            "x": 897.265625,
+            "y": 23.359375,
+            "width": 49.8125,
+            "height": 17.265625
+          },
+          {
+            "text": "Projects",
+            "x": 987.078125,
+            "y": 23.359375,
+            "width": 82.671875,
+            "height": 17.265625
+          },
+          {
+            "text": "About",
+            "x": 1109.75,
+            "y": 23.359375,
+            "width": 57.9375,
+            "height": 17.265625
+          },
+          {
+            "text": "Songs",
+            "x": 1207.6875,
+            "y": 23.359375,
+            "width": 56.3125,
+            "height": 17.265625
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625
+          }
+        ],
+        "copyBounds": [
+          {
+            "text": "2026",
+            "x": 89.59375,
+            "y": 250.96875,
+            "width": 576,
+            "height": 17.265625,
+            "fitsViewport": true
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 89.59375,
+            "y": 288.234375,
+            "width": 576,
+            "height": 236.15625,
+            "fitsViewport": true
+          },
+          {
+            "text": "Make the difference.",
+            "x": 89.59375,
+            "y": 546.78125,
+            "width": 576,
+            "height": 35.40625,
+            "fitsViewport": true
+          },
+          {
+            "text": "High school junior @ Taft School, Connecticut.",
+            "x": 89.59375,
+            "y": 595.78125,
+            "width": 576,
+            "height": 33.21875,
+            "fitsViewport": true
+          },
+          {
+            "text": "Previously @ Diocesan Boys' School, Hong Kong.",
+            "x": 89.59375,
+            "y": 633.796875,
+            "width": 576,
+            "height": 33.21875,
+            "fitsViewport": true
+          },
+          {
+            "text": "Computer science & robotics student interested in AI & startups.",
+            "x": 89.59375,
+            "y": 671.8125,
+            "width": 576,
+            "height": 33.21875,
+            "fitsViewport": true
+          }
+        ],
+        "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      },
+      "lastLineBefore": {
+        "x": 89.59375,
+        "y": 671.8125,
+        "width": 576,
+        "height": 33.21875
+      },
+      "lastLineAfter": {
+        "x": 89.59375,
+        "y": 671.8125,
+        "width": 576,
+        "height": 33.21875
+      },
+      "wheelDelta": 2200
+    },
+    "568x320": {
+      "initial": {
+        "scrollY": 0,
+        "maxScroll": 512,
+        "matrix": [
+          0.9601946473121643,
+          0.01928757317364216,
+          -0.27866506576538086,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.279331773519516,
+          -0.06630045920610428,
+          0.9579029083251953,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 62,
+        "viewport": {
+          "width": 568,
+          "height": 320
+        }
+      },
+      "forward": {
+        "scrollY": 200,
+        "maxScroll": 512,
+        "matrix": [
+          0.9947344660758972,
+          0.008875262923538685,
+          -0.10210084915161133,
+          0,
+          0,
+          0.9962431788444519,
+          0.08659986406564713,
+          0,
+          0.10248587280511856,
+          -0.0861438661813736,
+          0.9909974336624146,
+          0,
+          1.3025068044662476,
+          -1.5175484418869019,
+          -11.620092391967773,
+          1
+        ],
+        "matrices": 107,
+        "viewport": {
+          "width": 568,
+          "height": 320
+        }
+      },
+      "content": {
+        "title": "Andreas Tsang",
+        "heading": [
+          "Andreas Tsang"
+        ],
+        "nav": [
+          {
+            "text": "Home",
+            "href": "/"
+          },
+          {
+            "text": "Projects",
+            "href": "/projects"
+          },
+          {
+            "text": "About",
+            "href": "/about"
+          },
+          {
+            "text": "Songs",
+            "href": "/songs"
+          }
+        ],
+        "layout": [
+          {
+            "text": "Home",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Projects",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "About",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Songs",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 42.71875,
+            "y": 119.34375,
+            "width": 528,
+            "height": 126.71875
+          }
+        ],
+        "copyBounds": [
+          {
+            "text": "2026",
+            "x": 42.71875,
+            "y": 84,
+            "width": 528,
+            "height": 15.34375,
+            "fitsViewport": false
+          },
+          {
+            "text": "Andreas Tsang",
+            "x": 42.71875,
+            "y": 119.34375,
+            "width": 528,
+            "height": 126.71875,
+            "fitsViewport": false
+          },
+          {
+            "text": "Make the difference.",
+            "x": 42.71875,
+            "y": 268.453125,
+            "width": 528,
+            "height": 28.0625,
+            "fitsViewport": false
+          },
+          {
+            "text": "High school junior @ Taft School, Connecticut.",
+            "x": 42.71875,
+            "y": 310.109375,
+            "width": 528,
+            "height": 27.265625,
+            "fitsViewport": false
+          },
+          {
+            "text": "Previously @ Diocesan Boys' School, Hong Kong.",
+            "x": 42.71875,
+            "y": 342.171875,
+            "width": 528,
+            "height": 27.265625,
+            "fitsViewport": false
+          },
+          {
+            "text": "Computer science & robotics student interested in AI & startups.",
+            "x": 42.71875,
+            "y": 374.234375,
+            "width": 528,
+            "height": 27.265625,
+            "fitsViewport": false
+          }
+        ],
+        "mainText": "2026\n\nAndreas Tsang\n\nMake the difference.\n\nHigh school junior @ Taft School, Connecticut.\n\nPreviously @ Diocesan Boys' School, Hong Kong.\n\nComputer science & robotics student interested in AI & startups.",
+        "mainRect": {
+          "x": 0,
+          "y": 0,
+          "width": 568,
+          "height": 425.5
+        },
+        "horizontalOverflow": false,
+        "canvases": 1
+      },
+      "lastLineBefore": {
+        "x": 42.71875,
+        "y": 374.234375,
+        "width": 528,
+        "height": 27.265625
+      },
+      "lastLineAfter": {
+        "x": 42.71875,
+        "y": 174.234375,
+        "width": 528,
+        "height": 27.265625
+      },
+      "wheelDelta": 200
+    }
+  },
+  "errors": []
+}

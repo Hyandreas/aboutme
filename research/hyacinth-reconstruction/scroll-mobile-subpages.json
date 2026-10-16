@@ -1,0 +1,246 @@
+{
+  "mode": "mobile-subpages",
+  "baseUrl": "http://127.0.0.1:5002",
+  "capturedAt": "2026-10-14T02:19:30.548Z",
+  "checks": [
+    {
+      "name": "/projects preserves normal mobile page flow",
+      "pass": true,
+      "detail": {
+        "homeScrollClass": false,
+        "homeRunway": false
+      }
+    },
+    {
+      "name": "/projects keeps its static 3D camera while scrolling",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0,
+        "scrollY": 0,
+        "maxScroll": 0
+      }
+    },
+    {
+      "name": "/about preserves normal mobile page flow",
+      "pass": true,
+      "detail": {
+        "homeScrollClass": false,
+        "homeRunway": false
+      }
+    },
+    {
+      "name": "/about keeps its static 3D camera while scrolling",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0,
+        "scrollY": 0,
+        "maxScroll": 0
+      }
+    },
+    {
+      "name": "/songs preserves normal mobile page flow",
+      "pass": true,
+      "detail": {
+        "homeScrollClass": false,
+        "homeRunway": false
+      }
+    },
+    {
+      "name": "/songs keeps its static 3D camera while scrolling",
+      "pass": true,
+      "detail": {
+        "translationDistance": 0,
+        "scrollY": 49,
+        "maxScroll": 49
+      }
+    },
+    {
+      "name": "no browser runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "routes": {
+    "/projects": {
+      "before": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9597629308700562,
+          0.019389742985367775,
+          -0.2801412343978882,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.28081145882606506,
+          -0.06627064943313599,
+          0.9574722647666931,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 18,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "after": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9595193862915039,
+          0.01944712921977043,
+          -0.28097033500671387,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.28164252638816833,
+          -0.06625383347272873,
+          0.9572293162345886,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 23,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "sceneMode": {
+        "homeScrollClass": false,
+        "homeRunway": false
+      }
+    },
+    "/about": {
+      "before": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9107950925827026,
+          0.028799569234251976,
+          -0.41185301542282104,
+          0,
+          -3.469446951953614e-18,
+          0.9975640773773193,
+          0.06975647062063217,
+          0,
+          0.4128587245941162,
+          -0.06353385001420975,
+          0.9085764288902283,
+          0,
+          -0.5133012533187866,
+          -1.6154371500015259,
+          -12.068671226501465,
+          1
+        ],
+        "matrices": 22,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "after": {
+        "scrollY": 0,
+        "maxScroll": 0,
+        "matrix": [
+          0.9100963473320007,
+          0.02890685200691223,
+          -0.4133872389793396,
+          0,
+          -3.469446951953614e-18,
+          0.9975640773773193,
+          0.06975647062063217,
+          0,
+          0.4143967032432556,
+          -0.06348511576652527,
+          0.9078794121742249,
+          0,
+          -0.5133012533187866,
+          -1.6154371500015259,
+          -12.068671226501465,
+          1
+        ],
+        "matrices": 28,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "sceneMode": {
+        "homeScrollClass": false,
+        "homeRunway": false
+      }
+    },
+    "/songs": {
+      "before": {
+        "scrollY": 0,
+        "maxScroll": 49,
+        "matrix": [
+          0.9594642519950867,
+          0.019460102543234825,
+          -0.2811577618122101,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.28183043003082275,
+          -0.0662500262260437,
+          0.9571742415428162,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 3,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "after": {
+        "scrollY": 49,
+        "maxScroll": 49,
+        "matrix": [
+          0.9550625085830688,
+          0.02046642266213894,
+          -0.29569700360298157,
+          0,
+          -3.469446951953614e-18,
+          0.997613251209259,
+          0.06904897838830948,
+          0,
+          0.2964044213294983,
+          -0.06594608724117279,
+          0.9527830481529236,
+          0,
+          1.1903088092803955,
+          -1.627341389656067,
+          -12.019186973571777,
+          1
+        ],
+        "matrices": 6,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        }
+      },
+      "sceneMode": {
+        "homeScrollClass": false,
+        "homeRunway": false
+      }
+    }
+  },
+  "errors": []
+}

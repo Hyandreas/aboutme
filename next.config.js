@@ -29,6 +29,14 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: '/assets/hyacinth-:variant.bin.gz',
+        headers: [
+          { key: 'Content-Type', value: 'application/octet-stream' },
+          { key: 'Content-Encoding', value: 'gzip' },
+          { key: 'Cache-Control', value: 'public, max-age=3600' },
+        ],
+      },
+      {
         source: '/:path*',
         headers: securityHeaders,
       },
